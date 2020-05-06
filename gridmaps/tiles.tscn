@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://gridmaps/blocks/block.tres" type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.518739, 0.525476, 0.498365 )
+
+[node name="Tiles" type="Node"]
+
+[node name="Block" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="RigidBody" type="RigidBody" parent="Block"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Block/RigidBody"]
+shape = SubResource( 1 )
