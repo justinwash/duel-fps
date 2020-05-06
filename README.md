@@ -1,4 +1,4 @@
-# fps-duel
+# duel-fps
 A one-on-one first person shooter concept made with Godot Engine
 
 utilizes a matchmaking server found here: https://github.com/justinwash/matchmaker
