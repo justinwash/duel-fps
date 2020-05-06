@@ -1,6 +1,9 @@
 # fps-duel
 A one-on-one first person shooter concept made with Godot Engine
 
+utilizes `matchmaker`, a matchmaking server found here:
+https://github.com/justinwash/godot-prototypes/tree/master/Templates/fps_multiplayer_matchmaking
+
 * 1v1
 * best 2 of 3 rounds
 * 2 lives per round
