@@ -1,5 +1,7 @@
 extends Node
 
+export var DEV_MODE = false
+
 onready var matchmaker = $Matchmaker
 onready var lobby = $Lobby
 onready var networking_mode = $NetworkingMode
@@ -16,6 +18,9 @@ signal left_game
 func _ready():
 	_connect_matchmaking_signals()
 	_connect_world_signals()
+	
+	if DEV_MODE:
+		_start_practice()
 
 func _connect_matchmaking_signals():
 	matchmaker.connect("start_game", self, "_start_game")
