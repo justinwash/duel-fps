@@ -8,7 +8,6 @@
 [node name="Game" type="Node"]
 pause_mode = 2
 script = ExtResource( 5 )
-DEV_MODE = true
 
 [node name="Matchmaker" parent="." instance=ExtResource( 1 )]
 pause_mode = 2
