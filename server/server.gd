@@ -70,7 +70,7 @@ func _connected_fail():
 	emit_signal("cancel_game")
 	
 func _player_connected(_id):
-        opponent_present = true
+	opponent_present = true
 	print("player connected: ", _id)
 	world.spawn_player(_id)
 	world.spawn_player(get_tree().get_network_unique_id())
