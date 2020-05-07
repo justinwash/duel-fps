@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
@@ -34,6 +34,8 @@ tracks/1/keys = {
 [sub_resource type="CapsuleShape" id=2]
 radius = 0.5
 
+[sub_resource type="CylinderShape" id=7]
+
 [sub_resource type="StyleBoxFlat" id=3]
 
 [sub_resource type="StyleBoxTexture" id=4]
@@ -42,6 +44,15 @@ radius = 0.5
 
 [sub_resource type="CapsuleMesh" id=6]
 radius = 0.5
+
+[sub_resource type="SpatialMaterial" id=8]
+metallic = 0.23
+metallic_specular = 0.29
+emission_enabled = true
+emission = Color( 0, 0.243137, 1, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -52,6 +63,10 @@ anims/shoot = SubResource( 1 )
 [node name="BodyCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 2 )
+
+[node name="FeetCollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.5, 0, 0, 0, -0.5, 4.37114e-08, 0, -4.37114e-08, -0.5, 0, -0.359959, 0 )
+shape = SubResource( 7 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -111,4 +126,4 @@ cast_to = Vector3( 0, 0, -2000 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 extra_cull_margin = 1.0
 mesh = SubResource( 6 )
-material/0 = null
+material/0 = SubResource( 8 )

@@ -19,7 +19,7 @@ transform = Transform( 1, 0, 0, 0, 0.169, 0, 0, 0, 1, 0, 0, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="OmniLight" parent="Geometry/Room" index="6"]
-transform = Transform( 1, 0, 0, 0, 5.91716, 0, 0, 0, 1, 0, 64.4052, 0 )
+transform = Transform( 0.2, 0, 0, 0, 1.18343, 0, 0, 0, 0.2, 0, 64.4052, 0 )
 
 [node name="MeshInstance" parent="Geometry/Room/OmniLight" index="0"]
 mesh = null
@@ -48,7 +48,7 @@ transform = Transform( 0.502416, 0, 0.864626, 0, 1, 0, -0.864626, 0, 0.502416, 1
 transform = Transform( 0.96025, 0, 0.279142, 0, 1, 0, -0.279142, 0, 0.96025, -3.01784, 1, -10.2975 )
 
 [node name="Box8" parent="Geometry/Props" instance=ExtResource( 3 )]
-transform = Transform( 0.480162, 0, 0.87718, 0, 1, 0, -0.87718, 0, 0.480162, 0.725807, 1, -14.0011 )
+transform = Transform( 0.480162, 0, 0.87718, 0, 1, 0, -0.87718, 0, 0.480162, -17.2368, 0, -4.44078 )
 
 [node name="Box9" parent="Geometry/Props" instance=ExtResource( 3 )]
 transform = Transform( 0.950396, 0, 0.311041, 0, 1, 0, -0.311041, 0, 0.950396, -9.90989, 1, -18.9279 )
