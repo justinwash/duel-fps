@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
 [ext_resource path="res://weapons/pistol/crosshair.svg" type="Texture" id=3]
+[ext_resource path="res://player/states/idle.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "shoot"
@@ -34,15 +35,15 @@ tracks/1/keys = {
 [sub_resource type="CapsuleShape" id=2]
 radius = 0.5
 
-[sub_resource type="CylinderShape" id=7]
+[sub_resource type="CylinderShape" id=3]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=5]
 
-[sub_resource type="BitmapFont" id=5]
+[sub_resource type="BitmapFont" id=6]
 
-[sub_resource type="CapsuleMesh" id=6]
+[sub_resource type="CapsuleMesh" id=7]
 radius = 0.5
 
 [sub_resource type="SpatialMaterial" id=8]
@@ -57,6 +58,15 @@ emission_on_uv2 = false
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 
+[node name="States" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource( 4 )
+
+[node name="Walk" type="Node" parent="States"]
+
+[node name="Jump" type="Node" parent="States"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/shoot = SubResource( 1 )
 
@@ -66,7 +76,7 @@ shape = SubResource( 2 )
 
 [node name="FeetCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.5, 0, 0, 0, -0.5, 4.37114e-08, 0, -4.37114e-08, -0.5, 0, -0.359959, 0 )
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -104,9 +114,9 @@ margin_left = -32.0
 margin_top = 64.0
 margin_right = 64.0
 margin_bottom = 65.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 step = 1.0
 value = 100.0
 __meta__ = {
@@ -125,5 +135,5 @@ cast_to = Vector3( 0, 0, -2000 )
 [node name="Body" type="MeshInstance" parent="RotationHelper"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 extra_cull_margin = 1.0
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = SubResource( 8 )
