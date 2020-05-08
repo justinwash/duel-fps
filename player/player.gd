@@ -54,13 +54,16 @@ func _physics_process(delta):
 
 func _input(event):
 	if is_master_or_player(1):
-		current_state.on_input(self, event)
+		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+			rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+
+			var camera_rot = rotation_helper.rotation_degrees
+			camera_rot.x = clamp(camera_rot.x, -70, 70)
+			rotation_helper.rotation_degrees = camera_rot
 
 puppet func set_pos(p_pos):
 	global_transform = p_pos
-
-func kill():
-	print('hit target. do dmg')
 	
 func is_master_or_player(id):
 	if (get_tree().has_network_peer() and !is_network_master()) \
@@ -69,7 +72,7 @@ func is_master_or_player(id):
 	else:
 		return false
 		
-func _change_state(state_name):
+func change_state(state_name):
 	current_state.exit()
 	current_state = states[state_name]
 	if current_state.has_method("ready"):

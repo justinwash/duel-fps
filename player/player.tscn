@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
 [ext_resource path="res://weapons/pistol/crosshair.svg" type="Texture" id=3]
 [ext_resource path="res://player/states/idle.gd" type="Script" id=4]
+[ext_resource path="res://player/states/walk.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "shoot"
@@ -64,6 +65,7 @@ script = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="Walk" type="Node" parent="States"]
+script = ExtResource( 5 )
 
 [node name="Jump" type="Node" parent="States"]
 
