@@ -31,9 +31,6 @@ func _ready():
 	if is_master_or_player(0):
 		for element in hud.get_children():
 			element.visible = false
-			
-	for child in get_children():
-		child.connect("change_state", self, "_change_state")
 
 	current_state = states.idle
 	if current_state.has_method("ready"):
@@ -49,6 +46,8 @@ func _physics_process(delta):
 	if is_master_or_player(1):
 		current_state.physics_update(self, delta)
 		
+		_move(delta)
+		
 	if get_tree().has_network_peer():
 		rpc_unreliable("set_pos", global_transform)
 
@@ -62,6 +61,29 @@ func _input(event):
 			camera_rot.x = clamp(camera_rot.x, -70, 70)
 			rotation_helper.rotation_degrees = camera_rot
 
+func _move(delta):
+	dir.y = 0
+	dir = dir.normalized()
+
+	vel.y += delta * GRAVITY * 1.1
+
+	var hvel = vel
+	hvel.y = 0
+
+	var target = dir
+	target *= MAX_SPEED
+
+	var accel
+	if dir.dot(hvel) > 0:
+		accel = ACCEL
+	else:
+		accel = DEACCEL
+
+	hvel = hvel.linear_interpolate(target, accel * delta)
+	vel.x = hvel.x
+	vel.z = hvel.z
+	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+	
 puppet func set_pos(p_pos):
 	global_transform = p_pos
 	
