@@ -8,3 +8,4 @@
 script = ExtResource( 1 )
 crosshair = ExtResource( 3 )
 icon = ExtResource( 2 )
+SWITCH_DELAY = 0.25
