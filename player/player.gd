@@ -48,8 +48,8 @@ func _physics_process(delta):
 		
 		_move(delta)
 		
-	if get_tree().has_network_peer():
-		rpc_unreliable("set_pos", global_transform)
+		if get_tree().has_network_peer():
+			rpc_unreliable("set_pos", global_transform)
 
 func _input(event):
 	if is_master_or_player(1):
@@ -88,7 +88,7 @@ puppet func set_pos(p_pos):
 	global_transform = p_pos
 	
 func is_master_or_player(id):
-	if (get_tree().has_network_peer() and !is_network_master()) \
+	if (get_tree().has_network_peer() and is_network_master()) \
 	or (!get_tree().has_network_peer() and get_network_master() == id):
 		return true
 	else:
