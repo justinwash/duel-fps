@@ -39,7 +39,7 @@ func is_master_or_player(id):
 		return false
 		
 func toggle_weapon():
-	current_weapon.exit()
+	current_weapon.exit(self)
 	
 	if current_weapon == weapons.primary:
 		current_weapon = weapons.secondary
@@ -51,11 +51,12 @@ func toggle_weapon():
 	current_weapon.enter(self)
 	
 func select_weapon(primary_or_secondary):
-	current_weapon.exit()
+	current_weapon.exit(self)
 	
-	current_weapon = weapons[primary_or_secondary]
+	if current_weapon != weapons[primary_or_secondary]:
+		current_weapon = weapons[primary_or_secondary]
 		
-	if current_weapon.has_method("ready"):
-		current_weapon.ready(self)
-	current_weapon.enter(self)
+		if current_weapon.has_method("ready"):
+			current_weapon.ready(self)
+		current_weapon.enter(self)
 	

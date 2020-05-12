@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cross-shaped-target.svg-cc4e39791f5b369d75b53b51c71e47e0.stex"
+path="res://.import/icon.svg-e66802cdf84d849bd109091e97e5a114.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://weapons/crosshairs/cross-shaped-target.svg"
-dest_files=[ "res://.import/cross-shaped-target.svg-cc4e39791f5b369d75b53b51c71e47e0.stex" ]
+source_file="res://weapons/rifle/icon.svg"
+dest_files=[ "res://.import/icon.svg-e66802cdf84d849bd109091e97e5a114.stex" ]
 
 [params]
 

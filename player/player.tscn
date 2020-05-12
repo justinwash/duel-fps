@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
@@ -10,11 +10,24 @@
 [ext_resource path="res://weapons/pistol/pistol.tscn" type="PackedScene" id=8]
 [ext_resource path="res://player/hud.gd" type="Script" id=9]
 [ext_resource path="res://player/reloadindicator.gd" type="Script" id=10]
+[ext_resource path="res://weapons/rifle/rifle.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape" id=2]
 radius = 0.5
 
 [sub_resource type="CylinderShape" id=3]
+
+[sub_resource type="CapsuleMesh" id=7]
+radius = 0.5
+
+[sub_resource type="SpatialMaterial" id=8]
+metallic = 0.23
+metallic_specular = 0.29
+emission_enabled = true
+emission = Color( 0, 0.243137, 1, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
 
 [sub_resource type="Animation" id=1]
 resource_name = "shoot"
@@ -58,42 +71,8 @@ bg_color = Color( 1, 0, 0, 1 )
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0, 1, 0, 1 )
 
-[sub_resource type="CapsuleMesh" id=7]
-radius = 0.5
-
-[sub_resource type="SpatialMaterial" id=8]
-metallic = 0.23
-metallic_specular = 0.29
-emission_enabled = true
-emission = Color( 0, 0.243137, 1, 1 )
-emission_energy = 2.0
-emission_operator = 0
-emission_on_uv2 = false
-
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
-
-[node name="WeaponHandler" type="Node" parent="."]
-script = ExtResource( 7 )
-
-[node name="Primary" type="Node" parent="WeaponHandler"]
-
-[node name="Pistol" parent="WeaponHandler/Primary" instance=ExtResource( 8 )]
-
-[node name="Secondary" type="Node" parent="WeaponHandler"]
-
-[node name="Pistol" parent="WeaponHandler/Secondary" instance=ExtResource( 8 )]
-
-[node name="States" type="Node" parent="."]
-
-[node name="Idle" type="Node" parent="States"]
-script = ExtResource( 4 )
-
-[node name="Walk" type="Node" parent="States"]
-script = ExtResource( 5 )
-
-[node name="Jump" type="Node" parent="States"]
-script = ExtResource( 6 )
 
 [node name="BodyCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -102,6 +81,21 @@ shape = SubResource( 2 )
 [node name="FeetCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.5, 0, 0, 0, -0.5, 4.37114e-08, 0, -4.37114e-08, -0.5, 0, -0.359959, 0 )
 shape = SubResource( 3 )
+
+[node name="RotationHelper" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="RotationHelper"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479582, 0 )
+
+[node name="RayCast" type="RayCast" parent="RotationHelper"]
+enabled = true
+cast_to = Vector3( 0, 0, -2000 )
+
+[node name="Body" type="MeshInstance" parent="RotationHelper"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+extra_cull_margin = 1.0
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 9 )
@@ -179,17 +173,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RotationHelper" type="Spatial" parent="."]
+[node name="WeaponHandler" type="Node" parent="."]
+script = ExtResource( 7 )
 
-[node name="Camera" type="Camera" parent="RotationHelper"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479582, 0 )
+[node name="Primary" type="Node" parent="WeaponHandler"]
 
-[node name="RayCast" type="RayCast" parent="RotationHelper"]
-enabled = true
-cast_to = Vector3( 0, 0, -2000 )
+[node name="Pistol" parent="WeaponHandler/Primary" instance=ExtResource( 8 )]
 
-[node name="Body" type="MeshInstance" parent="RotationHelper"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
-extra_cull_margin = 1.0
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
+[node name="Secondary" type="Node" parent="WeaponHandler"]
+
+[node name="Rifle" parent="WeaponHandler/Secondary" instance=ExtResource( 11 )]
+COOLDOWN_TIME = 1.0
+
+[node name="States" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource( 4 )
+
+[node name="Walk" type="Node" parent="States"]
+script = ExtResource( 5 )
+
+[node name="Jump" type="Node" parent="States"]
+script = ExtResource( 6 )
