@@ -16,9 +16,9 @@ var vel = Vector3()
 
 onready var camera = $RotationHelper/Camera
 onready var rotation_helper = $RotationHelper
-onready var anim = $AnimationPlayer
 onready var raycast = $RotationHelper/RayCast
 onready var hud = $HUD
+onready var weapon_handler = $WeaponHandler
 
 var current_state
 onready var states = {
@@ -28,10 +28,11 @@ onready var states = {
 }
 
 func _ready():
-	if is_master_or_player(0):
+	if !is_master_or_player(1):
 		for element in hud.get_children():
-			element.visible = false
-
+			if element.get("visible"):
+				element.visible = false
+			
 	current_state = states.idle
 	if current_state.has_method("ready"):
 		current_state.ready(self)
