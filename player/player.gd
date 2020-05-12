@@ -43,11 +43,11 @@ func _process(delta):
 		camera.current = true
 		current_state.update(self, delta)
 		
+		_move(delta)
+		
 func _physics_process(delta):
 	if is_master_or_player(1):
 		current_state.physics_update(self, delta)
-		
-		_move(delta)
 		
 		if get_tree().has_network_peer():
 			rpc_unreliable("set_pos", global_transform)
