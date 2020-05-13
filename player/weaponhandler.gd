@@ -1,7 +1,8 @@
-extends Node
+extends Spatial
 
 var current_weapon
-onready var hud = get_node("../HUD")
+onready var hud = get_node("../../HUD")
+onready var camera = get_node("../Camera")
 
 onready var weapons = {
 	"primary": $Primary.get_child(0),
@@ -9,6 +10,8 @@ onready var weapons = {
 }
 
 func _ready():	
+	for weapon in weapons:
+		weapons[weapon].global_transform = camera.global_transform
 	current_weapon = weapons.primary
 	if current_weapon.has_method("ready"):
 		current_weapon.ready(self)
@@ -21,10 +24,6 @@ func _process(delta):
 func _physics_process(delta):
 	if is_master_or_player(1):
 		current_weapon.physics_update(self, delta)
-		
-		if get_tree().has_network_peer():
-		#	rpc_unreliable("set_pos", global_transform)
-			pass
 
 func _input(event):
 	if is_master_or_player(1):

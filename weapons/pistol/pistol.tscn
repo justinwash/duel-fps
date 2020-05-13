@@ -8,3 +8,6 @@
 script = ExtResource( 1 )
 crosshair = ExtResource( 3 )
 icon = ExtResource( 2 )
+
+[node name="RayCast" type="RayCast" parent="."]
+cast_to = Vector3( 0, 0, -100 )

@@ -1,5 +1,7 @@
 extends KinematicBody
 
+var player = true
+
 const GRAVITY = -20
 const JUMP_SPEED = 7.5
 
@@ -18,7 +20,7 @@ onready var camera = $RotationHelper/Camera
 onready var rotation_helper = $RotationHelper
 onready var raycast = $RotationHelper/RayCast
 onready var hud = $HUD
-onready var weapon_handler = $WeaponHandler
+onready var weapon_handler = $RotationHelper/WeaponHandler
 
 var current_state
 onready var states = {
