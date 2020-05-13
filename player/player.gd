@@ -21,12 +21,16 @@ onready var rotation_helper = $RotationHelper
 onready var raycast = $RotationHelper/RayCast
 onready var hud = $HUD
 onready var weapon_handler = $RotationHelper/WeaponHandler
+onready var status = $Status
+onready var anim = $AnimationPlayer
+onready var timer = $Timer
 
 var current_state
 onready var states = {
 	"idle": $States/Idle,
 	"walk": $States/Walk,
 	"jump": $States/Jump,
+	"dead": $States/Dead
 }
 
 func _ready():
@@ -44,7 +48,9 @@ func _process(delta):
 	if is_master_or_player(1):
 		camera.current = true
 		current_state.update(self, delta)
-		
+		_move(delta)
+	# make dummy react to gravity
+	elif is_master_or_player(0):
 		_move(delta)
 		
 func _physics_process(delta):
@@ -90,6 +96,11 @@ func _move(delta):
 puppet func set_pos(p_pos):
 	global_transform = p_pos
 	
+puppet func receive_hit(amount):
+	status.HEALTH -= amount
+	if status.HEALTH <= 0:
+		change_state("dead")
+	
 func is_master_or_player(id):
 	if (get_tree().has_network_peer() and is_network_master()) \
 	or (!get_tree().has_network_peer() and get_network_master() == id):
@@ -103,3 +114,7 @@ func change_state(state_name):
 	if current_state.has_method("ready"):
 		current_state.ready(self)
 	current_state.enter(self)
+	
+func _die():
+	print("player ", name, "is kill")
+	
