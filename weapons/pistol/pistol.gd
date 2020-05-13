@@ -21,7 +21,7 @@ func on_input(weapon_handler, event):
 				print("hit player ", target.name, "!")
 				
 				if get_tree().has_network_peer():
-					rpc("receive_hit", PRIMARY_DAMAGE)
+					target.rpc("receive_hit", PRIMARY_DAMAGE)
 				else:
 					target.receive_hit(PRIMARY_DAMAGE)
 					
@@ -38,7 +38,7 @@ func on_input(weapon_handler, event):
 				print("hit player ", target.name, "!")
 				
 				if get_tree().has_network_peer():
-					rpc("receive_hit", PRIMARY_DAMAGE)
+					target.rpc("receive_hit", PRIMARY_DAMAGE)
 				else:
 					target.receive_hit(PRIMARY_DAMAGE)
 					

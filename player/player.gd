@@ -58,7 +58,7 @@ func _physics_process(delta):
 		current_state.physics_update(self, delta)
 		
 		if get_tree().has_network_peer():
-			rpc_unreliable("set_pos", global_transform)
+			rpc_unreliable("set_pos", global_transform, visible, collision_layer, collision_mask)
 
 func _input(event):
 	if is_master_or_player(1):
@@ -93,12 +93,22 @@ func _move(delta):
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 	
-puppet func set_pos(p_pos):
+puppet func set_pos(p_pos, is_visible, col_layer, col_mask):
 	global_transform = p_pos
+	visible = is_visible
+	collision_layer = col_layer
+	collision_mask = col_mask
 	
-puppet func receive_hit(amount):
+puppet func set_visible(is_visible):
+	visible = is_visible
+
+puppet func set_collision(collision_props):
+	collision_layer = collision_props.collision_layer
+	collision_mask = collision_props.collision_mask
+	
+master func receive_hit(amount):
 	status.HEALTH -= amount
-	if status.HEALTH <= 0:
+	if status.HEALTH <= 0 and current_state != states.dead:
 		change_state("dead")
 	
 func is_master_or_player(id):
@@ -114,7 +124,4 @@ func change_state(state_name):
 	if current_state.has_method("ready"):
 		current_state.ready(self)
 	current_state.enter(self)
-	
-func _die():
-	print("player ", name, "is kill")
 	

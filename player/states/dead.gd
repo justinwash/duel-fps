@@ -31,3 +31,4 @@ func respawn(player):
 	player.status.HEALTH = 100
 	player.global_transform = spawns.get_child(randi() % spawns.get_child_count()).global_transform
 	player.anim.play("spawn")
+	player.change_state("idle")
