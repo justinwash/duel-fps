@@ -1,0 +1,133 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://weapons/rifle/icon.svg" type="Texture" id=1]
+[ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
+[ext_resource path="res://roundstart/roundstart.gd" type="Script" id=3]
+[ext_resource path="res://roundstart/weaponbutton.gd" type="Script" id=4]
+[ext_resource path="res://weapons/rifle/rifle.tscn" type="PackedScene" id=5]
+[ext_resource path="res://weapons/pistol/pistol.tscn" type="PackedScene" id=6]
+
+[node name="RoundStart" type="Panel"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 960.0
+margin_bottom = 544.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReadyLabel" type="Label" parent="."]
+margin_left = 368.0
+margin_top = 296.0
+margin_right = 528.0
+margin_bottom = 320.0
+
+[node name="TimerLabel" type="Label" parent="."]
+margin_left = 352.0
+margin_top = 32.0
+margin_right = 488.0
+margin_bottom = 64.0
+text = "Time remaining:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Remaining" type="Label" parent="TimerLabel"]
+margin_left = 136.0
+margin_right = 168.0
+margin_bottom = 32.0
+text = "30"
+align = 2
+valign = 1
+
+[node name="Label" type="Label" parent="."]
+margin_left = 256.0
+margin_top = 16.0
+margin_right = 640.0
+margin_bottom = 40.0
+text = "SELECT 2 WEAPONS"
+align = 1
+valign = 1
+
+[node name="WeaponButtons" type="Node" parent="."]
+
+[node name="PistolButton" type="TextureButton" parent="WeaponButtons"]
+margin_left = 136.0
+margin_top = 128.0
+margin_right = 184.0
+margin_bottom = 176.0
+texture_normal = ExtResource( 2 )
+expand = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+WEAPON = ExtResource( 6 )
+
+[node name="NameLabel" type="Label" parent="WeaponButtons/PistolButton"]
+margin_left = -8.0
+margin_top = 48.0
+margin_right = 56.0
+margin_bottom = 64.0
+text = "Pistol"
+align = 1
+valign = 1
+
+[node name="SlotLabel" type="Label" parent="WeaponButtons/PistolButton"]
+margin_left = -8.0
+margin_right = 8.0
+margin_bottom = 14.0
+
+[node name="RifleButton" type="TextureButton" parent="WeaponButtons"]
+margin_left = 200.0
+margin_top = 128.0
+margin_right = 248.0
+margin_bottom = 176.0
+texture_normal = ExtResource( 1 )
+expand = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+WEAPON = ExtResource( 5 )
+
+[node name="NameLabel" type="Label" parent="WeaponButtons/RifleButton"]
+margin_left = -8.0
+margin_top = 48.0
+margin_right = 56.0
+margin_bottom = 64.0
+text = "Rifle"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SlotLabel" type="Label" parent="WeaponButtons/RifleButton"]
+margin_left = -8.0
+margin_right = 8.0
+margin_bottom = 14.0
+
+[node name="ReadyButton" type="Button" parent="."]
+margin_left = 368.0
+margin_top = 328.0
+margin_right = 528.0
+margin_bottom = 348.0
+text = "Done"
+
+[node name="CancelButton" type="Button" parent="."]
+margin_left = 368.0
+margin_top = 360.0
+margin_right = 528.0
+margin_bottom = 380.0
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PickTimer" type="Timer" parent="."]
+
+[node name="LoadTimer" type="Timer" parent="."]
