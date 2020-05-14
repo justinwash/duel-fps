@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 export var PICK_TIME = 30
 
@@ -12,6 +12,8 @@ onready var ready_label = $ReadyLabel
 
 var selected_weapons = []
 var ready = false
+
+signal start_round
 
 func _ready():
 	for button in weapon_buttons:
@@ -43,6 +45,8 @@ func _physics_process(_delta):
 		cancel_button.disabled = false
 		
 	time_remaining.text = str(int(timer.time_left))
+	if visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 		
 func _select_weapon(button):
 	if !ready:
@@ -81,3 +85,6 @@ func _timeout(weapons):
 			
 	print("forced ready with ", selected_weapons)
 	ready = true
+	for button in weapon_buttons:
+		button.visible = false
+	emit_signal("start_round", selected_weapons)

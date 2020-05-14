@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
@@ -13,8 +13,10 @@
 [ext_resource path="res://weapons/rifle/rifle.tscn" type="PackedScene" id=11]
 [ext_resource path="res://player/status.gd" type="Script" id=12]
 [ext_resource path="res://player/states/dead.gd" type="Script" id=13]
+[ext_resource path="res://player/states/picking.gd" type="Script" id=14]
+[ext_resource path="res://roundstart/roundstart.tscn" type="PackedScene" id=15]
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=1]
 resource_name = "die"
 length = 2.0
 tracks/0/type = "value"
@@ -66,7 +68,7 @@ tracks/3/keys = {
 "values": [ 1, 2 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=2]
 resource_name = "spawn"
 length = 0.1
 tracks/0/type = "value"
@@ -118,7 +120,7 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Crosshair/WeaponIcon:rect_position")
@@ -145,29 +147,29 @@ tracks/1/keys = {
 "values": [ Vector2( 112, 112 ), Vector2( 80, 80 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-
-[sub_resource type="BitmapFont" id=4]
 
 [sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="BitmapFont" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 1, 0, 1 )
 
-[sub_resource type="CapsuleShape" id=7]
+[sub_resource type="CapsuleShape" id=9]
 radius = 0.5
 
-[sub_resource type="CylinderShape" id=8]
+[sub_resource type="CylinderShape" id=10]
 
-[sub_resource type="CapsuleMesh" id=9]
+[sub_resource type="CapsuleMesh" id=11]
 radius = 0.5
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=12]
 metallic = 0.23
 metallic_specular = 0.29
 emission_enabled = true
@@ -183,14 +185,18 @@ script = ExtResource( 1 )
 script = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/die = SubResource( 11 )
-anims/spawn = SubResource( 12 )
+anims/die = SubResource( 1 )
+anims/spawn = SubResource( 2 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 9 )
 
+[node name="RoundStart" parent="HUD" instance=ExtResource( 15 )]
+pause_mode = 2
+PICK_TIME = 15
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
-anims/shoot = SubResource( 1 )
+anims/shoot = SubResource( 3 )
 
 [node name="Crosshair" type="TextureRect" parent="HUD"]
 self_modulate = Color( 1, 1, 1, 0.588235 )
@@ -226,9 +232,9 @@ margin_left = -32.0
 margin_top = 64.0
 margin_right = 64.0
 margin_bottom = 65.0
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 step = 1.0
 value = 100.0
 script = ExtResource( 10 )
@@ -240,8 +246,8 @@ __meta__ = {
 show_behind_parent = true
 margin_right = 96.0
 margin_bottom = 1.0
-custom_styles/fg = SubResource( 5 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/fg = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 step = 1.0
 value = 100.0
 __meta__ = {
@@ -254,8 +260,8 @@ margin_left = -0.0213318
 margin_top = -0.0173035
 margin_right = 95.9787
 margin_bottom = 0.982697
-custom_styles/fg = SubResource( 6 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/fg = SubResource( 8 )
+custom_fonts/font = SubResource( 6 )
 step = 1.0
 value = 100.0
 __meta__ = {
@@ -264,11 +270,11 @@ __meta__ = {
 
 [node name="BodyCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 7 )
+shape = SubResource( 9 )
 
 [node name="FeetCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.5, 0, 0, 0, -0.5, 4.37114e-08, 0, -4.37114e-08, -0.5, 0, -0.359959, 0 )
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [node name="RotationHelper" type="Spatial" parent="."]
 
@@ -282,8 +288,8 @@ cast_to = Vector3( 0, 0, -2000 )
 [node name="Body" type="MeshInstance" parent="RotationHelper"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 extra_cull_margin = 1.0
-mesh = SubResource( 9 )
-material/0 = SubResource( 10 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="WeaponHandler" type="Spatial" parent="RotationHelper"]
 script = ExtResource( 7 )
@@ -314,5 +320,8 @@ script = ExtResource( 6 )
 
 [node name="Dead" type="Node" parent="States"]
 script = ExtResource( 13 )
+
+[node name="Picking" type="Node" parent="States"]
+script = ExtResource( 14 )
 
 [node name="Timer" type="Timer" parent="."]

@@ -43,5 +43,5 @@ func process_input(player, _delta):
 		if Input.is_action_just_pressed("jump"):
 			player.change_state("jump")
 	
-func exit():
+func exit(player):
 	pass

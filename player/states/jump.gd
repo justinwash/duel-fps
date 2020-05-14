@@ -20,5 +20,5 @@ func process_input(player, _delta):
 		else:
 			player.change_state("idle")
 	
-func exit():
+func exit(player):
 	pass

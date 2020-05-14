@@ -1,7 +1,10 @@
 extends Node
 
-func enter(_player):
+func enter(player):
 	print("entered state idle")
+	for element in player.hud.get_children():
+			if element.get("visible"):
+				element.visible = true
 	
 func ready(_player):
 	pass
@@ -25,5 +28,5 @@ func physics_update(_player, _delta):
 func process_input(_player, _delta):
 	pass
 
-func exit():
+func exit(player):
 	pass

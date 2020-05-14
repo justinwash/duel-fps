@@ -24,26 +24,37 @@ onready var weapon_handler = $RotationHelper/WeaponHandler
 onready var status = $Status
 onready var anim = $AnimationPlayer
 onready var timer = $Timer
+onready var round_start_ui = $HUD/RoundStart
 
 var current_state
 onready var states = {
 	"idle": $States/Idle,
 	"walk": $States/Walk,
 	"jump": $States/Jump,
-	"dead": $States/Dead
+	"dead": $States/Dead,
+	"picking": $States/Picking
 }
 
 func _ready():
+	round_start_ui.connect("start_round", self, "_start_round")
+	
 	if !is_master_or_player(1):
 		for element in hud.get_children():
 			if element.get("visible"):
 				element.visible = false
 			
-	current_state = states.idle
+	current_state = states.picking
 	if current_state.has_method("ready"):
 		current_state.ready(self)
 	current_state.enter(self)
 
+func _start_round(weapons):
+	print("starting round with ", weapons)
+	
+	round_start_ui.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	change_state("idle")
+	
 func _process(delta):
 	if is_master_or_player(1):
 		camera.current = true
@@ -119,7 +130,7 @@ func is_master_or_player(id):
 		return false
 		
 func change_state(state_name):
-	current_state.exit()
+	current_state.exit(self)
 	current_state = states[state_name]
 	if current_state.has_method("ready"):
 		current_state.ready(self)
