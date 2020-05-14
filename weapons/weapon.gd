@@ -9,12 +9,15 @@ export var SECONDARY_DAMAGE = 10
 export var PRIMARY_COOLDOWN_TIME = 0.5
 export var SECONDARY_COOLDOWN_TIME = 1.0
 export var SWITCH_DELAY = 0.2
-var cooldown = 0.0
+
+var cooldown = PRIMARY_COOLDOWN_TIME - SWITCH_DELAY
 var current_cooldown = PRIMARY_COOLDOWN_TIME
 
 onready var raycast = $RayCast
 
+
 func enter(weapon_handler):
+	current_cooldown = PRIMARY_COOLDOWN_TIME
 	cooldown = PRIMARY_COOLDOWN_TIME - SWITCH_DELAY
 	weapon_handler.hud.anim.play("shoot")
 	weapon_handler.hud.weapon_crosshair.set_texture(crosshair)
