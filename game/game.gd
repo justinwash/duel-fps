@@ -3,7 +3,7 @@ extends Node
 export var DEV_MODE = false
 
 onready var matchmaker = $Matchmaker
-onready var lobby = $Lobby
+onready var lobby = $Overlay/Lobby
 onready var networking_mode = $NetworkingMode
 onready var world = $World
 

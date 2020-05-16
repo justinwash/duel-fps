@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
@@ -7,10 +7,8 @@
 [ext_resource path="res://player/states/walk.gd" type="Script" id=5]
 [ext_resource path="res://player/states/jump.gd" type="Script" id=6]
 [ext_resource path="res://player/weaponhandler.gd" type="Script" id=7]
-[ext_resource path="res://weapons/pistol/pistol.tscn" type="PackedScene" id=8]
 [ext_resource path="res://player/hud.gd" type="Script" id=9]
 [ext_resource path="res://player/reloadindicator.gd" type="Script" id=10]
-[ext_resource path="res://weapons/rifle/rifle.tscn" type="PackedScene" id=11]
 [ext_resource path="res://player/status.gd" type="Script" id=12]
 [ext_resource path="res://player/states/dead.gd" type="Script" id=13]
 [ext_resource path="res://player/states/picking.gd" type="Script" id=14]
@@ -120,6 +118,20 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="BitmapFont" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 1, 0, 1 )
+
 [sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
@@ -146,20 +158,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 112, 112 ), Vector2( 80, 80 ) ]
 }
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-
-[sub_resource type="BitmapFont" id=6]
-
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 1, 0, 0, 1 )
-
-[sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0, 1, 0, 1 )
 
 [sub_resource type="CapsuleShape" id=9]
 radius = 0.5
@@ -190,13 +188,6 @@ anims/spawn = SubResource( 2 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 9 )
-
-[node name="RoundStart" parent="HUD" instance=ExtResource( 15 )]
-pause_mode = 2
-PICK_TIME = 15
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
-anims/shoot = SubResource( 3 )
 
 [node name="Crosshair" type="TextureRect" parent="HUD"]
 self_modulate = Color( 1, 1, 1, 0.588235 )
@@ -268,6 +259,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
+anims/shoot = SubResource( 3 )
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="RoundStartUI" parent="Overlay" instance=ExtResource( 15 )]
+pause_mode = 2
+PICK_TIME = 15
+
 [node name="BodyCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 9 )
@@ -296,16 +296,7 @@ script = ExtResource( 7 )
 
 [node name="Primary" type="Spatial" parent="RotationHelper/WeaponHandler"]
 
-[node name="Pistol" parent="RotationHelper/WeaponHandler/Primary" instance=ExtResource( 8 )]
-PRIMARY_DAMAGE = 2
-PRIMARY_COOLDOWN_TIME = 0.0
-SECONDARY_COOLDOWN_TIME = 0.25
-
 [node name="Secondary" type="Spatial" parent="RotationHelper/WeaponHandler"]
-
-[node name="Rifle" parent="RotationHelper/WeaponHandler/Secondary" instance=ExtResource( 11 )]
-PRIMARY_DAMAGE = 15
-SECONDARY_DAMAGE = 25
 
 [node name="States" type="Node" parent="."]
 

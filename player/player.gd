@@ -1,6 +1,7 @@
 extends KinematicBody
 
 var player = true
+var round_ready = false
 
 const GRAVITY = -20
 const JUMP_SPEED = 7.5
@@ -24,7 +25,7 @@ onready var weapon_handler = $RotationHelper/WeaponHandler
 onready var status = $Status
 onready var anim = $AnimationPlayer
 onready var timer = $Timer
-onready var round_start_ui = $HUD/RoundStart
+onready var round_start_ui = $Overlay/RoundStartUI
 
 var current_state
 onready var states = {
@@ -34,6 +35,8 @@ onready var states = {
 	"dead": $States/Dead,
 	"picking": $States/Picking
 }
+
+signal ready_up
 
 func _ready():
 	round_start_ui.connect("start_round", self, "_start_round")
@@ -49,11 +52,23 @@ func _ready():
 	current_state.enter(self)
 
 func _start_round(weapons):
-	print("starting round with ", weapons)
+	var primary = weapons[0].instance()
+	weapon_handler.primary_slot.add_child(primary)
+	weapon_handler.weapons.primary = primary
+		
+	var secondary = weapons[1].instance()
+	weapon_handler.secondary_slot.add_child(secondary)
+	weapon_handler.weapons.secondary = secondary
+	
+	weapon_handler.on_ready()
 	
 	round_start_ui.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	change_state("idle")
+	
+	if get_tree().has_network_peer():
+		rpc("set_ready", true)
+	else:
+		set_ready(true)
 	
 func _process(delta):
 	if is_master_or_player(1):
@@ -62,6 +77,9 @@ func _process(delta):
 		_move(delta)
 	# make dummy react to gravity
 	elif is_master_or_player(0):
+		if !round_ready:
+			set_ready(true)
+			
 		_move(delta)
 		
 func _physics_process(delta):
@@ -110,12 +128,9 @@ puppet func set_pos(p_pos, is_visible, col_layer, col_mask):
 	collision_layer = col_layer
 	collision_mask = col_mask
 	
-puppet func set_visible(is_visible):
-	visible = is_visible
-
-puppet func set_collision(collision_props):
-	collision_layer = collision_props.collision_layer
-	collision_mask = collision_props.collision_mask
+puppet func set_ready(is_ready):
+	round_ready = is_ready
+	emit_signal("ready_up", self)
 	
 master func receive_hit(amount):
 	status.HEALTH -= amount

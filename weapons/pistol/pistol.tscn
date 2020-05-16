@@ -8,6 +8,10 @@
 script = ExtResource( 1 )
 crosshair = ExtResource( 3 )
 icon = ExtResource( 2 )
+PRIMARY_DAMAGE = 2
+SECONDARY_DAMAGE = 5
+PRIMARY_COOLDOWN_TIME = 0.0
+SECONDARY_COOLDOWN_TIME = 0.2
 
 [node name="RayCast" type="RayCast" parent="."]
 cast_to = Vector3( 0, 0, -100 )

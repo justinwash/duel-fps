@@ -25,8 +25,20 @@ func spawn_player(_id):
 		new_player.translation = map.spawns.get_node("2").translation
 		
 	new_player.set_network_master(_id)
+	new_player.connect("ready_up", self, "_ready_up")
 	players.add_child(new_player)
 	print("spawned player for " + str(_id))
+	
+func _ready_up(player):
+	var both_ready = true
+	
+	for player in players.get_children():
+		if !player.round_ready:
+			both_ready = false
+	
+	if both_ready:
+		for player in players.get_children():
+			player.change_state("idle")
 	
 func _leave_game():
 	if get_parent().has_method("leave_game"):

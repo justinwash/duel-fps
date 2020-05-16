@@ -8,6 +8,8 @@
 script = ExtResource( 1 )
 crosshair = ExtResource( 3 )
 icon = ExtResource( 2 )
+PRIMARY_DAMAGE = 15
+SECONDARY_DAMAGE = 25
 SWITCH_DELAY = 0.25
 
 [node name="RayCast" type="RayCast" parent="."]

@@ -17,6 +17,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Panel" type="Panel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ReadyLabel" type="Label" parent="."]
 margin_left = 368.0
 margin_top = 296.0
@@ -115,6 +122,9 @@ __meta__ = {
 margin_left = -8.0
 margin_right = 8.0
 margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ReadyButton" type="Button" parent="."]
 margin_left = 368.0

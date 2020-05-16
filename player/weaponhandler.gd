@@ -4,25 +4,32 @@ var current_weapon
 onready var hud = get_node("../../HUD")
 onready var camera = get_node("../Camera")
 
+onready var primary_slot = $Primary
+onready var secondary_slot = $Secondary
+
 onready var weapons = {
-	"primary": $Primary.get_child(0),
-	"secondary": $Secondary.get_child(0)
+	"primary": null,
+	"secondary": null
 }
 
-func _ready():	
+func weapons_selected():
+	return weapons.primary and weapons.secondary
+
+func on_ready():
 	for weapon in weapons:
 		weapons[weapon].global_transform = camera.global_transform
 	current_weapon = weapons.primary
+	
 	if current_weapon.has_method("ready"):
 		current_weapon.ready(self)
 	current_weapon.enter(self)
 
 func _process(delta):
-	if is_master_or_player(1):
+	if is_master_or_player(1) and weapons_selected():
 		current_weapon.update(self, delta)
 		
 func _physics_process(delta):
-	if is_master_or_player(1):
+	if is_master_or_player(1) and weapons_selected():
 		current_weapon.physics_update(self, delta)
 
 func _input(event):

@@ -9,12 +9,16 @@
 pause_mode = 2
 script = ExtResource( 5 )
 
+[node name="World" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
+
 [node name="Matchmaker" parent="." instance=ExtResource( 1 )]
 pause_mode = 2
 matchmaking_server_url = "https://dev-matchmaker.herokuapp.com"
 matchmaking_server_port = ""
 
 [node name="Lobby" parent="." instance=ExtResource( 3 )]
+show_behind_parent = true
 
 [node name="ToggleConnectionButton" parent="Lobby/MatchMakingPanel" index="3"]
 margin_left = 7.0
@@ -23,11 +27,8 @@ margin_right = 143.0
 [node name="NetworkingMode" type="Node" parent="."]
 pause_mode = 2
 
-[node name="World" parent="." instance=ExtResource( 2 )]
-pause_mode = 1
+[editable path="World"]
 
 [editable path="Matchmaker"]
 
 [editable path="Lobby"]
-
-[editable path="World"]
