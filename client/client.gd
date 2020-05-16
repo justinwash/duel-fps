@@ -12,7 +12,6 @@ onready var lobby = get_node('../../Lobby')
 var opponent_present = false
 var new_match_data
 
-signal leave_game
 signal cancel_game
 
 func _ready():

@@ -29,7 +29,7 @@ func spawn_player(_id):
 	players.add_child(new_player)
 	print("spawned player for " + str(_id))
 	
-func _ready_up(player):
+func _ready_up(_player):
 	var both_ready = true
 	
 	for player in players.get_children():

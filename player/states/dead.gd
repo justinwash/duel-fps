@@ -12,7 +12,7 @@ func enter(player):
 func ready(_player):
 	pass
 	
-func update(player, _delta):
+func update(_player, _delta):
 	pass
 	
 func physics_update(_player, _delta):
@@ -21,7 +21,7 @@ func physics_update(_player, _delta):
 func process_input(_player, _delta):
 	pass
 
-func exit(player):
+func exit(_player):
 	pass
 	
 func respawn(player):

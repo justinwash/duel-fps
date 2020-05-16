@@ -20,7 +20,7 @@ func _ready():
 		button.connect("button_up", self, "_select_weapon", [button])
 	
 	ready_button.connect("button_up", self, "_ready_up", [selected_weapons])
-	cancel_button.connect("button_up", self, "_repick", [selected_weapons])
+	cancel_button.connect("button_up", self, "_repick")
 	
 	timer.connect("timeout", self, "_timeout", [selected_weapons])
 	timer.wait_time = PICK_TIME
@@ -65,7 +65,7 @@ func _ready_up(weapons):
 	ready = true
 	ready_button.disabled = true
 	
-func _repick(weapons):
+func _repick():
 	print("repick clicked")
 	selected_weapons = []
 	for button in weapon_buttons:

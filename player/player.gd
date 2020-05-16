@@ -65,7 +65,8 @@ func _start_round(weapons):
 	round_start_ui.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	if get_tree().has_network_peer():
+	if is_master_or_player(1):
+		set_ready(true)
 		rpc("set_ready", true)
 	else:
 		set_ready(true)

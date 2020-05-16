@@ -11,7 +11,7 @@ func enter(player):
 func ready(_player):
 	pass
 	
-func update(player, _delta):
+func update(_player, _delta):
 	pass
 	
 func physics_update(_player, _delta):
