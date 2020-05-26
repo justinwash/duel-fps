@@ -19,7 +19,7 @@ func process_input(player, _delta):
 	Input.is_action_pressed("move_right")):
 		player.change_state("idle")
 # i hate this is there a better way?
-
+	
 	player.dir = Vector3()
 	var cam_xform = player.camera.get_global_transform()
 
@@ -42,6 +42,8 @@ func process_input(player, _delta):
 	if player.is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			player.change_state("jump")
+			
+	player.model.get_node("AnimationPlayer").play("default")
 	
 func exit(_player):
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://player/states/walk.gd" type="Script" id=5]
 [ext_resource path="res://player/states/jump.gd" type="Script" id=6]
 [ext_resource path="res://player/weaponhandler.gd" type="Script" id=7]
+[ext_resource path="res://player/models/spaceboi.tscn" type="PackedScene" id=8]
 [ext_resource path="res://player/hud.gd" type="Script" id=9]
 [ext_resource path="res://player/reloadindicator.gd" type="Script" id=10]
 [ext_resource path="res://player/status.gd" type="Script" id=12]
@@ -118,21 +119,21 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
+[sub_resource type="BitmapFont" id=5]
 
-[sub_resource type="BitmapFont" id=6]
-
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0, 1, 0, 1 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=8]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Crosshair/WeaponIcon:rect_position")
@@ -161,6 +162,7 @@ tracks/1/keys = {
 
 [sub_resource type="CapsuleShape" id=9]
 radius = 0.5
+height = 0.728289
 
 [sub_resource type="CylinderShape" id=10]
 
@@ -223,9 +225,9 @@ margin_left = -32.0
 margin_top = 64.0
 margin_right = 64.0
 margin_bottom = 65.0
-custom_styles/fg = SubResource( 4 )
-custom_styles/bg = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 step = 1.0
 value = 100.0
 script = ExtResource( 10 )
@@ -237,8 +239,8 @@ __meta__ = {
 show_behind_parent = true
 margin_right = 96.0
 margin_bottom = 1.0
-custom_styles/fg = SubResource( 7 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/fg = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 step = 1.0
 value = 100.0
 __meta__ = {
@@ -251,8 +253,8 @@ margin_left = -0.0213318
 margin_top = -0.0173035
 margin_right = 95.9787
 margin_bottom = 0.982697
-custom_styles/fg = SubResource( 8 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/fg = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 step = 1.0
 value = 100.0
 __meta__ = {
@@ -260,7 +262,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
-anims/shoot = SubResource( 3 )
+anims/shoot = SubResource( 8 )
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
@@ -269,17 +271,20 @@ pause_mode = 2
 PICK_TIME = 15
 
 [node name="BodyCollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0997378, 0 )
 shape = SubResource( 9 )
 
 [node name="FeetCollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.5, 0, 0, 0, -0.5, 4.37114e-08, 0, -4.37114e-08, -0.5, 0, -0.359959, 0 )
+transform = Transform( 0.5, 0, 0, 0, -0.5, 4.37114e-08, 0, -4.37114e-08, -0.5, 0, -0.407851, 0 )
 shape = SubResource( 10 )
 
 [node name="RotationHelper" type="Spatial" parent="."]
 
+[node name="Model" parent="RotationHelper" instance=ExtResource( 8 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -1.0462, 0 )
+
 [node name="Camera" type="Camera" parent="RotationHelper"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479582, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479582, -0.00986716 )
 
 [node name="RayCast" type="RayCast" parent="RotationHelper"]
 enabled = true
@@ -287,6 +292,7 @@ cast_to = Vector3( 0, 0, -2000 )
 
 [node name="Body" type="MeshInstance" parent="RotationHelper"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+visible = false
 extra_cull_margin = 1.0
 mesh = SubResource( 11 )
 material/0 = SubResource( 12 )

@@ -26,6 +26,7 @@ onready var status = $Status
 onready var anim = $AnimationPlayer
 onready var timer = $Timer
 onready var round_start_ui = $Overlay/RoundStartUI
+onready var model = $RotationHelper/Model
 
 var current_state
 onready var states = {
@@ -45,6 +46,8 @@ func _ready():
 		for element in hud.get_children():
 			if element.get("visible"):
 				element.visible = false
+	else:
+		model.visible = false
 			
 	current_state = states.picking
 	if current_state.has_method("ready"):
@@ -147,6 +150,7 @@ func is_master_or_player(id):
 		
 func change_state(state_name):
 	current_state.exit(self)
+	model.get_node("AnimationPlayer").stop(true)
 	current_state = states[state_name]
 	if current_state.has_method("ready"):
 		current_state.ready(self)
