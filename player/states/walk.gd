@@ -43,7 +43,7 @@ func process_input(player, _delta):
 		if Input.is_action_just_pressed("jump"):
 			player.change_state("jump")
 			
-	player.model.get_node("AnimationPlayer").play("default")
+	player.model.get_node("AnimationPlayer").play("run")
 	
 func exit(_player):
 	pass

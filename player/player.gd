@@ -153,7 +153,7 @@ func is_master_or_player(id):
 		
 func change_state(state_name):
 	current_state.exit(self)
-	model.get_node("AnimationPlayer").stop(true)
+	model.get_node("AnimationPlayer").play("idle")
 	current_state = states[state_name]
 	if current_state.has_method("ready"):
 		current_state.ready(self)

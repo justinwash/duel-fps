@@ -7,7 +7,7 @@
 [ext_resource path="res://player/states/walk.gd" type="Script" id=5]
 [ext_resource path="res://player/states/jump.gd" type="Script" id=6]
 [ext_resource path="res://player/weaponhandler.gd" type="Script" id=7]
-[ext_resource path="res://player/models/spaceboi.tscn" type="PackedScene" id=8]
+[ext_resource path="res://player/spaceboi.tscn" type="PackedScene" id=8]
 [ext_resource path="res://player/hud.gd" type="Script" id=9]
 [ext_resource path="res://player/reloadindicator.gd" type="Script" id=10]
 [ext_resource path="res://player/status.gd" type="Script" id=12]
@@ -209,10 +209,10 @@ __meta__ = {
 }
 
 [node name="WeaponIcon" type="TextureRect" parent="HUD/Crosshair"]
-margin_left = -40.0
-margin_top = 104.0
-margin_right = 72.0
-margin_bottom = 216.0
+margin_left = -24.0
+margin_top = 120.0
+margin_right = 56.0
+margin_bottom = 200.0
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 5
@@ -281,7 +281,7 @@ shape = SubResource( 10 )
 [node name="RotationHelper" type="Spatial" parent="."]
 
 [node name="Model" parent="RotationHelper" instance=ExtResource( 8 )]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -1.0462, 0 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -1.03989, 0 )
 
 [node name="Camera" type="Camera" parent="RotationHelper"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479582, -0.00986716 )

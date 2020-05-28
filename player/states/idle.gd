@@ -2,6 +2,8 @@ extends Node
 
 func enter(player):
 	print("entered state idle")
+	player.model.get_node("AnimationPlayer").play("idle")
+	
 	for element in player.hud.get_children():
 			if element.get("visible"):
 				element.visible = true
