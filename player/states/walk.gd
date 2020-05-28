@@ -1,6 +1,7 @@
 extends Node
 
-func enter(_player):
+func enter(player):
+	player.model.get_node("AnimationPlayer").play("run")
 	print("entered state walk")
 	
 func ready(_player):
@@ -42,8 +43,6 @@ func process_input(player, _delta):
 	if player.is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			player.change_state("jump")
-			
-	player.model.get_node("AnimationPlayer").play("run")
 	
 func exit(_player):
 	pass
