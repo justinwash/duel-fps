@@ -91,7 +91,8 @@ func _physics_process(delta):
 		current_state.physics_update(self, delta)
 		
 		if get_tree().has_network_peer():
-			rpc_unreliable("set_pos", global_transform, visible, collision_layer, collision_mask)
+			var animation = model.get_node("AnimationPlayer").current_animation
+			rpc_unreliable("set_pos", global_transform, visible, collision_layer, collision_mask, animation)
 
 func _input(event):
 	if is_master_or_player(1):
@@ -126,11 +127,13 @@ func _move(delta):
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 	
-puppet func set_pos(p_pos, is_visible, col_layer, col_mask):
+puppet func set_pos(p_pos, is_visible, col_layer, col_mask, animation):
 	global_transform = p_pos
 	visible = is_visible
 	collision_layer = col_layer
 	collision_mask = col_mask
+	if !model.get_node("AnimationPlayer").current_animation == animation:
+		model.get_node("AnimationPlayer").play(animation)
 	
 puppet func set_ready(is_ready):
 	round_ready = is_ready
