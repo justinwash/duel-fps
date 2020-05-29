@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://weapons/rocket/projectile.tscn" type="PackedScene" id=1]
+
+[node name="TestScene" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.994789, 0, 0.101959, 0, 1, 0, -0.101959, 0, -0.994789, 2.02706, 0.539195, 1.49884 )
+current = true
+
+[node name="Rocket" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )

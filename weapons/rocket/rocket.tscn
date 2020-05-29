@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://weapons/rocket/rocket.gd" type="Script" id=1]
+[ext_resource path="res://weapons/rocket/icon.svg" type="Texture" id=2]
+[ext_resource path="res://weapons/rocket/crosshair.svg" type="Texture" id=3]
+
+[node name="RocketLauncher" type="Spatial"]
+script = ExtResource( 1 )
+crosshair = ExtResource( 3 )
+icon = ExtResource( 2 )

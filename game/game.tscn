@@ -11,6 +11,7 @@
 [node name="Game" type="Node"]
 pause_mode = 2
 script = ExtResource( 5 )
+DEV_MODE = true
 
 [node name="World" parent="." instance=ExtResource( 2 )]
 pause_mode = 1
@@ -20,15 +21,19 @@ pause_mode = 2
 matchmaking_server_url = "https://dev-matchmaker.herokuapp.com"
 matchmaking_server_port = ""
 
-[node name="Panels" type="Node" parent="."]
+[node name="Panels" type="Node2D" parent="."]
 script = ExtResource( 6 )
 
 [node name="MainMenu" parent="Panels" instance=ExtResource( 4 )]
 
+[node name="PauseMenu" parent="Panels" instance=ExtResource( 7 )]
+
 [node name="LobbyMenu" parent="Panels" instance=ExtResource( 3 )]
 show_behind_parent = true
-
-[node name="PauseMenu" parent="Panels" instance=ExtResource( 7 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1024.0
+margin_bottom = 600.0
 
 [node name="NetworkingMode" type="Node" parent="."]
 pause_mode = 2

@@ -3,6 +3,7 @@ extends Node
 export var DEV_MODE = false
 
 onready var matchmaker = $Matchmaker
+onready var panels = $Panels
 onready var lobby = $Panels/LobbyMenu
 onready var networking_mode = $NetworkingMode
 onready var world = $World
@@ -20,6 +21,7 @@ func _ready():
 	_connect_world_signals()
 	
 	if DEV_MODE:
+		panels.switch_panel(null)
 		_start_practice()
 
 func _connect_matchmaking_signals():

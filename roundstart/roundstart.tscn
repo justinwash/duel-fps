@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://weapons/rifle/icon.svg" type="Texture" id=1]
 [ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://weapons/rifle/rifle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://weapons/pistol/pistol.tscn" type="PackedScene" id=6]
 [ext_resource path="res://mainmenu/headertext.tscn" type="PackedScene" id=7]
+[ext_resource path="res://weapons/rocket/rocket.tscn" type="PackedScene" id=8]
+[ext_resource path="res://weapons/rocket/icon.svg" type="Texture" id=9]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -114,6 +116,39 @@ __meta__ = {
 }
 
 [node name="SlotLabel" type="Label" parent="WeaponButtons/RifleButton"]
+margin_left = -8.0
+margin_right = 8.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RocketButton" type="TextureButton" parent="WeaponButtons"]
+margin_left = 328.0
+margin_top = 208.0
+margin_right = 376.0
+margin_bottom = 256.0
+texture_normal = ExtResource( 9 )
+expand = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+WEAPON = ExtResource( 8 )
+
+[node name="NameLabel" type="Label" parent="WeaponButtons/RocketButton"]
+margin_left = -8.0
+margin_top = 48.0
+margin_right = 56.0
+margin_bottom = 62.0
+text = "Rocket"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SlotLabel" type="Label" parent="WeaponButtons/RocketButton"]
 margin_left = -8.0
 margin_right = 8.0
 margin_bottom = 14.0
