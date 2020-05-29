@@ -93,7 +93,17 @@ func _physics_process(delta):
 		if get_tree().has_network_peer():
 			var animation = model.get_node("AnimationPlayer").current_animation
 			rpc_unreliable("set_pos", global_transform, visible, collision_layer, collision_mask, animation)
-
+			
+	if Input.is_action_pressed("pause") && is_master_or_player(1):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			for element in hud.get_children():
+				if element.get("visible") != null:
+					element.visible = true
+		else:
+			for element in hud.get_children():
+				if element.get("visible") != null:
+					element.visible = false
+		
 func _input(event):
 	if is_master_or_player(1):
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:

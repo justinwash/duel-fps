@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/pausemenu.gd" type="Script" id=1]
+[ext_resource path="res://mainmenu/headertext.tscn" type="PackedScene" id=2]
+
+[node name="PauseMenu" type="Control"]
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" parent="." instance=ExtResource( 2 )]
+text = "PAUSE"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 392.0
+margin_top = 176.0
+margin_right = 624.0
+margin_bottom = 192.0
+text = "unless you're online ofc"
+align = 1
+valign = 1
+
+[node name="LeaveButton" type="Button" parent="."]
+margin_left = 416.0
+margin_top = 544.0
+margin_right = 608.0
+margin_bottom = 564.0
+text = "Leave Match"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="Button" parent="."]
+margin_left = 416.0
+margin_top = 312.0
+margin_right = 608.0
+margin_bottom = 332.0
+text = "Settings"
+[connection signal="button_up" from="LeaveButton" to="." method="_on_LeaveButton_button_up"]

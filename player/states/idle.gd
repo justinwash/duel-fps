@@ -4,8 +4,9 @@ func enter(player):
 	print("entered state idle")
 	player.model.get_node("AnimationPlayer").play("idle")
 	
-	for element in player.hud.get_children():
-			if element.get("visible"):
+	if player.is_master_or_player(1):
+		for element in player.hud.get_children():
+			if element.get("visible") != null:
 				element.visible = true
 	
 func ready(_player):

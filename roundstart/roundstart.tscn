@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://weapons/rifle/icon.svg" type="Texture" id=1]
 [ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
@@ -6,20 +6,17 @@
 [ext_resource path="res://roundstart/weaponbutton.gd" type="Script" id=4]
 [ext_resource path="res://weapons/rifle/rifle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://weapons/pistol/pistol.tscn" type="PackedScene" id=6]
+[ext_resource path="res://mainmenu/headertext.tscn" type="PackedScene" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="RoundStart" type="Panel"]
 margin_left = 64.0
 margin_top = 64.0
 margin_right = 960.0
 margin_bottom = 544.0
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -37,9 +34,9 @@ __meta__ = {
 
 [node name="TimerLabel" type="Label" parent="."]
 margin_left = 352.0
-margin_top = 32.0
+margin_top = 112.0
 margin_right = 488.0
-margin_bottom = 64.0
+margin_bottom = 144.0
 text = "Time remaining:"
 align = 1
 valign = 1
@@ -55,22 +52,20 @@ text = "30"
 align = 2
 valign = 1
 
-[node name="Label" type="Label" parent="."]
-margin_left = 256.0
+[node name="Header" parent="." instance=ExtResource( 7 )]
+margin_left = 96.0
 margin_top = 16.0
-margin_right = 640.0
-margin_bottom = 40.0
-text = "SELECT 2 WEAPONS"
-align = 1
-valign = 1
+margin_right = 800.0
+margin_bottom = 120.0
+text = "WEAPON SELECT"
 
 [node name="WeaponButtons" type="Node" parent="."]
 
 [node name="PistolButton" type="TextureButton" parent="WeaponButtons"]
-margin_left = 136.0
-margin_top = 128.0
-margin_right = 184.0
-margin_bottom = 176.0
+margin_left = 200.0
+margin_top = 208.0
+margin_right = 248.0
+margin_bottom = 256.0
 texture_normal = ExtResource( 2 )
 expand = true
 script = ExtResource( 4 )
@@ -94,10 +89,10 @@ margin_right = 8.0
 margin_bottom = 14.0
 
 [node name="RifleButton" type="TextureButton" parent="WeaponButtons"]
-margin_left = 200.0
-margin_top = 128.0
-margin_right = 248.0
-margin_bottom = 176.0
+margin_left = 264.0
+margin_top = 208.0
+margin_right = 312.0
+margin_bottom = 256.0
 texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 4 )
@@ -127,20 +122,20 @@ __meta__ = {
 }
 
 [node name="ReadyButton" type="Button" parent="."]
-margin_left = 368.0
-margin_top = 328.0
-margin_right = 528.0
-margin_bottom = 348.0
+margin_left = 352.0
+margin_top = 448.0
+margin_right = 544.0
+margin_bottom = 468.0
 text = "Done"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CancelButton" type="Button" parent="."]
-margin_left = 368.0
-margin_top = 360.0
-margin_right = 528.0
-margin_bottom = 380.0
+margin_left = 352.0
+margin_top = 480.0
+margin_right = 544.0
+margin_bottom = 500.0
 text = "Cancel"
 __meta__ = {
 "_edit_use_anchors_": false

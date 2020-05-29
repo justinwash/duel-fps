@@ -1,15 +1,15 @@
 extends Control
 
 onready var matchmaking_panel = $MatchMakingPanel
-onready var player_panel = $PlayerPanel
-onready var ready_panel = $ReadyPanel
 
-onready var game = get_parent()
+onready var game = get_node("../../")
+onready var panels = get_parent()
 
 func _ready():
 	_connect_game_signals()
 	_connect_panel_signals()
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	visible = false
+	
 
 func _connect_game_signals():
 	var _map_loaded = game.connect("map_loaded", self, "_map_loaded")
@@ -23,20 +23,8 @@ func _connect_panel_signals():
 		var _cancel_matching = matchmaking_panel.connect("cancel_matching", game, "_cancel_matching")
 	if game.has_method("_toggle_connection"):
 		var _toggle_connection = matchmaking_panel.connect("toggle_connection", game, "_toggle_connection")
-	if game.has_method("_start_practice"):
-		var _toggle_connection = matchmaking_panel.connect("start_practice", game, "_start_practice")
 	if game.has_method("leave_game"):
 		var _toggle_connection = matchmaking_panel.connect("leave_game", game, "leave_game")
-	
-func _process(_delta):
-	if Input.is_action_just_pressed("pause"):
-		visible = !visible
-		if visible:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)  
-			get_tree().paused = true
-		else: 
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			get_tree().paused = false
 			
 func _map_loaded():
 	visible = false

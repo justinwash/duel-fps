@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://matchmaker/matchmaker.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/world.tscn" type="PackedScene" id=2]
 [ext_resource path="res://lobby/lobby.tscn" type="PackedScene" id=3]
+[ext_resource path="res://mainmenu/mainmenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/game.gd" type="Script" id=5]
+[ext_resource path="res://game/panels.gd" type="Script" id=6]
+[ext_resource path="res://mainmenu/pausemenu.tscn" type="PackedScene" id=7]
 
 [node name="Game" type="Node"]
 pause_mode = 2
@@ -17,12 +20,15 @@ pause_mode = 2
 matchmaking_server_url = "https://dev-matchmaker.herokuapp.com"
 matchmaking_server_port = ""
 
-[node name="Lobby" parent="." instance=ExtResource( 3 )]
+[node name="Panels" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="MainMenu" parent="Panels" instance=ExtResource( 4 )]
+
+[node name="LobbyMenu" parent="Panels" instance=ExtResource( 3 )]
 show_behind_parent = true
 
-[node name="ToggleConnectionButton" parent="Lobby/MatchMakingPanel" index="3"]
-margin_left = 7.0
-margin_right = 143.0
+[node name="PauseMenu" parent="Panels" instance=ExtResource( 7 )]
 
 [node name="NetworkingMode" type="Node" parent="."]
 pause_mode = 2
@@ -30,5 +36,3 @@ pause_mode = 2
 [editable path="World"]
 
 [editable path="Matchmaker"]
-
-[editable path="Lobby"]

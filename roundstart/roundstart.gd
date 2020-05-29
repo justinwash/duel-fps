@@ -1,6 +1,6 @@
 extends Control
 
-export var PICK_TIME = 30
+export var PICK_TIME = 10
 
 onready var weapon_buttons = $WeaponButtons.get_children()
 onready var ready_button = $ReadyButton

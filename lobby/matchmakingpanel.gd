@@ -4,13 +4,13 @@ onready var status_ok = $StatusOk
 onready var status_fail = $StatusFail
 onready var find_button = $FindButton
 onready var cancel_button = $CancelButton
-onready var practice_button = $PracticeButton
 
 signal start_matching
 signal cancel_matching
 signal toggle_connection
-signal start_practice
 signal leave_game
+
+onready var panels = get_node("../../")
 
 func _ready():	
 	var _player_connected = get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -55,12 +55,11 @@ func _on_CancelButton_pressed():
 	elif cancel_button.text == 'Leave Game':
 		emit_signal("leave_game")
 	find_button.set_disabled(false)
-	practice_button.set_disabled(false)
 
 func _on_ToggleConnectionButton_pressed():
 	emit_signal("toggle_connection")
 
-func _on_OfflineButton_pressed():
+func _on_MenuButton_button_up():
 	emit_signal("leave_game")
-	emit_signal("start_practice")
-	practice_button.set_disabled(true)
+	emit_signal("cancel_matching")
+	panels.switch_panel('mainmenu')
