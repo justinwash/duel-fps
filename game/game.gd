@@ -1,6 +1,6 @@
 extends Node
 
-export var DEV_MODE = false
+export var DEV_MODE = true
 
 onready var matchmaker = $Matchmaker
 onready var panels = $Panels

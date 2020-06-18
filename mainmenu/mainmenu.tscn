@@ -35,6 +35,9 @@ margin_top = 344.0
 margin_right = 607.0
 margin_bottom = 364.0
 text = "Offline Practice"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="QuitButton" type="Button" parent="."]
 margin_left = 416.0

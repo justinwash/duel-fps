@@ -40,6 +40,8 @@ onready var states = {
 signal ready_up
 
 func _ready():
+	status.connect("health_updated", self, "health_updated")
+
 	round_start_ui.connect("start_round", self, "_start_round")
 	
 	if !is_master_or_player(1):
@@ -168,4 +170,11 @@ func change_state(state_name):
 	if current_state.has_method("ready"):
 		current_state.ready(self)
 	current_state.enter(self)
+
+func rocket_hit(amount, hit_pos):
+	status.HEALTH -= amount
+	vel += 20 * (translation - hit_pos)
 	
+func health_updated():
+	if status.HEALTH <= 0 and current_state != states.dead:
+		change_state("dead")
