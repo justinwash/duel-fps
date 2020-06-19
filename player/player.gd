@@ -153,8 +153,6 @@ puppet func set_ready(is_ready):
 	
 master func receive_hit(amount):
 	status.HEALTH -= amount
-	if status.HEALTH <= 0 and current_state != states.dead:
-		change_state("dead")
 	
 func is_master_or_player(id):
 	if (get_tree().has_network_peer() and is_network_master()) \
@@ -170,10 +168,6 @@ func change_state(state_name):
 	if current_state.has_method("ready"):
 		current_state.ready(self)
 	current_state.enter(self)
-
-func rocket_hit(amount, hit_pos):
-	status.HEALTH -= amount
-	vel += 20 * (translation - hit_pos)
 	
 func health_updated():
 	if status.HEALTH <= 0 and current_state != states.dead:
