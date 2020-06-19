@@ -12,6 +12,8 @@ onready var weapons = {
 	"secondary": null
 }
 
+var player
+
 func weapons_selected():
 	return weapons.primary and weapons.secondary
 
@@ -23,6 +25,9 @@ func on_ready():
 	if current_weapon.has_method("ready"):
 		current_weapon.ready(self)
 	current_weapon.enter(self)
+
+	player = get_parent().get_parent()
+	print("player is: ", player.name)
 
 func _process(delta):
 	if is_master_or_player(1) and weapons_selected():
@@ -45,6 +50,7 @@ func is_master_or_player(id):
 		return false
 		
 func toggle_weapon():
+	print(player)
 	current_weapon.exit(self)
 	
 	if current_weapon == weapons.primary:

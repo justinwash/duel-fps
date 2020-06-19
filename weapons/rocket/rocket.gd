@@ -15,6 +15,7 @@ func on_input(weapon_handler, event):
 	if cooldown >= current_cooldown:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			var rocket = projectile.instance()
+			rocket.init(weapon_handler.player)
 			var scene_root = get_tree().root.get_children()[0]
 			scene_root.add_child(rocket)
 			rocket.global_transform = weapon_handler.get_parent().global_transform

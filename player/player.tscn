@@ -268,7 +268,7 @@ anims/shoot = SubResource( 8 )
 
 [node name="RoundStartUI" parent="Overlay" instance=ExtResource( 15 )]
 pause_mode = 2
-PICK_TIME = 15
+PICK_TIME = 5
 
 [node name="BodyCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0997378, 0 )
