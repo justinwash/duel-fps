@@ -54,6 +54,13 @@ text = "30"
 align = 2
 valign = 1
 
+[node name="RoundHeader" parent="." instance=ExtResource( 7 )]
+margin_left = 96.0
+margin_top = -65.0
+margin_right = 800.0
+margin_bottom = 39.0
+text = "ROUND 1"
+
 [node name="Header" parent="." instance=ExtResource( 7 )]
 margin_left = 96.0
 margin_top = 16.0

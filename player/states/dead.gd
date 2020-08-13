@@ -4,6 +4,7 @@ onready var spawns = get_tree().get_root().get_node("Game/World/Map/Spawns")
 
 func enter(player):
 	print("player ", player, " is kill")
+	player.emit_signal("died")
 	player.anim.play("die")
 	player.model.get_node("AnimationPlayer").play("tpose")
 	player.timer.wait_time = 5

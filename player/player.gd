@@ -26,6 +26,7 @@ onready var status = $Status
 onready var anim = $AnimationPlayer
 onready var timer = $Timer
 onready var round_start_ui = $Overlay/RoundStartUI
+onready var round_end_ui = $Overlay/RoundEndUI
 onready var model = $RotationHelper/Model
 
 var current_state
@@ -34,10 +35,12 @@ onready var states = {
 	"walk": $States/Walk,
 	"jump": $States/Jump,
 	"dead": $States/Dead,
-	"picking": $States/Picking
+	"picking": $States/Picking,
+	"roundend": $States/RoundEnd
 }
 
 signal ready_up
+signal died
 
 func _ready():
 	status.connect("health_updated", self, "health_updated")

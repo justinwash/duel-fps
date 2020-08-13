@@ -21,7 +21,13 @@ func _ready():
 	
 	ready_button.connect("button_up", self, "_ready_up", [selected_weapons])
 	cancel_button.connect("button_up", self, "_repick")
+
+func reset():
+	selected_weapons = []
+	ready = false
+	timer.disconnect("timeout", self, "_timeout")
 	
+func _start_timer():
 	timer.connect("timeout", self, "_timeout", [selected_weapons])
 	timer.wait_time = PICK_TIME
 	timer.start()

@@ -1,6 +1,7 @@
 extends Node
 
 onready var players = $Players
+onready var scorekeeper = $Scorekeeper
 
 var map
 
@@ -28,6 +29,9 @@ func spawn_player(_id):
 	new_player.connect("ready_up", self, "_ready_up")
 	players.add_child(new_player)
 	print("spawned player for " + str(_id))
+	
+	if players.get_child_count() == 2:
+		scorekeeper.initialize()
 	
 func _ready_up(_player):
 	var both_ready = true
