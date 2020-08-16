@@ -5,7 +5,6 @@ export var WAIT_TIME = 10
 onready var time_remaining = $TimerLabel/Remaining
 onready var timer = $PickTimer
 onready var load_timer = $LoadTimer
-onready var ready_label = $ReadyLabel
 onready var player = owner
 
 var selected_weapons = []

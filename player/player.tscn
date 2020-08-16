@@ -1,7 +1,6 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
-[ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
 [ext_resource path="res://weapons/pistol/crosshair.svg" type="Texture" id=3]
 [ext_resource path="res://player/states/idle.gd" type="Script" id=4]
 [ext_resource path="res://player/states/walk.gd" type="Script" id=5]
@@ -10,12 +9,8 @@
 [ext_resource path="res://player/spaceboi.tscn" type="PackedScene" id=8]
 [ext_resource path="res://player/hud.gd" type="Script" id=9]
 [ext_resource path="res://player/reloadindicator.gd" type="Script" id=10]
-[ext_resource path="res://roundend/roundend.tscn" type="PackedScene" id=11]
 [ext_resource path="res://player/status.gd" type="Script" id=12]
 [ext_resource path="res://player/states/dead.gd" type="Script" id=13]
-[ext_resource path="res://player/states/picking.gd" type="Script" id=14]
-[ext_resource path="res://roundstart/roundstart.tscn" type="PackedScene" id=15]
-[ext_resource path="res://player/states/roundend.gd" type="Script" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "die"
@@ -215,7 +210,6 @@ margin_left = -24.0
 margin_top = 120.0
 margin_right = 56.0
 margin_bottom = 200.0
-texture = ExtResource( 2 )
 expand = true
 stretch_mode = 5
 __meta__ = {
@@ -266,13 +260,6 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
 anims/shoot = SubResource( 8 )
 
-[node name="Overlay" type="CanvasLayer" parent="."]
-
-[node name="RoundEndUI" parent="Overlay" instance=ExtResource( 11 )]
-
-[node name="RoundStartUI" parent="Overlay" instance=ExtResource( 15 )]
-pause_mode = 2
-
 [node name="BodyCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0997378, 0 )
 shape = SubResource( 9 )
@@ -320,11 +307,5 @@ script = ExtResource( 6 )
 
 [node name="Dead" type="Node" parent="States"]
 script = ExtResource( 13 )
-
-[node name="Picking" type="Node" parent="States"]
-script = ExtResource( 14 )
-
-[node name="RoundEnd" type="Node" parent="States"]
-script = ExtResource( 16 )
 
 [node name="Timer" type="Timer" parent="."]

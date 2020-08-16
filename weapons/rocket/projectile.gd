@@ -15,7 +15,7 @@ var hit_something = false
 var shooter = null
 
 func _ready():
-	$RocketArea.connect("body_entered", self, "collided")
+	var _connect_rocket_area = $RocketArea.connect("body_entered", self, "collided")
 
 func init(shotby):
 	shooter = shotby

@@ -40,7 +40,8 @@ func _physics_process(delta):
 func _input(event):
 	if is_master_or_player(1):
 		if event is InputEventMouseButton and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			current_weapon.on_input(self, event)
+			if current_weapon:
+				current_weapon.on_input(self, event)
 	
 func is_master_or_player(id):
 	if (get_tree().has_network_peer() and is_network_master()) \

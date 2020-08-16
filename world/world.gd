@@ -31,7 +31,8 @@ func spawn_player(_id):
 	print("spawned player for " + str(_id))
 	
 	if players.get_child_count() == 2:
-		scorekeeper.initialize()
+		if scorekeeper and scorekeeper.has_method("initialize"):
+			scorekeeper.initialize()
 	
 func _ready_up(_player):
 	var both_ready = true

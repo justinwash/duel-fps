@@ -1,10 +1,11 @@
 extends Node
 
-export var DEV_MODE = true
+export var DEV_MODE = false
 
+onready var gamestate = $GameState
 onready var matchmaker = $Matchmaker
 onready var panels = $Panels
-onready var lobby = $Panels/LobbyMenu
+onready var lobby = $Panels/Lobby
 onready var networking_mode = $NetworkingMode
 onready var world = $World
 
@@ -58,6 +59,7 @@ func _toggle_connection():
 	emit_signal("toggle_connection")
 
 func _start_practice():
+	gamestate.change_state("roundstart")
 	world.load_map("test")
 	world.spawn_player(1)
 	world.spawn_player(0)
@@ -67,10 +69,12 @@ func leave_game():
 	for node in world.players.get_children():
 		node.queue_free()
 	for node in world.get_children():
-		if node.name != 'Players':
+		if !['Players', 'Scorekeeper'].has(node.name):
 			node.queue_free()
 	for node in networking_mode.get_children():
 		node.queue_free()
+	if world.scorekeeper:
+		world.scorekeeper.reset()
 	
 	emit_signal("left_game")
 	

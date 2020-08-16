@@ -25,8 +25,6 @@ onready var weapon_handler = $RotationHelper/WeaponHandler
 onready var status = $Status
 onready var anim = $AnimationPlayer
 onready var timer = $Timer
-onready var round_start_ui = $Overlay/RoundStartUI
-onready var round_end_ui = $Overlay/RoundEndUI
 onready var model = $RotationHelper/Model
 
 var current_state
@@ -34,9 +32,7 @@ onready var states = {
 	"idle": $States/Idle,
 	"walk": $States/Walk,
 	"jump": $States/Jump,
-	"dead": $States/Dead,
-	"picking": $States/Picking,
-	"roundend": $States/RoundEnd
+	"dead": $States/Dead
 }
 
 signal ready_up
@@ -44,8 +40,6 @@ signal died
 
 func _ready():
 	status.connect("health_updated", self, "health_updated")
-
-	round_start_ui.connect("start_round", self, "_start_round")
 	
 	if !is_master_or_player(1):
 		for element in hud.get_children():
@@ -54,7 +48,7 @@ func _ready():
 	else:
 		model.visible = false
 			
-	current_state = states.picking
+	current_state = states.idle
 	if current_state.has_method("ready"):
 		current_state.ready(self)
 	current_state.enter(self)
@@ -70,7 +64,6 @@ func _start_round(weapons):
 	
 	weapon_handler.on_ready()
 	
-	round_start_ui.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	if is_master_or_player(1):

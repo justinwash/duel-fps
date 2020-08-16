@@ -1,7 +1,10 @@
 extends Node
 
-var ROUND_SCORE = [0,0]
-var KILL_SCORE = [0,0]
+export(Array) var SCORES = [
+	{ player = null, kills = 0, rounds_won = 0, game_won = false },
+	{ player = null, kills = 0, rounds_won = 0, game_won = false },
+]
+export var CURRENT_ROUND = 1
 var initialized = false
 
 onready var players = get_node("../Players")
@@ -11,23 +14,28 @@ func initialize():
 		player.connect("died", self, "_increment_kill_score", [player])
 
 func reset():
-	KILL_SCORE = [0,0]
+	SCORES = [
+	{ player = null, kills = 0, rounds_won = 0, game_won = false },
+	{ player = null, kills = 0, rounds_won = 0, game_won = false },
+]
 
 func _increment_kill_score(killed_player):
 	if killed_player.is_master_or_player(1):
-		KILL_SCORE[1] += 1
-		if KILL_SCORE[1] >= 2:
-			ROUND_SCORE[1] += 1
+		SCORES[1].kills += 1
+		if SCORES[1].kills >= 2:
+			SCORES[1].rounds_won += 1
+			if SCORES[1].rounds_won >= 2:
+				SCORES[1].game_won = true
+				print(SCORES[1].player, ' won the game!')
 			reset()
-			for player in players.get_children():
-				player.change_state("roundend")
 	else:
-		KILL_SCORE[0] += 1
-		if KILL_SCORE[0] >= 2:
-			ROUND_SCORE[0] += 1
+		SCORES[0].kills += 1
+		if SCORES[0].kills  >= 2:
+			SCORES[0].rounds_won += 1
+			if SCORES[0].rounds_won >= 2:
+				SCORES[0].game_won = true
+				print(SCORES[0].player, ' won the game!')
 			reset()
-			for player in players.get_children():
-				player.change_state("roundend")
 		
-	print('KILL SCORE: ', 'Player 1 - ', KILL_SCORE[0], ' | ', 'Player 2 - ', KILL_SCORE[1])
-	print('ROUND SCORE: ', 'Player 1 - ', ROUND_SCORE[0], ' | ', 'Player 2 - ', ROUND_SCORE[1])
+	print('KILL SCORE: ', 'Player 1 - ', SCORES[0].kills, ' | ', 'Player 2 - ', SCORES[1].kills)
+	print('ROUND SCORE: ', 'Player 1 - ', SCORES[0].rounds_won, ' | ', 'Player 2 - ', SCORES[1].rounds_won)

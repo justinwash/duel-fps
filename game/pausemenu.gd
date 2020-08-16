@@ -7,7 +7,9 @@ func _ready():
 	visible = false
 	
 func _physics_process(_delta):
-	if (game.world.players.get_child_count() >= 2 && Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE) or visible:
+	if (game.world.players &&
+	game.world.players.get_child_count() >= 2 && 
+	Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE) or visible:
 		
 		if Input.is_action_just_pressed('pause'):
 			if !visible:
@@ -20,4 +22,4 @@ func _physics_process(_delta):
 
 func _on_LeaveButton_button_up():
 	game.cancel_game()
-	panels.switch_panel('mainmenu')
+	panels.switch_panel('main')

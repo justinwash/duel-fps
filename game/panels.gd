@@ -3,13 +3,16 @@ extends Node
 onready var game = get_parent()
 
 onready var panels = {
-	"mainmenu": $MainMenu,
-	"lobby": $LobbyMenu,
-	"pause": $PauseMenu
+	"main": $Main,
+	"lobby": $Lobby,
+	"pause": $Pause,
+	"roundstart": $RoundStart,
+	"roundend": $RoundEnd
 }
 
 func _ready():
-	var _start_practice = $MainMenu.connect("start_practice", game, "_start_practice")
+	var _start_practice = panels.main.connect("start_practice", game, "_start_practice")
+	switch_panel("main")
 	
 func switch_panel(panel_name):
 	if !panel_name:

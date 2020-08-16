@@ -15,10 +15,10 @@ __meta__ = {
 text = "PAUSE"
 
 [node name="Label" type="Label" parent="."]
-margin_left = 392.0
-margin_top = 176.0
-margin_right = 624.0
-margin_bottom = 192.0
+margin_left = 392.944
+margin_top = 192.046
+margin_right = 624.944
+margin_bottom = 208.046
 text = "unless you're online ofc"
 align = 1
 valign = 1

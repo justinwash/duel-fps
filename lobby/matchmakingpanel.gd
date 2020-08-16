@@ -62,4 +62,4 @@ func _on_ToggleConnectionButton_pressed():
 func _on_MenuButton_button_up():
 	emit_signal("leave_game")
 	emit_signal("cancel_matching")
-	panels.switch_panel('mainmenu')
+	panels.switch_panel('main')
