@@ -6,6 +6,7 @@ onready var scorekeeper = $Scorekeeper
 var map
 
 signal map_loaded
+signal players_spawned
 
 func _ready():
 	pass
@@ -33,6 +34,7 @@ func spawn_player(_id):
 	if players.get_child_count() == 2:
 		if scorekeeper and scorekeeper.has_method("initialize"):
 			scorekeeper.initialize()
+		emit_signal("players_spawned")
 	
 func _ready_up(_player):
 	var both_ready = true

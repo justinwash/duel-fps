@@ -1,19 +1,19 @@
 extends Node
 
-func enter(player):
+func enter(_game):
 	print("entered state menu")
 
-func ready(_player):
+func ready(_game):
 	pass
 	
-func update(player, _delta):
+func update(_game, _delta):
 	pass
 	
-func physics_update(_player, _delta):
+func physics_update(_game, _delta):
 	pass
 
-func process_input(_player, _delta):
+func process_input(_game, _delta):
 	pass
 
-func exit(_player):
+func exit(_game):
 	pass

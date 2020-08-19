@@ -9,6 +9,7 @@ onready var time_remaining = $TimerLabel/Remaining
 onready var timer = $PickTimer
 onready var load_timer = $LoadTimer
 onready var ready_label = $ReadyLabel
+onready var panels = get_node("../")
 
 var selected_weapons = []
 var ready = false
@@ -27,7 +28,7 @@ func reset():
 	ready = false
 	timer.disconnect("timeout", self, "_timeout")
 	
-func _start_timer():
+func start_timer():
 	timer.connect("timeout", self, "_timeout", [selected_weapons])
 	timer.wait_time = PICK_TIME
 	timer.start()
@@ -94,3 +95,5 @@ func _timeout(weapons):
 	for button in weapon_buttons:
 		button.visible = false
 	emit_signal("start_round", selected_weapons)
+	panels.switch_panel(null)
+	

@@ -6,7 +6,6 @@ signal start_practice
 
 func _on_PracticeButton_button_up():
 	emit_signal("start_practice")
-	panels.switch_panel(null)
 
 func _on_MultiplayerButton_button_up():
 	panels.switch_panel('lobby')

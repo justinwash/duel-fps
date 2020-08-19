@@ -1,9 +1,6 @@
 extends Node
 
-func enter(player):		
-	player.round_start_ui.visible = true
-	player.round_end_ui.visible = false
-	player.round_start_ui._start_timer()
+func enter(player):	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 	
 	for element in player.hud.get_children():

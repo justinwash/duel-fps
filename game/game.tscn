@@ -33,9 +33,11 @@ pause_mode = 2
 matchmaking_server_url = "https://dev-matchmaker.herokuapp.com"
 matchmaking_server_port = ""
 
-[node name="Panels" type="Node2D" parent="."]
-z_index = 925
+[node name="Panels" type="Control" parent="."]
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Main" parent="Panels" instance=ExtResource( 4 )]
 

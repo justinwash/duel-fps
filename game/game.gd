@@ -32,6 +32,7 @@ func _connect_matchmaking_signals():
 	
 func _connect_world_signals():
 	world.connect("map_loaded", self, "_map_loaded")
+	world.connect("players_spawned", self, "_players_spawned")
 	
 func _start_game(match_data):
 	if match_data.player.host:
@@ -49,6 +50,9 @@ func _start_game(match_data):
 func _map_loaded():
 	emit_signal("map_loaded")
 	
+func _players_spawned():
+	gamestate.change_state("roundstart")
+	
 func _start_matching():
 	emit_signal("start_matching")
 	
@@ -59,7 +63,6 @@ func _toggle_connection():
 	emit_signal("toggle_connection")
 
 func _start_practice():
-	gamestate.change_state("roundstart")
 	world.load_map("test")
 	world.spawn_player(1)
 	world.spawn_player(0)
