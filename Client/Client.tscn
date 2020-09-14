@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Client/Client.gd" type="Script" id=1]
+[ext_resource path="res://Client/Networking/ClientNetworkHandler.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Client/UI/ConnectionStatus/ConnectionStatus.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Client/DataStore.gd" type="Script" id=4]
+
+[node name="Client" type="Node"]
+script = ExtResource( 1 )
+
+[node name="DataStore" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="ClientNetworkHandler" parent="." instance=ExtResource( 2 )]
+
+[node name="Panels" type="Node" parent="."]
+
+[node name="ConnectionStatus" parent="Panels" instance=ExtResource( 3 )]
+margin_left = 2.0
+margin_right = 2.0
+NETWORK_HANDLER = NodePath("../../ClientNetworkHandler")
+DATASTORE = NodePath("../../DataStore")

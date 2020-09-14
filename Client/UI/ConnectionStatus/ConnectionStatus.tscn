@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Client/UI/ConnectionStatus/ConnectionStatus.gd" type="Script" id=1]
+[ext_resource path="res://Client/UI/ConnectionStatus/ServerStateLabel.gd" type="Script" id=2]
+
+[node name="ConnectionStatus" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ServerStateLabel" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 318.0
+margin_bottom = 40.0
+text = "Attempting to connect to server..."
+valign = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="."]
+margin_left = 128.0
+margin_top = 88.0
+margin_right = 352.0
+margin_bottom = 102.0
+text = "Enter a name (>=3 chars):"
+
+[node name="ColorLabel" type="Label" parent="."]
+margin_left = 600.0
+margin_top = 88.0
+margin_right = 824.0
+margin_bottom = 102.0
+text = "Choose a color:"
+
+[node name="NameBox" type="TextEdit" parent="."]
+margin_left = 128.0
+margin_top = 104.0
+margin_right = 448.0
+margin_bottom = 136.0
+hint_tooltip = "Your name here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker" type="ColorPicker" parent="."]
+margin_left = 600.0
+margin_top = 104.0
+margin_right = 908.0
+margin_bottom = 566.0
+
+[node name="PlayButton" type="Button" parent="."]
+margin_left = 192.0
+margin_top = 312.0
+margin_right = 384.0
+margin_bottom = 332.0
+text = "Play!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
