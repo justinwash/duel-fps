@@ -35,8 +35,6 @@ func _connected_fail():
 	
 func _server_disconnected():
 	connected = false
-	OS.alert('Server disconnected. Handle this more gracefully in the future...')
-	get_tree().quit()
 	
 func send_data(target, type, data):
 	network_interface.send_data(target, type, data)

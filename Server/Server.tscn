@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Server/Server.gd" type="Script" id=1]
 [ext_resource path="res://Server/DebugPanel.gd" type="Script" id=2]
+[ext_resource path="res://Server/PlayerController.gd" type="Script" id=3]
 
 [node name="Server" type="Node"]
 script = ExtResource( 1 )
@@ -26,3 +27,6 @@ margin_top = 54.5305
 margin_right = 334.816
 margin_bottom = 87.5305
 text = "Connected players:"
+
+[node name="PlayerController" type="Node" parent="."]
+script = ExtResource( 3 )

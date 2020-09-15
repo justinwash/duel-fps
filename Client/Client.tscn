@@ -34,6 +34,9 @@ CLIENT = NodePath("../..")
 NETWORK_HANDLER = NodePath("../../ClientNetworkHandler")
 DATASTORE = NodePath("../../DataStore")
 
+[node name="PlayerInfoPanel" parent="Panels/MainMenu" index="5"]
+DATASTORE = NodePath("../../../DataStore")
+
 [node name="States" type="Node" parent="."]
 
 [node name="Idle" type="Node" parent="States"]
@@ -50,3 +53,5 @@ script = ExtResource( 8 )
 
 [node name="MainMenu" type="Node" parent="States"]
 script = ExtResource( 9 )
+
+[editable path="Panels/MainMenu"]

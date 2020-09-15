@@ -9,6 +9,6 @@ remote func receive_data(type, data):
 	
 	match(type):
 		'player_info':
-			get_node("../Server").register_player(sender_id, data)
+			get_node("../Server/PlayerController").register_player(sender_id, data)
 		'client_state':
 			get_node("../Server").update_client_state(sender_id, data)

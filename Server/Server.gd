@@ -22,11 +22,6 @@ func _client_connected(id):
 	}
 	print('Client ', id, ' connected.')
 	
-remote func register_player(id, player_info):
-	clients[id].player = player_info
-	
-	print('registered new player: id: ', id, ' info: ', player_info)
-	
 func _client_disconnected(id):
 	var _removed_client = clients.erase(id)
 	print('Client ', id, ' disconnected.')

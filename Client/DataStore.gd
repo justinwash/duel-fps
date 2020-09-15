@@ -1,6 +1,6 @@
 extends Node
 
-const db = {}
+var db = {}
 
 func add_entry(name, data):
 	db[name] = data
