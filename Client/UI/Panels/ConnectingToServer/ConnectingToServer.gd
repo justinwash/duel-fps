@@ -1,5 +1,8 @@
 extends Control
 
+export(NodePath) var CLIENT
+onready var client = get_node(CLIENT)
+
 export(NodePath) var NETWORK_HANDLER
 onready var network_handler = get_node(NETWORK_HANDLER)
 
@@ -15,16 +18,18 @@ func _ready():
 	play_button.disabled = true
 	
 func _process(_delta):
-	if len(name_box.text) >= 3:
+	if len(name_box.text) >= 3 && network_handler.connected:
 		play_button.disabled = false
 	else:
 		play_button.disabled = true
 		
 func _play_button_pressed():
-	var player_info = {
-		'name': name_box.text,
-		'color': color_picker.color
-	}
+	if network_handler.connected:
+		var player_info = {
+			'name': name_box.text,
+			'color': color_picker.color
+		}
 	
-	datastore.add_entry('player_info', player_info)
-	network_handler.send_data(1, 'player_info', player_info)
+		datastore.add_entry('player_info', player_info)
+		network_handler.send_data(1, 'player_info', player_info)
+		client.change_state('main_menu')

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Client/UI/ConnectionStatus/ConnectionStatus.gd" type="Script" id=1]
-[ext_resource path="res://Client/UI/ConnectionStatus/ServerStateLabel.gd" type="Script" id=2]
+[ext_resource path="res://Client/UI/Panels/ConnectingToServer/ConnectingToServer.gd" type="Script" id=1]
+[ext_resource path="res://Client/UI/Elements/ServerStateLabel.tscn" type="PackedScene" id=2]
 
-[node name="ConnectionStatus" type="Control"]
+[node name="ConnectingToServer" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -11,17 +11,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ServerStateLabel" type="Label" parent="."]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 318.0
-margin_bottom = 40.0
-text = "Attempting to connect to server..."
-valign = 1
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ServerStateLabel2" parent="." instance=ExtResource( 2 )]
 
 [node name="NameLabel" type="Label" parent="."]
 margin_left = 128.0
@@ -48,10 +38,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="."]
-margin_left = 600.0
-margin_top = 104.0
-margin_right = 908.0
-margin_bottom = 566.0
+margin_left = 608.0
+margin_top = 112.0
+margin_right = 916.0
+margin_bottom = 574.0
 
 [node name="PlayButton" type="Button" parent="."]
 margin_left = 192.0

@@ -3,9 +3,11 @@ extends Node
 export(String) var SERVER_ADDRESS = 'localhost'
 export(int) var SERVER_PORT = '3000'
 
+onready var client = owner
 onready var network_interface = owner.get_node('../NetworkInterface')
 
 var connected = null
+var initialized = false
 
 func _ready():
 	print('Connecting to server...')
@@ -17,6 +19,11 @@ func _ready():
 	var _connected_to_server = get_tree().connect("connected_to_server", self, "_connected_ok")
 	var _connection_failed = get_tree().connect("connection_failed", self, "_connected_fail")
 	var _server_disconnected = get_tree().connect("server_disconnected", self, "_server_disconnected")
+	
+func _process(_delta):
+	if !initialized:
+		initialized = true
+		client.change_state("connecting_to_server")
 	
 func _connected_ok():
 	connected = true

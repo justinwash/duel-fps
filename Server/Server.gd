@@ -3,28 +3,33 @@ extends Node
 export(int) var PORT = 3000
 export(int) var MAX_PLAYERS = 1024
 
-const players = {}
+const clients = {}
 	
 func _ready():
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(PORT, MAX_PLAYERS)
 	get_tree().network_peer = peer
 	
-	var _network_peer_connected = get_tree().connect("network_peer_connected", self, "_player_connected")
-	var _network_peer_disconnected = get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	var _network_peer_connected = get_tree().connect("network_peer_connected", self, "_client_connected")
+	var _network_peer_disconnected = get_tree().connect("network_peer_disconnected", self, "_client_disconnected")
 	
 	print('Server running on port: ', PORT)
 	
-func _player_connected(id):
-	players[id] = 'awaiting info'
-	print('Player ', id, ' connected.')
+func _client_connected(id):
+	clients[id] = {
+		state = 'connecting_to_server',
+		player = {}
+	}
+	print('Client ', id, ' connected.')
 	
-remote func register_player(player_info):
-	var id = get_tree().get_rpc_sender_id()
-	players[id] = player_info
+remote func register_player(id, player_info):
+	clients[id].player = player_info
 	
 	print('registered new player: id: ', id, ' info: ', player_info)
 	
-func _player_disconnected(id):
-	var _removed_player = players.erase(id)
-	print('Player ', id, ' disconnected.')
+func _client_disconnected(id):
+	var _removed_client = clients.erase(id)
+	print('Client ', id, ' disconnected.')
+	
+func update_client_state(id, state):
+	clients[id].state = state
