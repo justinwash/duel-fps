@@ -3,6 +3,10 @@ extends Node
 export(int) var PORT = 3000
 export(int) var MAX_PLAYERS = 1024
 
+onready var player_controller = $PlayerController
+onready var matchmaking_controller = $MatchmakingController
+onready var gaem_controller = $GameController
+
 const clients = {}
 	
 func _ready():

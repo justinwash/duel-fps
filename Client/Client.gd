@@ -43,4 +43,4 @@ func change_state(state_name):
 		current_state.ready(self)
 	current_state.enter(self)
 	if network_handler.connected:
-		network_handler.send_data(1, 'client_state', state_name)
+		network_handler.send_data(1, 'client_info', 'update_client_state', state_name)

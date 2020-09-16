@@ -18,6 +18,7 @@ script = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="ClientNetworkHandler" parent="." instance=ExtResource( 2 )]
+DATASTORE = NodePath("../DataStore")
 
 [node name="Panels" type="Node" parent="."]
 

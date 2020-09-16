@@ -31,5 +31,5 @@ func _play_button_pressed():
 		}
 	
 		datastore.add_entry('player_info', player_info)
-		network_handler.send_data(1, 'player_info', player_info)
+		network_handler.send_data(1, 'player_info', 'register_player', player_info)
 		client.change_state('main_menu')
