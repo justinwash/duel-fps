@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Client/UI/Panels/WeaponSelect/WeaponSelect.gd" type="Script" id=1]
+[ext_resource path="res://Client/UI/Elements/Header.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Client/UI/Panels/Loading/OpponentInfo.gd" type="Script" id=3]
+
+[node name="Loading" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" parent="." instance=ExtResource( 2 )]
+margin_left = -40.0
+margin_top = 16.0
+margin_right = 967.168
+margin_bottom = 488.0
+text = "loading screen
+here"
+
+[node name="Opponent Info" type="Panel" parent="."]
+margin_left = 512.0
+margin_top = 256.0
+margin_right = 896.0
+margin_bottom = 520.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YouLabel" type="Label" parent="Opponent Info"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 96.0
+margin_bottom = 40.0
+text = "You"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerData" type="Label" parent="Opponent Info"]
+margin_left = 24.0
+margin_top = 40.0
+margin_right = 216.0
+margin_bottom = 54.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpponentData" type="Label" parent="Opponent Info"]
+margin_left = 24.0
+margin_top = 112.0
+margin_right = 216.0
+margin_bottom = 126.0
+
+[node name="OpponentLabel" type="Label" parent="Opponent Info"]
+margin_left = 24.0
+margin_top = 88.0
+margin_right = 64.0
+margin_bottom = 102.0
+text = "Opponent"

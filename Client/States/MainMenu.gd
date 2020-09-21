@@ -3,6 +3,7 @@ extends Node
 func enter(client):
 	print('entered state: main menu')
 	client.switch_panel('main_menu')
+	client.panels['main_menu'].get_node("MatchmakingPanel").searching = false
 
 func ready(_client):
 	pass

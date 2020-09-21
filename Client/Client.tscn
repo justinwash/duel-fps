@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Client/Client.gd" type="Script" id=1]
 [ext_resource path="res://Client/Networking/ClientNetworkHandler.tscn" type="PackedScene" id=2]
@@ -10,6 +10,13 @@
 [ext_resource path="res://Client/States/Init.gd" type="Script" id=8]
 [ext_resource path="res://Client/States/MainMenu.gd" type="Script" id=9]
 [ext_resource path="res://Client/UI/Panels/MainMenu/MainMenu.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Client/UI/Panels/WeaponSelect/WeaponSelect.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Client/UI/Panels/Loading/Loading.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Client/States/Loading.gd" type="Script" id=13]
+[ext_resource path="res://Client/States/WeaponSelect.gd" type="Script" id=14]
+[ext_resource path="res://Client/GameController.gd" type="Script" id=15]
+[ext_resource path="res://Client/States/StartGame.gd" type="Script" id=16]
+[ext_resource path="res://Client/States/InGame.gd" type="Script" id=17]
 
 [node name="Client" type="Node"]
 script = ExtResource( 1 )
@@ -18,6 +25,10 @@ script = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="ClientNetworkHandler" parent="." instance=ExtResource( 2 )]
+DATASTORE = NodePath("../DataStore")
+
+[node name="GameController" type="Node" parent="."]
+script = ExtResource( 15 )
 DATASTORE = NodePath("../DataStore")
 
 [node name="Panels" type="Node" parent="."]
@@ -35,8 +46,20 @@ CLIENT = NodePath("../..")
 NETWORK_HANDLER = NodePath("../../ClientNetworkHandler")
 DATASTORE = NodePath("../../DataStore")
 
-[node name="PlayerInfoPanel" parent="Panels/MainMenu" index="5"]
+[node name="PlayerInfoPanel" parent="Panels/MainMenu" index="3"]
 DATASTORE = NodePath("../../../DataStore")
+
+[node name="WeaponSelect" parent="Panels" instance=ExtResource( 11 )]
+visible = false
+CLIENT = NodePath("../..")
+NETWORK_HANDLER = NodePath("../../ClientNetworkHandler")
+DATASTORE = NodePath("../../DataStore")
+
+[node name="Loading" parent="Panels" instance=ExtResource( 12 )]
+visible = false
+CLIENT = NodePath("../..")
+NETWORK_HANDLER = NodePath("../../ClientNetworkHandler")
+DATASTORE = NodePath("../../DataStore")
 
 [node name="States" type="Node" parent="."]
 
@@ -54,5 +77,17 @@ script = ExtResource( 8 )
 
 [node name="MainMenu" type="Node" parent="States"]
 script = ExtResource( 9 )
+
+[node name="Loading" type="Node" parent="States"]
+script = ExtResource( 13 )
+
+[node name="WeaponSelect" type="Node" parent="States"]
+script = ExtResource( 14 )
+
+[node name="StartGame" type="Node" parent="States"]
+script = ExtResource( 16 )
+
+[node name="InGame" type="Node" parent="States"]
+script = ExtResource( 17 )
 
 [editable path="Panels/MainMenu"]

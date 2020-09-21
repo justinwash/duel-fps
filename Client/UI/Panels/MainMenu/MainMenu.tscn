@@ -1,17 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Client/UI/Panels/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Shared/Assets/portrait.png" type="Texture" id=2]
-[ext_resource path="res://Shared/Fonts/JetBrainsMono-ExtraBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Client/UI/Elements/Header.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Client/UI/Elements/ServerStateLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Client/UI/Panels/MainMenu/MatchmakingPanel.gd" type="Script" id=5]
 [ext_resource path="res://Client/UI/Panels/MainMenu/PlayerInfoPanel.gd" type="Script" id=6]
-
-[sub_resource type="DynamicFont" id=1]
-size = 128
-outline_size = 5
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 3 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -28,20 +22,57 @@ texture = ExtResource( 2 )
 
 [node name="ServerStateLabel" parent="." instance=ExtResource( 4 )]
 
-[node name="Header" type="RichTextLabel" parent="."]
-anchor_right = 0.118
-margin_left = 217.759
-margin_top = 64.7029
-margin_right = 758.927
-margin_bottom = 254.703
-custom_fonts/normal_font = SubResource( 1 )
+[node name="Header" parent="." instance=ExtResource( 3 )]
 text = "DUEL FPS"
+
+[node name="PlayerInfoPanel" type="Panel" parent="."]
+margin_left = 64.0
+margin_top = 216.0
+margin_right = 320.0
+margin_bottom = 288.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerName" type="Label" parent="PlayerInfoPanel"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 248.0
+margin_bottom = 64.0
+text = "Player Name"
+align = 1
+valign = 1
+
+[node name="OfflinePanel" type="Panel" parent="."]
+margin_left = 64.0
+margin_top = 296.0
+margin_right = 320.0
+margin_bottom = 368.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MatchmakingLabel" type="Label" parent="OfflinePanel"]
+margin_top = 8.0
+margin_right = 256.0
+margin_bottom = 32.0
+text = "Offline Practice"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="OfflinePanel"]
+margin_left = 48.0
+margin_top = 40.0
+margin_right = 208.0
+margin_bottom = 60.0
+text = "Play Offline"
 
 [node name="MatchmakingPanel" type="Panel" parent="."]
 margin_left = 64.0
-margin_top = 416.0
+margin_top = 376.0
 margin_right = 320.0
-margin_bottom = 552.0
+margin_bottom = 544.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -74,6 +105,9 @@ custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Ready"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FindMatchButton" type="Button" parent="MatchmakingPanel"]
 margin_left = 48.0
@@ -85,46 +119,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OfflinePanel" type="Panel" parent="."]
-margin_left = 64.0
-margin_top = 336.0
-margin_right = 320.0
-margin_bottom = 408.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MatchmakingLabel" type="Label" parent="OfflinePanel"]
-margin_top = 8.0
-margin_right = 256.0
-margin_bottom = 32.0
-text = "Offline Practice"
-align = 1
-valign = 1
-
-[node name="Button" type="Button" parent="OfflinePanel"]
+[node name="CancelButton" type="Button" parent="MatchmakingPanel"]
 margin_left = 48.0
-margin_top = 40.0
+margin_top = 136.0
 margin_right = 208.0
-margin_bottom = 60.0
-text = "Play Offline"
-
-[node name="PlayerInfoPanel" type="Panel" parent="."]
-margin_left = 64.0
-margin_top = 256.0
-margin_right = 320.0
-margin_bottom = 328.0
-script = ExtResource( 6 )
+margin_bottom = 156.0
+text = "Cancel"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="PlayerName" type="Label" parent="PlayerInfoPanel"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 248.0
-margin_bottom = 64.0
-text = "Player Name"
-align = 1
-valign = 1
 [connection signal="button_up" from="MatchmakingPanel/FindMatchButton" to="MatchmakingPanel" method="_on_FindMatchButton_button_up"]
+[connection signal="button_up" from="MatchmakingPanel/CancelButton" to="MatchmakingPanel" method="_on_CancelButton_button_up"]
