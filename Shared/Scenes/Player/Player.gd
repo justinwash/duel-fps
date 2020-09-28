@@ -35,82 +35,45 @@ onready var states = {
 	"dead": $States/Dead
 }
 
-signal ready_up
 signal died
 
 func _ready():
 	status.connect("health_updated", self, "health_updated")
 	
-	if !is_master_or_player(1):
-		for element in hud.get_children():
-			if element.get("visible"):
-				element.visible = false
-	else:
-		model.visible = false
-			
 	current_state = states.idle
 	if current_state.has_method("ready"):
 		current_state.ready(self)
 	current_state.enter(self)
-
-func _start_round(weapons):
-	var primary = weapons[0].instance()
-	weapon_handler.primary_slot.add_child(primary)
-	weapon_handler.weapons.primary = primary
-		
-	var secondary = weapons[1].instance()
-	weapon_handler.secondary_slot.add_child(secondary)
-	weapon_handler.weapons.secondary = secondary
 	
-	weapon_handler.on_ready()
-	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	if is_master_or_player(1):
-		set_ready(true)
-		rpc("set_ready", true)
-	else:
-		set_ready(true)
+	if get_tree().get_root().get_node("Main").MODE == 'CLIENT':
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta):
-	if is_master_or_player(1):
 		camera.current = true
 		current_state.update(self, delta)
 		_move(delta)
-	# make dummy react to gravity
-	elif is_master_or_player(0):
-		if !round_ready:
-			set_ready(true)
+		
+		if Input.is_action_just_pressed("ui_cancel") && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		elif Input.is_action_just_pressed("ui_cancel") && Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
-		_move(delta)
 		
 func _physics_process(delta):
-	if is_master_or_player(1):
-		current_state.physics_update(self, delta)
+
+	current_state.physics_update(self, delta)
 		
-		if get_tree().has_network_peer():
-			var animation = model.get_node("AnimationPlayer").current_animation
-			rpc_unreliable("set_pos", global_transform, visible, collision_layer, collision_mask, animation)
-			
-	if Input.is_action_pressed("pause") && is_master_or_player(1):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			for element in hud.get_children():
-				if element.get("visible") != null:
-					element.visible = true
-		else:
-			for element in hud.get_children():
-				if element.get("visible") != null:
-					element.visible = false
+	var animation = model.get_node("AnimationPlayer").current_animation
+	#rpc_unreliable("set_pos", global_transform, visible, collision_layer, collision_mask, animation)
 		
 func _input(event):
-	if is_master_or_player(1):
-		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-			rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+		rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
-			var camera_rot = rotation_helper.rotation_degrees
-			camera_rot.x = clamp(camera_rot.x, -70, 70)
-			rotation_helper.rotation_degrees = camera_rot
+		var camera_rot = rotation_helper.rotation_degrees
+		camera_rot.x = clamp(camera_rot.x, -70, 70)
+		rotation_helper.rotation_degrees = camera_rot
 
 func _move(delta):
 	dir.y = 0
@@ -143,19 +106,8 @@ puppet func set_pos(p_pos, is_visible, col_layer, col_mask, animation):
 	if !model.get_node("AnimationPlayer").current_animation == animation:
 		model.get_node("AnimationPlayer").play(animation)
 	
-puppet func set_ready(is_ready):
-	round_ready = is_ready
-	emit_signal("ready_up", self)
-	
 master func receive_hit(amount):
 	status.HEALTH -= amount
-	
-func is_master_or_player(id):
-	if (get_tree().has_network_peer() and is_network_master()) \
-	or (!get_tree().has_network_peer() and get_network_master() == id):
-		return true
-	else:
-		return false
 		
 func change_state(state_name):
 	current_state.exit(self)

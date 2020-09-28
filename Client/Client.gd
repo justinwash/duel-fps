@@ -56,5 +56,5 @@ func start_game(_remote_id, opponent_info):
 	change_state('start_game')
 	game_controller.start_game(opponent_info)
 	
-func end_game(_remote_id, data):
+func end_game(_remote_id, _data):
 	game_controller.end_game()

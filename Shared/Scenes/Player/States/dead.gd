@@ -1,7 +1,5 @@
 extends Node
 
-onready var spawns = get_tree().get_root().get_node("Game/World/Map/Spawns")
-
 func enter(player):
 	print("player ", player, " is kill")
 	player.emit_signal("died")
@@ -31,6 +29,6 @@ func respawn(player):
 	player.timer.disconnect("timeout", self, "respawn")
 	
 	player.status.HEALTH = 100
-	player.global_transform = spawns.get_child(randi() % spawns.get_child_count()).global_transform
+	#player.global_transform = spawns.get_child(randi() % spawns.get_child_count()).global_transform
 	player.anim.play("spawn")
 	player.change_state("idle")

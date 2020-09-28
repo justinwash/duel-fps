@@ -20,6 +20,8 @@ remote func receive_data(type, command, data):
 		# Server -> Client commands
 		'client_instruction':
 			target_node = get_node("../Client")
+		'game_instruction':
+			target_node = get_node("../Client/GameController")
 		_:
 			print('no matching type found received data.')
 			return

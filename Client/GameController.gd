@@ -20,4 +20,7 @@ func end_game():
 		
 		owner.change_state('main_menu')
 		datastore.db.erase('opponent_info')
+		
+func spawn_player(_from_id, player):
+	get_child(0).players.add_child(player)
 	

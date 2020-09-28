@@ -14,6 +14,7 @@ func create_game(player_one, player_two):
 	
 	var new_game = preload("res://Shared/Scenes/Game/Game.tscn").instance()
 	new_game.name = str(new_game.get_instance_id())
+	new_game.player_ids = [player_one, player_two]
 	add_child(new_game)
 	
 	var player_one_data = {
