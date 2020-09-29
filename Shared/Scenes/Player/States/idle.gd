@@ -11,8 +11,8 @@ func update(player, _delta):
 	if Input.is_action_just_pressed("jump"):
 		player.change_state("jump")
 		
-	if Input.is_action_pressed("move_forwards") or \
-	Input.is_action_pressed("move_backwards") or \
+	if Input.is_action_pressed("move_forward") or \
+	Input.is_action_pressed("move_backward") or \
 	Input.is_action_pressed("move_left") or \
 	Input.is_action_pressed("move_right"):
 		player.change_state("walk")

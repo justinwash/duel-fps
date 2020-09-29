@@ -24,6 +24,7 @@ func _ready():
 func _client_connected(id):
 	clients[id] = {
 		state = 'connecting_to_server',
+		game_state = '',
 		player = {}
 	}
 	print('Client ', id, ' connected.')

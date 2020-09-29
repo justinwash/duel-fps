@@ -14,8 +14,8 @@ func physics_update(_player, _delta):
 	pass
 
 func process_input(player, _delta):
-	if !(Input.is_action_pressed("move_forwards") or \
-	Input.is_action_pressed("move_backwards") or \
+	if !(Input.is_action_pressed("move_forward") or \
+	Input.is_action_pressed("move_backward") or \
 	Input.is_action_pressed("move_left") or \
 	Input.is_action_pressed("move_right")):
 		player.change_state("idle")
@@ -26,9 +26,9 @@ func process_input(player, _delta):
 
 	var input_movement_vector = Vector2()
 
-	if Input.is_action_pressed("move_forwards"):
+	if Input.is_action_pressed("move_forward"):
 		input_movement_vector.y += 1
-	if Input.is_action_pressed("move_backwards"):
+	if Input.is_action_pressed("move_backward"):
 		input_movement_vector.y -= 1
 	if Input.is_action_pressed("move_left"):
 		input_movement_vector.x -= 1

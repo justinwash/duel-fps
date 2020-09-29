@@ -19,7 +19,7 @@ onready var states = {
 	"searching_for_match": $States/SearchingForMatch,
 	"loading": $States/Loading,
 	"weapon_select": $States/WeaponSelect,
-	"start_game": $States/StartGame,
+	"setup_game": $States/StartGame,
 	"in_game": $States/InGame
 }
 
@@ -52,9 +52,9 @@ func change_state(state_name):
 	if network_handler.connected:
 		network_handler.send_data(1, 'client_info', 'update_client_state', state_name)
 		
-func start_game(_remote_id, opponent_info):
-	change_state('start_game')
-	game_controller.start_game(opponent_info)
+func setup_game(_remote_id, opponent_info):
+	change_state('setup_game')
+	game_controller.setup_game(opponent_info)
 	
 func end_game(_remote_id, _data):
 	game_controller.end_game()

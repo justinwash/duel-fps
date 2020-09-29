@@ -19,6 +19,8 @@ func create_game(player_one, player_two):
 	
 	var player_one_data = {
 		game_id = new_game.get_instance_id(),
+		player_slot = 0,
+		player_id = player_one,
 		opponent_id = player_two,
 		client_info = clients[player_two]
 	}
@@ -28,6 +30,8 @@ func create_game(player_one, player_two):
 	
 	var player_two_data = {
 		game_id = new_game.get_instance_id(),
+		player_slot = 1,
+		player_id = player_two,
 		opponent_id = player_one,
 		client_info = clients[player_one]
 	}

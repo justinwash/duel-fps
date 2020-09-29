@@ -45,10 +45,18 @@ func _ready():
 		current_state.ready(self)
 	current_state.enter(self)
 	
+	if is_network_master():
+		camera.current = true
+		model.visible = false
+	else:
+		camera.current = false
+		model.visible = true
+		
 	if get_tree().get_root().get_node("Main").MODE == 'CLIENT':
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta):
+	if is_network_master():
 		camera.current = true
 		current_state.update(self, delta)
 		_move(delta)
@@ -60,20 +68,21 @@ func _process(delta):
 			
 		
 func _physics_process(delta):
-
-	current_state.physics_update(self, delta)
+	if is_network_master():
+		current_state.physics_update(self, delta)
 		
-	var animation = model.get_node("AnimationPlayer").current_animation
-	#rpc_unreliable("set_pos", global_transform, visible, collision_layer, collision_mask, animation)
+		var animation = model.get_node("AnimationPlayer").current_animation
+		#rpc_unreliable("set_pos", global_transform, visible, collision_layer, collision_mask, animation)
 		
 func _input(event):
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+	if is_network_master():
+		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+			rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
-		var camera_rot = rotation_helper.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -70, 70)
-		rotation_helper.rotation_degrees = camera_rot
+			var camera_rot = rotation_helper.rotation_degrees
+			camera_rot.x = clamp(camera_rot.x, -70, 70)
+			rotation_helper.rotation_degrees = camera_rot
 
 func _move(delta):
 	dir.y = 0
@@ -120,3 +129,6 @@ func change_state(state_name):
 func health_updated():
 	if status.HEALTH <= 0 and current_state != states.dead:
 		change_state("dead")
+		
+func is_network_master():
+	return true if str(get_tree().get_network_unique_id()) == self.name else false
