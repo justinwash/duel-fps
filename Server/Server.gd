@@ -43,3 +43,6 @@ func _client_disconnected(id):
 	
 func update_client_state(id, state):
 	clients[id].state = state
+	
+func update_game_state(id, game_state):
+	clients[id].game_state = game_state

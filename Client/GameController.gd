@@ -3,10 +3,10 @@ extends Node
 export(NodePath) var DATASTORE
 onready var datastore = get_node(DATASTORE)
 
-func start_game(opponent_info):
-	print('should start game  at client with opponent', opponent_info)
+func setup_game(opponent_info):
+	print('should setup game  at client with opponent', opponent_info)
 	datastore.db['opponent_info'] = opponent_info
-	
+	print('loading default map')
 	var new_game = preload("res://Shared/Scenes/Game/Game.tscn").instance()
 	new_game.name = str(opponent_info.game_id)
 	add_child(new_game)
@@ -22,5 +22,7 @@ func end_game():
 		datastore.db.erase('opponent_info')
 		
 func spawn_player(_from_id, player):
-	get_child(0).players.add_child(player)
-	
+	if get_child(0):
+		get_child(0).players.add_child(player)
+	else:
+		print('tried to spawn player for nonexistent game')

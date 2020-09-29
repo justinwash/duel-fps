@@ -90,4 +90,6 @@ script = ExtResource( 16 )
 [node name="InGame" type="Node" parent="States"]
 script = ExtResource( 17 )
 
+[node name="Timer" type="Timer" parent="."]
+
 [editable path="Panels/MainMenu"]
