@@ -8,6 +8,7 @@ var map_to_load = 'Test'
 var map
 var player_ids = []
 var local_player_id
+var game_id
 var client_maps_loaded = false
 
 var current_state
@@ -41,6 +42,23 @@ func change_state(state_name):
 		var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
 		network_interface.send_data(1, 'client_info', 'update_game_state', state_name)
 			
-
-	
-
+func client_server_sync(sync_data):
+	match (sync_data.type):
+		'player_transform':
+			for player in players.get_children():
+				if player.name == str(sync_data.player_id):
+					player.client_server_sync(sync_data)
+				else:
+					server_client_sync(int(player.name), sync_data)
+					
+func server_client_sync(target_id, sync_data):
+	if is_network_master():
+		var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
+		if network_interface:
+			network_interface.send_data(target_id, 'server_client_sync', 'server_client_sync', sync_data)
+	else:
+		match (sync_data.type):
+			'player_transform':
+				for player in players.get_children():
+					if player.name == str(sync_data.player_id):
+						player.server_client_sync(sync_data)

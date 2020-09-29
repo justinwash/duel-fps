@@ -27,6 +27,10 @@ onready var anim = $AnimationPlayer
 onready var timer = $Timer
 onready var model = $RotationHelper/Model
 
+onready var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
+var game_id
+var local_player_id
+
 var current_state
 onready var states = {
 	"idle": $States/Idle,
@@ -70,9 +74,19 @@ func _process(delta):
 func _physics_process(delta):
 	if is_network_master():
 		current_state.physics_update(self, delta)
-		
 		var animation = model.get_node("AnimationPlayer").current_animation
-		#rpc_unreliable("set_pos", global_transform, visible, collision_layer, collision_mask, animation)
+		
+		var sync_data = {
+			'type': 'player_transform',
+			'game_id': game_id,
+			'player_id': local_player_id,
+			'global_transform': global_transform,
+			'visible': visible,
+			'collision_layer': collision_layer,
+			'collision_mask': collision_mask,
+			'animation': animation
+		}
+		network_interface.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
 		
 func _input(event):
 	if is_network_master():
@@ -107,14 +121,6 @@ func _move(delta):
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 	
-puppet func set_pos(p_pos, is_visible, col_layer, col_mask, animation):
-	global_transform = p_pos
-	visible = is_visible
-	collision_layer = col_layer
-	collision_mask = col_mask
-	if !model.get_node("AnimationPlayer").current_animation == animation:
-		model.get_node("AnimationPlayer").play(animation)
-	
 master func receive_hit(amount):
 	status.HEALTH -= amount
 		
@@ -130,5 +136,23 @@ func health_updated():
 	if status.HEALTH <= 0 and current_state != states.dead:
 		change_state("dead")
 		
-func is_network_master():
-	return true if str(get_tree().get_network_unique_id()) == self.name else false
+#func is_network_master():
+#	return true if str(get_tree().get_network_unique_id()) == self.name else false
+	
+func client_server_sync(sync_data):
+	if !is_network_master():
+		global_transform = sync_data.global_transform
+		visible = sync_data.visible
+		collision_layer = sync_data.collision_layer
+		collision_mask = sync_data.collision_mask
+		if !model.get_node("AnimationPlayer").current_animation == sync_data.animation:
+			model.get_node("AnimationPlayer").play(sync_data.animation)
+			
+func server_client_sync(sync_data):
+	if !is_network_master():
+		global_transform = sync_data.global_transform
+		visible = sync_data.visible
+		collision_layer = sync_data.collision_layer
+		collision_mask = sync_data.collision_mask
+		if !model.get_node("AnimationPlayer").current_animation == sync_data.animation:
+			model.get_node("AnimationPlayer").play(sync_data.animation)

@@ -7,6 +7,8 @@ func enter(game):
 	for id in game.player_ids:
 		var new_player = preload("res://Shared/Scenes/Player/Player.tscn").instance()
 		new_player.set_name(str(id))
+		new_player.local_player_id = id
+		new_player.game_id = game.game_id
 			
 			# make spawn logic more robust later
 		new_player.translation = game.map.spawns.get_child(current_spawn).translation
