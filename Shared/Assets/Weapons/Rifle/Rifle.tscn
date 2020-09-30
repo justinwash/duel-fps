@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://weapons/rifle/rifle.gd" type="Script" id=1]
+[ext_resource path="res://weapons/rifle/icon.svg" type="Texture" id=2]
+[ext_resource path="res://weapons/rifle/crosshair.svg" type="Texture" id=3]
+
+[node name="Rifle" type="Spatial"]
+script = ExtResource( 1 )
+crosshair = ExtResource( 3 )
+icon = ExtResource( 2 )
+PRIMARY_DAMAGE = 15
+SECONDARY_DAMAGE = 25
+SWITCH_DELAY = 0.25
+
+[node name="RayCast" type="RayCast" parent="."]
+cast_to = Vector3( 0, 0, -100 )

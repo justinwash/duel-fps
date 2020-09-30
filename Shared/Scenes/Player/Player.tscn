@@ -1,0 +1,309 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Shared/Scenes/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Shared/Scenes/Player/States/idle.gd" type="Script" id=4]
+[ext_resource path="res://Shared/Scenes/Player/States/walk.gd" type="Script" id=5]
+[ext_resource path="res://Shared/Scenes/Player/States/jump.gd" type="Script" id=6]
+[ext_resource path="res://Shared/Scenes/Player/WeaponHandler.gd" type="Script" id=7]
+[ext_resource path="res://Shared/Scenes/Player/SpaceBoi.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Shared/Scenes/Player/HUD.gd" type="Script" id=9]
+[ext_resource path="res://Shared/Scenes/Player/ReloadIndicator.gd" type="Script" id=10]
+[ext_resource path="res://Shared/Scenes/Player/Status.gd" type="Script" id=12]
+[ext_resource path="res://Shared/Scenes/Player/States/dead.gd" type="Script" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "die"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 90, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:collision_mask")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "spawn"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:collision_mask")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="BitmapFont" id=5]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 1, 0, 1 )
+
+[sub_resource type="Animation" id=8]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Crosshair/WeaponIcon:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -40, 104 ), Vector2( -24, 120 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Crosshair/WeaponIcon:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 112, 112 ), Vector2( 80, 80 ) ]
+}
+
+[sub_resource type="CapsuleShape" id=9]
+radius = 0.5
+height = 0.728289
+
+[sub_resource type="CylinderShape" id=10]
+
+[sub_resource type="CapsuleMesh" id=11]
+radius = 0.5
+
+[sub_resource type="SpatialMaterial" id=12]
+metallic = 0.23
+metallic_specular = 0.29
+emission_enabled = true
+emission = Color( 0, 0.243137, 1, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/die = SubResource( 1 )
+anims/spawn = SubResource( 2 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
+
+[node name="Crosshair" type="TextureRect" parent="HUD"]
+self_modulate = Color( 1, 1, 1, 0.588235 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -13.1748
+margin_top = -12.6503
+margin_right = 12.8252
+margin_bottom = 13.3497
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponIcon" type="TextureRect" parent="HUD/Crosshair"]
+margin_left = -24.0
+margin_top = 120.0
+margin_right = 56.0
+margin_bottom = 200.0
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReloadIndicator" type="ProgressBar" parent="HUD/Crosshair"]
+margin_left = -32.0
+margin_top = 64.0
+margin_right = 64.0
+margin_bottom = 65.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+step = 1.0
+value = 100.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/Crosshair/ReloadIndicator"]
+show_behind_parent = true
+margin_right = 96.0
+margin_bottom = 1.0
+custom_styles/fg = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReadyOverlay" type="ProgressBar" parent="HUD/Crosshair/ReloadIndicator"]
+show_behind_parent = true
+margin_left = -0.0213318
+margin_top = -0.0173035
+margin_right = 95.9787
+margin_bottom = 0.982697
+custom_styles/fg = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
+anims/shoot = SubResource( 8 )
+
+[node name="BodyCollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0997378, 0 )
+shape = SubResource( 9 )
+
+[node name="FeetCollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.5, 0, 0, 0, -0.5, 4.37114e-08, 0, -4.37114e-08, -0.5, 0, -0.407851, 0 )
+shape = SubResource( 10 )
+
+[node name="RotationHelper" type="Spatial" parent="."]
+
+[node name="Model" parent="RotationHelper" instance=ExtResource( 8 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -1.03989, 0 )
+
+[node name="Camera" type="Camera" parent="RotationHelper"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479582, -0.00986716 )
+
+[node name="RayCast" type="RayCast" parent="RotationHelper"]
+enabled = true
+cast_to = Vector3( 0, 0, -2000 )
+
+[node name="Body" type="MeshInstance" parent="RotationHelper"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+visible = false
+extra_cull_margin = 1.0
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
+
+[node name="WeaponHandler" type="Spatial" parent="RotationHelper"]
+script = ExtResource( 7 )
+
+[node name="Primary" type="Spatial" parent="RotationHelper/WeaponHandler"]
+
+[node name="Secondary" type="Spatial" parent="RotationHelper/WeaponHandler"]
+
+[node name="States" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource( 4 )
+
+[node name="Walk" type="Node" parent="States"]
+script = ExtResource( 5 )
+
+[node name="Jump" type="Node" parent="States"]
+script = ExtResource( 6 )
+
+[node name="Dead" type="Node" parent="States"]
+script = ExtResource( 13 )
+
+[node name="Timer" type="Timer" parent="."]

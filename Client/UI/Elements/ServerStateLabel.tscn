@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Client/UI/Panels/ConnectingToServer/ServerStateLabel.gd" type="Script" id=1]
+
+[node name="ServerStateLabel" type="Label"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 318.0
+margin_bottom = 40.0
+text = "Attempting to connect to server..."
+valign = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

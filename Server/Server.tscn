@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Server/Server.gd" type="Script" id=1]
+[ext_resource path="res://Server/DebugPanel.gd" type="Script" id=2]
+[ext_resource path="res://Server/PlayerController.gd" type="Script" id=3]
+[ext_resource path="res://Server/MatchmakingController.gd" type="Script" id=4]
+[ext_resource path="res://Server/GameController.gd" type="Script" id=5]
+
+[node name="Server" type="Node"]
+script = ExtResource( 1 )
+
+[node name="PlayerDebugInfo" type="Control" parent="."]
+margin_right = 1021.0
+margin_bottom = 590.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerInfoBox" type="ItemList" parent="PlayerDebugInfo"]
+margin_left = 160.184
+margin_top = 89.4695
+margin_right = 828.184
+margin_bottom = 230.469
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerLabel" type="Label" parent="PlayerDebugInfo"]
+margin_left = 104.0
+margin_top = 56.0
+margin_right = 333.0
+margin_bottom = 89.0
+text = "Connected players:"
+
+[node name="QueueInfoBox" type="ItemList" parent="PlayerDebugInfo"]
+margin_left = 160.0
+margin_top = 305.0
+margin_right = 504.0
+margin_bottom = 446.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QueueLabel" type="Label" parent="PlayerDebugInfo"]
+margin_left = 104.0
+margin_top = 272.0
+margin_right = 333.0
+margin_bottom = 305.0
+text = "Players in queue:
+"
+
+[node name="PlayerController" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="MatchmakingController" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="MatchmakingController"]
+wait_time = 10.0
+autostart = true
+
+[node name="GameController" type="Node" parent="."]
+script = ExtResource( 5 )
+[connection signal="timeout" from="MatchmakingController/Timer" to="MatchmakingController" method="_on_Timer_timeout"]
