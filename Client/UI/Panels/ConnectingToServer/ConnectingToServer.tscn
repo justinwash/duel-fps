@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Client/UI/Panels/ConnectingToServer/ConnectingToServer.gd" type="Script" id=1]
 [ext_resource path="res://Client/UI/Elements/ServerStateLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Client/UI/Elements/ModelPreview.tscn" type="PackedScene" id=3]
+[ext_resource path="res://default_env.tres" type="Environment" id=4]
+
+[sub_resource type="Environment" id=1]
+
+[sub_resource type="Environment" id=2]
+
+[sub_resource type="World" id=3]
+environment = SubResource( 1 )
+fallback_environment = SubResource( 2 )
 
 [node name="ConnectingToServer" type="Control"]
 anchor_right = 1.0
@@ -38,17 +48,50 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="."]
-margin_left = 608.0
-margin_top = 112.0
-margin_right = 916.0
-margin_bottom = 574.0
+margin_left = 624.0
+margin_top = 128.0
+margin_right = 932.0
+margin_bottom = 590.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PlayButton" type="Button" parent="."]
 margin_left = 192.0
-margin_top = 312.0
+margin_top = 512.0
 margin_right = 384.0
-margin_bottom = 332.0
+margin_bottom = 532.0
 text = "Play!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 120.0
+margin_top = 224.0
+margin_right = 456.0
+margin_bottom = 480.0
+color = Color( 0.207843, 0.207843, 0.207843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 328, 256 )
+own_world = true
+world = SubResource( 3 )
+transparent_bg = true
+
+[node name="spaceboi" parent="Viewport" instance=ExtResource( 3 )]
+
+[node name="Camera" type="Camera" parent="Viewport"]
+transform = Transform( 1, 0, 0, 0, 0.946683, 0.322167, 0, -0.322167, 0.946683, 0, 1.59858, 1.07321 )
+environment = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 312.72, 178.68 )
+
+[node name="ViewportSprite" type="Sprite" parent="."]
+position = Vector2( 288, 352 )
+flip_v = true
+[connection signal="color_changed" from="ColorPicker" to="." method="_on_ColorPicker_color_changed"]

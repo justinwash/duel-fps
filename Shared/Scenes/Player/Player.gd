@@ -28,6 +28,7 @@ onready var timer = $Timer
 onready var model = $RotationHelper/Model
 
 onready var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
+
 var game_id
 var local_player_id
 
@@ -55,7 +56,7 @@ func _ready():
 	else:
 		camera.current = false
 		model.visible = true
-		
+
 	if get_tree().get_root().get_node("Main").MODE == 'CLIENT':
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
