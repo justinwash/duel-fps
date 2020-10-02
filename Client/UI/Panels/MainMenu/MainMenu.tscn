@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Client/UI/Panels/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Shared/Assets/portrait.png" type="Texture" id=2]
@@ -6,34 +6,37 @@
 [ext_resource path="res://Client/UI/Elements/ServerStateLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Client/UI/Panels/MainMenu/MatchmakingPanel.gd" type="Script" id=5]
 [ext_resource path="res://Client/UI/Panels/MainMenu/PlayerInfoPanel.gd" type="Script" id=6]
+[ext_resource path="res://Shared/Fonts/jb-mono-white-28pt.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Shared/Fonts/jb-mono-white-18pt.tres" type="DynamicFont" id=8]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -912.0
 margin_bottom = -513.0
-rect_scale = Vector2( 1.9049, 1.9049 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Portrait" type="Sprite" parent="."]
-position = Vector2( -10, 0 )
-scale = Vector2( 0.542903, 0.542903 )
 texture = ExtResource( 2 )
 centered = false
 
 [node name="ServerStateLabel" parent="." instance=ExtResource( 4 )]
 
 [node name="Header" parent="." instance=ExtResource( 3 )]
+margin_left = 680.257
+margin_top = 93.0191
+margin_right = 1221.43
+margin_bottom = 283.019
 text = "DUEL FPS"
 
 [node name="PlayerInfoPanel" type="Panel" parent="."]
-margin_left = 64.0
-margin_top = 216.0
-margin_right = 320.0
-margin_bottom = 288.0
+margin_left = 192.0
+margin_top = 384.0
+margin_right = 576.0
+margin_bottom = 512.0
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -42,58 +45,66 @@ __meta__ = {
 [node name="PlayerName" type="Label" parent="PlayerInfoPanel"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 248.0
-margin_bottom = 64.0
+margin_right = 376.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 7 )
 text = "Player Name"
 align = 1
 valign = 1
 
 [node name="OfflinePanel" type="Panel" parent="."]
-margin_left = 64.0
-margin_top = 296.0
-margin_right = 320.0
-margin_bottom = 368.0
+margin_left = 192.0
+margin_top = 528.0
+margin_right = 576.0
+margin_bottom = 664.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MatchmakingLabel" type="Label" parent="OfflinePanel"]
-margin_top = 8.0
-margin_right = 256.0
-margin_bottom = 32.0
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 376.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 7 )
 text = "Offline Practice"
 align = 1
 valign = 1
 
 [node name="Button" type="Button" parent="OfflinePanel"]
-margin_left = 48.0
-margin_top = 40.0
-margin_right = 208.0
-margin_bottom = 60.0
+margin_left = 104.0
+margin_top = 80.0
+margin_right = 280.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 8 )
 text = "Play Offline"
 
 [node name="MatchmakingPanel" type="Panel" parent="."]
-margin_left = 64.0
-margin_top = 376.0
-margin_right = 320.0
-margin_bottom = 544.0
+margin_left = 192.0
+margin_top = 680.0
+margin_right = 576.0
+margin_bottom = 920.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MatchmakingLabel" type="Label" parent="MatchmakingPanel"]
-margin_top = 8.0
-margin_right = 256.0
-margin_bottom = 32.0
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 376.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 7 )
 text = "Matchmaking"
 align = 1
 valign = 1
 
 [node name="StatusLabel" type="Label" parent="MatchmakingPanel"]
-margin_top = 48.0
-margin_right = 256.0
-margin_bottom = 72.0
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 8 )
 text = "Status:"
 align = 1
 valign = 1
@@ -102,9 +113,11 @@ __meta__ = {
 }
 
 [node name="Status" type="Label" parent="MatchmakingPanel"]
+margin_left = 144.0
 margin_top = 64.0
-margin_right = 256.0
-margin_bottom = 88.0
+margin_right = 376.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Ready"
 align = 1
@@ -114,20 +127,22 @@ __meta__ = {
 }
 
 [node name="FindMatchButton" type="Button" parent="MatchmakingPanel"]
-margin_left = 48.0
-margin_top = 104.0
-margin_right = 208.0
-margin_bottom = 124.0
+margin_left = 104.0
+margin_top = 128.0
+margin_right = 280.0
+margin_bottom = 164.0
+custom_fonts/font = ExtResource( 8 )
 text = "Find A Match"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CancelButton" type="Button" parent="MatchmakingPanel"]
-margin_left = 48.0
-margin_top = 136.0
-margin_right = 208.0
-margin_bottom = 156.0
+margin_left = 104.0
+margin_top = 184.0
+margin_right = 280.0
+margin_bottom = 216.0
+custom_fonts/font = ExtResource( 8 )
 text = "Cancel"
 __meta__ = {
 "_edit_use_anchors_": false

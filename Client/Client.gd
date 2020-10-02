@@ -36,12 +36,14 @@ func switch_panel(panel_name):
 	if !panel_name:
 		for panel in panels:
 			panels[panel].visible = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
 		if panels[panel_name]:
 			for panel in panels:
 				panels[panel].visible = false
 				
 			panels[panel_name].visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func change_state(state_name):
 	current_state.exit(self)
