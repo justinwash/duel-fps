@@ -48,7 +48,6 @@ func render_model_preview():
 	viewport_sprite.modulate = Color(1, 1, 1, 0.01)
 	#warning-ignore:return_value_discarded
 	get_viewport().connect("size_changed", self, "_root_viewport_size_changed")
-	var viewport_initial_size = viewport.size
 
 	# Assign the sprite's texture to the viewport texture.
 	viewport.set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Client/UI/Panels/ConnectingToServer/ConnectingToServer.gd" type="Script" id=1]
 [ext_resource path="res://Client/UI/Elements/ServerStateLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Client/UI/Elements/ModelPreview.tscn" type="PackedScene" id=3]
 [ext_resource path="res://default_env.tres" type="Environment" id=4]
+[ext_resource path="res://Shared/Fonts/jb-mono-white-28pt.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Environment" id=1]
 
@@ -16,82 +17,108 @@ fallback_environment = SubResource( 2 )
 [node name="ConnectingToServer" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -1232.0
+margin_bottom = -992.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ServerStateLabel2" parent="." instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 602.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 5 )
 
 [node name="NameLabel" type="Label" parent="."]
-margin_left = 128.0
-margin_top = 88.0
-margin_right = 352.0
-margin_bottom = 102.0
+margin_left = 256.0
+margin_top = 224.0
+margin_right = 681.0
+margin_bottom = 260.0
+custom_fonts/font = ExtResource( 5 )
 text = "Enter a name (>=3 chars):"
 
 [node name="ColorLabel" type="Label" parent="."]
-margin_left = 600.0
-margin_top = 88.0
-margin_right = 824.0
-margin_bottom = 102.0
+margin_left = 1152.0
+margin_top = 224.0
+margin_right = 1552.0
+margin_bottom = 260.0
+custom_fonts/font = ExtResource( 5 )
 text = "Choose a color:"
 
 [node name="NameBox" type="TextEdit" parent="."]
-margin_left = 128.0
-margin_top = 104.0
-margin_right = 448.0
-margin_bottom = 136.0
+margin_left = 256.0
+margin_top = 280.0
+margin_right = 832.0
+margin_bottom = 328.0
 hint_tooltip = "Your name here"
+custom_fonts/font = ExtResource( 5 )
+breakpoint_gutter = true
+caret_block_mode = true
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = 1152.0
+margin_top = 280.0
+margin_right = 1680.0
+margin_bottom = 976.0
+color = Color( 0.207843, 0.207843, 0.207843, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="."]
-margin_left = 624.0
-margin_top = 128.0
-margin_right = 932.0
-margin_bottom = 590.0
+margin_left = 1160.0
+margin_top = 288.0
+margin_right = 1664.0
+margin_bottom = 960.0
+edit_alpha = false
+presets_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayButton" type="Button" parent="."]
-margin_left = 192.0
-margin_top = 512.0
-margin_right = 384.0
-margin_bottom = 532.0
+margin_left = 1264.0
+margin_top = 96.0
+margin_right = 1584.0
+margin_bottom = 144.0
+custom_fonts/font = ExtResource( 5 )
 text = "Play!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 120.0
-margin_top = 224.0
-margin_right = 456.0
-margin_bottom = 480.0
+margin_left = 192.0
+margin_top = 384.0
+margin_right = 896.0
+margin_bottom = 960.0
 color = Color( 0.207843, 0.207843, 0.207843, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 328, 256 )
+size = Vector2( 1920, 1080 )
+size_override_stretch = true
 own_world = true
 world = SubResource( 3 )
 transparent_bg = true
+msaa = 2
 
 [node name="spaceboi" parent="Viewport" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.247541, -1.4894 )
 
 [node name="Camera" type="Camera" parent="Viewport"]
-transform = Transform( 1, 0, 0, 0, 0.946683, 0.322167, 0, -0.322167, 0.946683, 0, 1.59858, 1.07321 )
+transform = Transform( 0.939, 0, 0, 0, 0.842548, 0.242914, 0, -0.286729, 0.713799, 0, 1.59858, 1.07321 )
 environment = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 312.72, 178.68 )
-
 [node name="ViewportSprite" type="Sprite" parent="."]
-position = Vector2( 288, 352 )
+position = Vector2( 544, 672 )
 flip_v = true
 [connection signal="color_changed" from="ColorPicker" to="." method="_on_ColorPicker_color_changed"]

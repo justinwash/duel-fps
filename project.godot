@@ -21,7 +21,9 @@ config/icon="res://icon.png"
 
 [display]
 
-window/stretch/mode="viewport"
+window/size/width=1920
+window/size/height=1080
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [input]
@@ -54,5 +56,8 @@ jump={
 
 [rendering]
 
+quality/shadows/filter_mode=2
+quality/voxel_cone_tracing/high_quality=true
+environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 0 )
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"
-quality/dynamic_fonts/use_oversampling=false
