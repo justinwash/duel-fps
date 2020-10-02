@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Server/Server.gd" type="Script" id=1]
 [ext_resource path="res://Server/DebugPanel.gd" type="Script" id=2]
 [ext_resource path="res://Server/PlayerController.gd" type="Script" id=3]
 [ext_resource path="res://Server/MatchmakingController.gd" type="Script" id=4]
 [ext_resource path="res://Server/GameController.gd" type="Script" id=5]
+[ext_resource path="res://Shared/Fonts/jb-mono-white-28pt.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Shared/Fonts/jb-mono-white-18pt.tres" type="DynamicFont" id=7]
 
 [node name="Server" type="Node"]
 script = ExtResource( 1 )
@@ -17,38 +19,70 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayerInfoBox" type="ItemList" parent="PlayerDebugInfo"]
-margin_left = 160.184
-margin_top = 89.4695
-margin_right = 828.184
-margin_bottom = 230.469
+[node name="PlayerLabel" type="Label" parent="PlayerDebugInfo"]
+margin_left = 128.0
+margin_top = 64.0
+margin_right = 470.0
+margin_bottom = 105.0
+custom_fonts/font = ExtResource( 6 )
+text = "Connected players:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayerLabel" type="Label" parent="PlayerDebugInfo"]
-margin_left = 104.0
-margin_top = 56.0
-margin_right = 333.0
-margin_bottom = 89.0
-text = "Connected players:"
-
-[node name="QueueInfoBox" type="ItemList" parent="PlayerDebugInfo"]
-margin_left = 160.0
-margin_top = 305.0
-margin_right = 504.0
-margin_bottom = 446.0
+[node name="PlayerInfoBox" type="ItemList" parent="PlayerDebugInfo"]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 960.0
+margin_bottom = 1024.0
+custom_fonts/font = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="QueueLabel" type="Label" parent="PlayerDebugInfo"]
-margin_left = 104.0
-margin_top = 272.0
-margin_right = 333.0
-margin_bottom = 305.0
+margin_left = 1024.0
+margin_top = 64.0
+margin_right = 1347.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 6 )
 text = "Players in queue:
 "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QueueInfoBox" type="ItemList" parent="PlayerDebugInfo"]
+margin_left = 1024.0
+margin_top = 128.0
+margin_right = 1792.0
+margin_bottom = 448.0
+custom_fonts/font = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameInfoLabel" type="Label" parent="PlayerDebugInfo"]
+margin_left = 1024.0
+margin_top = 512.0
+margin_right = 1366.0
+margin_bottom = 597.0
+custom_fonts/font = ExtResource( 6 )
+text = "Games in progress:
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameInfoBox" type="ItemList" parent="PlayerDebugInfo"]
+margin_left = 1024.0
+margin_top = 576.0
+margin_right = 1792.0
+margin_bottom = 1024.0
+custom_fonts/font = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PlayerController" type="Node" parent="."]
 script = ExtResource( 3 )
