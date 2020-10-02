@@ -10,15 +10,19 @@
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -912.0
+margin_bottom = -513.0
+rect_scale = Vector2( 1.9049, 1.9049 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Portrait" type="Sprite" parent="."]
-position = Vector2( 515.709, 300.129 )
-scale = Vector2( 0.560001, 0.560001 )
+position = Vector2( -10, 0 )
+scale = Vector2( 0.542903, 0.542903 )
 texture = ExtResource( 2 )
+centered = false
 
 [node name="ServerStateLabel" parent="." instance=ExtResource( 4 )]
 
