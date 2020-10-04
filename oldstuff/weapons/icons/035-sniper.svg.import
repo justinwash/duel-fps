@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/035-sniper.svg-d81b30af951c97afc289368a157e41b9.stex"
+path="res://.import/035-sniper.svg-aeb8f88107a5a749f91dfc3b400384d2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/icons/035-sniper.svg"
-dest_files=[ "res://.import/035-sniper.svg-d81b30af951c97afc289368a157e41b9.stex" ]
+source_file="res://weapons/icons/035-sniper.svg"
+dest_files=[ "res://.import/035-sniper.svg-aeb8f88107a5a749f91dfc3b400384d2.stex" ]
 
 [params]
 

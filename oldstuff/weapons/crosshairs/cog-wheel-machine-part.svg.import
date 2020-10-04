@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cog-wheel-machine-part.svg-753dbb879a6f1eb3a53b1d1e56c310e9.stex"
+path="res://.import/cog-wheel-machine-part.svg-839cad66ecf3f92d2c91f0a56f54abd1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/cog-wheel-machine-part.svg"
-dest_files=[ "res://.import/cog-wheel-machine-part.svg-753dbb879a6f1eb3a53b1d1e56c310e9.stex" ]
+source_file="res://weapons/crosshairs/cog-wheel-machine-part.svg"
+dest_files=[ "res://.import/cog-wheel-machine-part.svg-839cad66ecf3f92d2c91f0a56f54abd1.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fighting-weapon-target.svg-b7c31556dd8cd1bd400354681a3ba273.stex"
+path="res://.import/fighting-weapon-target.svg-8c929b9cc7f8464e55d325084f85bcba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/fighting-weapon-target.svg"
-dest_files=[ "res://.import/fighting-weapon-target.svg-b7c31556dd8cd1bd400354681a3ba273.stex" ]
+source_file="res://weapons/crosshairs/fighting-weapon-target.svg"
+dest_files=[ "res://.import/fighting-weapon-target.svg-8c929b9cc7f8464e55d325084f85bcba.stex" ]
 
 [params]
 

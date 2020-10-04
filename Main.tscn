@@ -5,7 +5,6 @@
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
-MODE = "SERVER"
 
 [node name="NetworkInterface" type="Node" parent="."]
 script = ExtResource( 2 )

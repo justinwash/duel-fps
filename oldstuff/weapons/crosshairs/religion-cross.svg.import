@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/religion-cross.svg-47764818ac6a2cd9ccf312880c5dc5ef.stex"
+path="res://.import/religion-cross.svg-7382ccf1398fabfae689d341d01b135b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/religion-cross.svg"
-dest_files=[ "res://.import/religion-cross.svg-47764818ac6a2cd9ccf312880c5dc5ef.stex" ]
+source_file="res://weapons/crosshairs/religion-cross.svg"
+dest_files=[ "res://.import/religion-cross.svg-7382ccf1398fabfae689d341d01b135b.stex" ]
 
 [params]
 

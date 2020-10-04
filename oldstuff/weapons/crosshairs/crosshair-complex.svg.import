@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crosshair-complex.svg-05aa5662cb8d9237e79dc3c6e25a2e26.stex"
+path="res://.import/crosshair-complex.svg-5d22504c34c44923ee686d0298b36701.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/crosshair-complex.svg"
-dest_files=[ "res://.import/crosshair-complex.svg-05aa5662cb8d9237e79dc3c6e25a2e26.stex" ]
+source_file="res://weapons/crosshairs/crosshair-complex.svg"
+dest_files=[ "res://.import/crosshair-complex.svg-5d22504c34c44923ee686d0298b36701.stex" ]
 
 [params]
 

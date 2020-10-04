@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dart-board-target.svg-f224468b349b4151ade98f45c42507b5.stex"
+path="res://.import/dart-board-target.svg-b6f92a48843b7b858baaa3475e10c3da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/dart-board-target.svg"
-dest_files=[ "res://.import/dart-board-target.svg-f224468b349b4151ade98f45c42507b5.stex" ]
+source_file="res://weapons/crosshairs/dart-board-target.svg"
+dest_files=[ "res://.import/dart-board-target.svg-b6f92a48843b7b858baaa3475e10c3da.stex" ]
 
 [params]
 

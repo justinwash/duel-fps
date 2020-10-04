@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="duel fps"
+config/name="duel fps _old"
 run/main_scene="res://game/game.tscn"
 config/icon="res://icon.png"
 

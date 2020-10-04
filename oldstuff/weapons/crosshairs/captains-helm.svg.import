@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/captains-helm.svg-da031e1a751b5a25c1cf50e74b231362.stex"
+path="res://.import/captains-helm.svg-dc20b0410efa08c5574705ae11c147db.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/captains-helm.svg"
-dest_files=[ "res://.import/captains-helm.svg-da031e1a751b5a25c1cf50e74b231362.stex" ]
+source_file="res://weapons/crosshairs/captains-helm.svg"
+dest_files=[ "res://.import/captains-helm.svg-dc20b0410efa08c5574705ae11c147db.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/triangular-cross-hair.svg-b671bf5500accd3be3bbb3a6efc4ca64.stex"
+path="res://.import/triangular-cross-hair.svg-ba922e9e16a38a052f1a7e9da9c291f2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/triangular-cross-hair.svg"
-dest_files=[ "res://.import/triangular-cross-hair.svg-b671bf5500accd3be3bbb3a6efc4ca64.stex" ]
+source_file="res://weapons/crosshairs/triangular-cross-hair.svg"
+dest_files=[ "res://.import/triangular-cross-hair.svg-ba922e9e16a38a052f1a7e9da9c291f2.stex" ]
 
 [params]
 

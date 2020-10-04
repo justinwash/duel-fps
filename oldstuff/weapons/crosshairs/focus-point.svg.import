@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/focus-point.svg-9d8166434be4d07baf2655c4dd0306b4.stex"
+path="res://.import/focus-point.svg-4710398038817e373b5a59d86da09c78.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/focus-point.svg"
-dest_files=[ "res://.import/focus-point.svg-9d8166434be4d07baf2655c4dd0306b4.stex" ]
+source_file="res://weapons/crosshairs/focus-point.svg"
+dest_files=[ "res://.import/focus-point.svg-4710398038817e373b5a59d86da09c78.stex" ]
 
 [params]
 

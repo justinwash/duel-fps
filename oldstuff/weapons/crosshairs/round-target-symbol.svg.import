@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/round-target-symbol.svg-58bbbbb1ccd9d4ebb32ad0a341055dc6.stex"
+path="res://.import/round-target-symbol.svg-50f7b1de3db81961822c3d7d9cdeb413.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/round-target-symbol.svg"
-dest_files=[ "res://.import/round-target-symbol.svg-58bbbbb1ccd9d4ebb32ad0a341055dc6.stex" ]
+source_file="res://weapons/crosshairs/round-target-symbol.svg"
+dest_files=[ "res://.import/round-target-symbol.svg-50f7b1de3db81961822c3d7d9cdeb413.stex" ]
 
 [params]
 

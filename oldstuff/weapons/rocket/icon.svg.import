@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.svg-087c8f941a130abe331025fee8b6e16a.stex"
+path="res://.import/icon.svg-f3fe43e5185ad6d8a0ab1fd146b16751.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/rocket/icon.svg"
-dest_files=[ "res://.import/icon.svg-087c8f941a130abe331025fee8b6e16a.stex" ]
+source_file="res://weapons/rocket/icon.svg"
+dest_files=[ "res://.import/icon.svg-f3fe43e5185ad6d8a0ab1fd146b16751.stex" ]
 
 [params]
 

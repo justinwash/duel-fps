@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/036-water gun.svg-aea56998ece4a3234ccdc96098b35a52.stex"
+path="res://.import/036-water gun.svg-7785a19aa1667d648581af9d758f4b25.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/icons/036-water gun.svg"
-dest_files=[ "res://.import/036-water gun.svg-aea56998ece4a3234ccdc96098b35a52.stex" ]
+source_file="res://weapons/icons/036-water gun.svg"
+dest_files=[ "res://.import/036-water gun.svg-7785a19aa1667d648581af9d758f4b25.stex" ]
 
 [params]
 

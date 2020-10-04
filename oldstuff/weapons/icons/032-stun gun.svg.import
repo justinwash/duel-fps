@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/032-stun gun.svg-5b3df35897e0a929d7f729bbf637bfbd.stex"
+path="res://.import/032-stun gun.svg-f16087a9497be1e8abfc3e019ef2f557.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/icons/032-stun gun.svg"
-dest_files=[ "res://.import/032-stun gun.svg-5b3df35897e0a929d7f729bbf637bfbd.stex" ]
+source_file="res://weapons/icons/032-stun gun.svg"
+dest_files=[ "res://.import/032-stun gun.svg-f16087a9497be1e8abfc3e019ef2f557.stex" ]
 
 [params]
 

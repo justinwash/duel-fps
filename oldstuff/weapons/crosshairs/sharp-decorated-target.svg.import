@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sharp-decorated-target.svg-41adea3a0c821af8b4e9995197375b7e.stex"
+path="res://.import/sharp-decorated-target.svg-c11a0ac75ae153041094d1748ce27263.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/sharp-decorated-target.svg"
-dest_files=[ "res://.import/sharp-decorated-target.svg-41adea3a0c821af8b4e9995197375b7e.stex" ]
+source_file="res://weapons/crosshairs/sharp-decorated-target.svg"
+dest_files=[ "res://.import/sharp-decorated-target.svg-c11a0ac75ae153041094d1748ce27263.stex" ]
 
 [params]
 

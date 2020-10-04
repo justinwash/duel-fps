@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/irregular-cross-hair.svg-8dabd74663de9e270d7ec2f269456622.stex"
+path="res://.import/irregular-cross-hair.svg-63c6ce64500f68868244349dc92347cd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/irregular-cross-hair.svg"
-dest_files=[ "res://.import/irregular-cross-hair.svg-8dabd74663de9e270d7ec2f269456622.stex" ]
+source_file="res://weapons/crosshairs/irregular-cross-hair.svg"
+dest_files=[ "res://.import/irregular-cross-hair.svg-63c6ce64500f68868244349dc92347cd.stex" ]
 
 [params]
 

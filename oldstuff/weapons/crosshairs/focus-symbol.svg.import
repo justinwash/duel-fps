@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/focus-symbol.svg-9dd87d74b798568a0eb18471062b6ede.stex"
+path="res://.import/focus-symbol.svg-85ff8294278c12347d3db60f41176016.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/crosshairs/focus-symbol.svg"
-dest_files=[ "res://.import/focus-symbol.svg-9dd87d74b798568a0eb18471062b6ede.stex" ]
+source_file="res://weapons/crosshairs/focus-symbol.svg"
+dest_files=[ "res://.import/focus-symbol.svg-85ff8294278c12347d3db60f41176016.stex" ]
 
 [params]
 

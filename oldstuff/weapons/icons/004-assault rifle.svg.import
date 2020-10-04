@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/004-assault rifle.svg-0499d4b9f8eb429adcf5ace2fdf428dc.stex"
+path="res://.import/004-assault rifle.svg-d58f70d9781116d825fe5020482c14c1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/icons/004-assault rifle.svg"
-dest_files=[ "res://.import/004-assault rifle.svg-0499d4b9f8eb429adcf5ace2fdf428dc.stex" ]
+source_file="res://weapons/icons/004-assault rifle.svg"
+dest_files=[ "res://.import/004-assault rifle.svg-d58f70d9781116d825fe5020482c14c1.stex" ]
 
 [params]
 

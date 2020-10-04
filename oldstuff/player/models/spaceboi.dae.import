@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/spaceboi.dae-885960ef3bb7e0cfc60110c7afffa87a.scn"
+path="res://.import/spaceboi.dae-c51cb498ac27663be06a6c9e1142d837.scn"
 
 [deps]
 
-source_file="res://oldstuff/player/models/spaceboi.dae"
-dest_files=[ "res://.import/spaceboi.dae-885960ef3bb7e0cfc60110c7afffa87a.scn" ]
+source_file="res://player/models/spaceboi.dae"
+dest_files=[ "res://.import/spaceboi.dae-c51cb498ac27663be06a6c9e1142d837.scn" ]
 
 [params]
 

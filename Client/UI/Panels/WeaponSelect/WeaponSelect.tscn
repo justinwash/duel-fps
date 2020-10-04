@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Client/UI/Panels/WeaponSelect/WeaponSelect.gd" type="Script" id=1]
-[ext_resource path="res://Client/UI/Elements/Header.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Shared/Fonts/jb-mono-white-18pt.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Shared/Fonts/jb-mono-white-28pt.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Shared/Assets/Weapons/Rocket/icon.svg" type="Texture" id=4]
+[ext_resource path="res://Shared/Assets/Weapons/Pistol/icon.svg" type="Texture" id=5]
+[ext_resource path="res://Shared/Assets/Weapons/Rifle/icon.svg" type="Texture" id=6]
 
 [node name="WeaponSelect" type="Control"]
 anchor_right = 1.0
@@ -11,12 +15,165 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Header" parent="." instance=ExtResource( 2 )]
-margin_left = 208.0
-margin_top = -32.0
-margin_right = 749.168
-margin_bottom = 584.0
-text = "weapon
- select
-screen
-here"
+[node name="RoundHeader" type="Label" parent="."]
+margin_right = 309.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Label" parent="."]
+anchor_left = 0.4
+anchor_top = 0.119
+anchor_right = 0.6
+anchor_bottom = 0.185
+margin_top = -0.520004
+margin_bottom = -7.8
+custom_fonts/font = ExtResource( 3 )
+text = "WEAPON SELECT"
+align = 1
+valign = 1
+
+[node name="ReadyLabel" type="Label" parent="."]
+anchor_left = 0.4
+anchor_top = 0.059
+anchor_right = 0.6
+anchor_bottom = 0.119
+margin_top = 0.279995
+margin_bottom = -0.520004
+custom_fonts/font = ExtResource( 3 )
+text = "ROUND 1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerLabel" type="Label" parent="."]
+anchor_left = 0.4
+anchor_top = 0.185
+anchor_right = 0.6
+anchor_bottom = 0.237
+margin_top = -7.8
+margin_right = -72.0
+margin_bottom = 0.039978
+custom_fonts/font = ExtResource( 3 )
+text = "Time remaining:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Remaining" type="Label" parent="TimerLabel"]
+margin_left = 320.0
+margin_right = 384.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 3 )
+text = "05"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponButtons" type="Panel" parent="."]
+anchor_left = 0.167
+anchor_top = 0.296
+anchor_right = 0.833
+anchor_bottom = 0.711
+margin_left = -0.640015
+margin_top = 0.320007
+margin_right = 0.639893
+margin_bottom = -7.88
+
+[node name="PistolButton" type="TextureButton" parent="WeaponButtons"]
+margin_left = 24.0
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 96.0
+texture_normal = ExtResource( 5 )
+expand = true
+
+[node name="NameLabel" type="Label" parent="WeaponButtons/PistolButton"]
+margin_left = -24.0
+margin_top = 88.0
+margin_right = 104.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 2 )
+text = "Pistol"
+align = 1
+valign = 1
+
+[node name="SlotLabel" type="Label" parent="WeaponButtons/PistolButton"]
+margin_left = 72.0
+margin_top = -16.0
+margin_right = 104.0
+margin_bottom = 16.0
+
+[node name="RifleButton" type="TextureButton" parent="WeaponButtons"]
+margin_left = 144.0
+margin_top = 8.0
+margin_right = 240.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="NameLabel" type="Label" parent="WeaponButtons/RifleButton"]
+margin_left = -16.0
+margin_top = 96.0
+margin_right = 112.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 2 )
+text = "Rifle"
+align = 1
+valign = 1
+
+[node name="SlotLabel" type="Label" parent="WeaponButtons/RifleButton"]
+margin_left = 80.0
+margin_top = -8.0
+margin_right = 112.0
+margin_bottom = 24.0
+
+[node name="RocketButton" type="TextureButton" parent="WeaponButtons"]
+margin_left = 272.0
+margin_top = 8.0
+margin_right = 368.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="NameLabel" type="Label" parent="WeaponButtons/RocketButton"]
+margin_left = -16.0
+margin_top = 96.0
+margin_right = 112.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 2 )
+text = "Rocket"
+align = 1
+valign = 1
+
+[node name="SlotLabel" type="Label" parent="WeaponButtons/RocketButton"]
+margin_left = 80.0
+margin_top = -8.0
+margin_right = 112.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+align = 1
+valign = 1
+
+[node name="ReadyButton" type="Button" parent="."]
+margin_left = 840.0
+margin_top = 848.0
+margin_right = 1080.0
+margin_bottom = 880.0
+custom_fonts/font = ExtResource( 2 )
+text = "Ready"
+
+[node name="CancelButton" type="Button" parent="."]
+margin_left = 840.0
+margin_top = 912.0
+margin_right = 1080.0
+margin_bottom = 944.0
+custom_fonts/font = ExtResource( 2 )
+text = "Cancel"

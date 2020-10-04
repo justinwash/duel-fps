@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/025-pistol.svg-1f5db4ceadd73b092ebb91660b6c139f.stex"
+path="res://.import/025-pistol.svg-cd05b67e446b30786438d26da72acb04.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://oldstuff/weapons/icons/025-pistol.svg"
-dest_files=[ "res://.import/025-pistol.svg-1f5db4ceadd73b092ebb91660b6c139f.stex" ]
+source_file="res://weapons/icons/025-pistol.svg"
+dest_files=[ "res://.import/025-pistol.svg-cd05b67e446b30786438d26da72acb04.stex" ]
 
 [params]
 
