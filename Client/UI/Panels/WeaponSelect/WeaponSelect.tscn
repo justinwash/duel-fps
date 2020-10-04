@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Client/UI/Panels/WeaponSelect/WeaponSelect.gd" type="Script" id=1]
 [ext_resource path="res://Shared/Fonts/jb-mono-white-18pt.tres" type="DynamicFont" id=2]
@@ -6,6 +6,13 @@
 [ext_resource path="res://Shared/Assets/Weapons/Rocket/icon.svg" type="Texture" id=4]
 [ext_resource path="res://Shared/Assets/Weapons/Pistol/icon.svg" type="Texture" id=5]
 [ext_resource path="res://Shared/Assets/Weapons/Rifle/icon.svg" type="Texture" id=6]
+[ext_resource path="res://Client/UI/Elements/Textures/BlackBlackGradient.tres" type="Texture" id=7]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.253906, 0.253906, 0.253906, 1, 0.254902, 0.254902, 0.254902, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
 [node name="WeaponSelect" type="Control"]
 anchor_right = 1.0
@@ -84,83 +91,241 @@ anchor_right = 0.833
 anchor_bottom = 0.711
 margin_left = -0.640015
 margin_top = 0.320007
-margin_right = 0.639893
-margin_bottom = -7.88
+margin_right = -319.36
+margin_bottom = 0.119995
 
-[node name="PistolButton" type="TextureButton" parent="WeaponButtons"]
-margin_left = 24.0
-margin_top = 16.0
-margin_right = 104.0
-margin_bottom = 96.0
-texture_normal = ExtResource( 5 )
+[node name="ChooseLabel" type="Label" parent="WeaponButtons"]
+anchor_left = 0.4
+anchor_top = 0.185
+anchor_right = 0.6
+anchor_bottom = 0.237
+margin_left = -384.0
+margin_top = -146.88
+margin_right = -216.0
+margin_bottom = -106.176
+custom_fonts/font = ExtResource( 3 )
+text = "Choices remaining:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Remaining" type="Label" parent="WeaponButtons/ChooseLabel"]
+margin_left = 360.0
+margin_right = 400.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 3 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonBackgrounds" type="Control" parent="WeaponButtons"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="TextureButton" parent="WeaponButtons/ButtonBackgrounds"]
+margin_left = 136.0
+margin_top = 8.0
+margin_right = 248.0
+margin_bottom = 120.0
+texture_normal = ExtResource( 7 )
+texture_hover = SubResource( 2 )
 expand = true
 
-[node name="NameLabel" type="Label" parent="WeaponButtons/PistolButton"]
-margin_left = -24.0
-margin_top = 88.0
-margin_right = 104.0
+[node name="ColorRect3" type="TextureButton" parent="WeaponButtons/ButtonBackgrounds"]
+margin_left = 264.0
+margin_top = 8.0
+margin_right = 376.0
+margin_bottom = 120.0
+texture_normal = ExtResource( 7 )
+texture_hover = SubResource( 2 )
+expand = true
+
+[node name="PistolButton" type="Control" parent="WeaponButtons"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 120.0
+margin_bottom = 120.0
+
+[node name="ColorRect" type="TextureButton" parent="WeaponButtons/PistolButton"]
+margin_right = 112.0
 margin_bottom = 112.0
+texture_normal = ExtResource( 7 )
+texture_hover = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="WeaponButtons/PistolButton"]
+margin_left = 16.0
+margin_right = 96.0
+margin_bottom = 72.0
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="WeaponButtons/PistolButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 80.0
+margin_bottom = -8.0
 custom_fonts/font = ExtResource( 2 )
 text = "Pistol"
 align = 1
 valign = 1
 
 [node name="SlotLabel" type="Label" parent="WeaponButtons/PistolButton"]
-margin_left = 72.0
-margin_top = -16.0
-margin_right = 104.0
-margin_bottom = 16.0
+margin_left = 88.0
+margin_top = -8.0
+margin_right = 120.0
+margin_bottom = 24.0
 
-[node name="RifleButton" type="TextureButton" parent="WeaponButtons"]
-margin_left = 144.0
-margin_top = 8.0
-margin_right = 240.0
-margin_bottom = 104.0
-texture_normal = ExtResource( 6 )
+[node name="RifleButton" type="Control" parent="WeaponButtons"]
+anchor_left = 0.134
+anchor_top = 0.018
+anchor_right = 0.244
+anchor_bottom = 0.273
+margin_left = -0.143997
+margin_top = 0.0799994
+margin_right = 0.0959778
+margin_bottom = -0.120003
+
+[node name="ColorRect" type="TextureButton" parent="WeaponButtons/RifleButton"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture_normal = ExtResource( 7 )
+texture_hover = SubResource( 2 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="WeaponButtons/RifleButton"]
+margin_left = 8.0
+margin_top = -8.0
+margin_right = 104.0
+margin_bottom = 80.0
+mouse_filter = 2
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NameLabel" type="Label" parent="WeaponButtons/RifleButton"]
-margin_left = -16.0
-margin_top = 96.0
+margin_top = 80.0
 margin_right = 112.0
-margin_bottom = 120.0
+margin_bottom = 104.0
 custom_fonts/font = ExtResource( 2 )
 text = "Rifle"
 align = 1
 valign = 1
 
 [node name="SlotLabel" type="Label" parent="WeaponButtons/RifleButton"]
-margin_left = 80.0
+margin_left = 88.0
 margin_top = -8.0
-margin_right = 112.0
+margin_right = 120.0
 margin_bottom = 24.0
 
-[node name="RocketButton" type="TextureButton" parent="WeaponButtons"]
-margin_left = 272.0
+[node name="RocketButton" type="Control" parent="WeaponButtons"]
+margin_left = 264.0
 margin_top = 8.0
-margin_right = 368.0
-margin_bottom = 104.0
-texture_normal = ExtResource( 4 )
+margin_right = 376.0
+margin_bottom = 120.0
+
+[node name="ColorRect" type="TextureButton" parent="WeaponButtons/RocketButton"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture_normal = ExtResource( 7 )
+texture_hover = SubResource( 2 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="WeaponButtons/RocketButton"]
+margin_left = 8.0
+margin_top = -8.0
+margin_right = 104.0
+margin_bottom = 80.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NameLabel" type="Label" parent="WeaponButtons/RocketButton"]
-margin_left = -16.0
-margin_top = 96.0
+margin_top = 80.0
 margin_right = 112.0
-margin_bottom = 120.0
+margin_bottom = 104.0
 custom_fonts/font = ExtResource( 2 )
 text = "Rocket"
 align = 1
 valign = 1
 
 [node name="SlotLabel" type="Label" parent="WeaponButtons/RocketButton"]
-margin_left = 80.0
+margin_left = 88.0
 margin_top = -8.0
-margin_right = 112.0
+margin_right = 120.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 align = 1
 valign = 1
+
+[node name="InfoPanel" type="Panel" parent="WeaponButtons"]
+margin_left = 1024.0
+margin_right = 1280.0
+margin_bottom = 256.0
+
+[node name="InfoLabel" type="Label" parent="WeaponButtons/InfoPanel"]
+anchor_left = 0.4
+anchor_top = 0.185
+anchor_right = 0.6
+anchor_bottom = 0.237
+margin_left = -102.4
+margin_top = -111.36
+margin_right = 102.4
+margin_bottom = -60.672
+custom_fonts/font = ExtResource( 3 )
+text = "Weapon Info"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquippedPanel" type="Panel" parent="WeaponButtons"]
+margin_left = 1024.0
+margin_top = 320.0
+margin_right = 1280.0
+margin_bottom = 448.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquippedLabel" type="Label" parent="WeaponButtons/EquippedPanel"]
+margin_top = -64.0
+margin_right = 256.0
+custom_fonts/font = ExtResource( 3 )
+text = "Equipped"
+align = 1
+valign = 1
+
+[node name="Slot1" type="Position2D" parent="WeaponButtons/EquippedPanel"]
+position = Vector2( 8, 8 )
+
+[node name="Slot2" type="Position2D" parent="WeaponButtons/EquippedPanel"]
+position = Vector2( 136, 8 )
 
 [node name="ReadyButton" type="Button" parent="."]
 margin_left = 840.0
