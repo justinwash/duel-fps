@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Client/UI/Panels/WeaponSelect/WeaponSelect.gd" type="Script" id=1]
+[ext_resource path="res://Client/UI/Panels/Loading/Loading.gd" type="Script" id=1]
 [ext_resource path="res://Client/UI/Elements/Header.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Client/UI/Panels/Loading/OpponentInfo.gd" type="Script" id=3]
 

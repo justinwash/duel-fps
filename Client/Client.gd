@@ -6,8 +6,8 @@ onready var game_controller = $GameController
 onready var panels = {
 	'connecting_to_server': $Panels/ConnectingToServer,
 	'main_menu': $Panels/MainMenu,
-	'weapon_select': $Panels/WeaponSelect,
-	'loading': $Panels/Loading
+	'loading': $Panels/Loading,
+	'weapon_select': $Panels/WeaponSelect
 }
 
 var current_state
@@ -18,9 +18,9 @@ onready var states = {
 	"main_menu": $States/MainMenu,
 	"searching_for_match": $States/SearchingForMatch,
 	"loading": $States/Loading,
-	"weapon_select": $States/WeaponSelect,
 	"setup_game": $States/StartGame,
-	"in_game": $States/InGame
+	"in_game": $States/InGame,
+	'weapon_select': $States/WeaponSelect
 }
 
 func _ready():

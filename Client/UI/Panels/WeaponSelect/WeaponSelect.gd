@@ -11,7 +11,7 @@ onready var datastore = get_node(DATASTORE)
 
 export var PICK_TIME = 10
 
-onready var weapon_buttons = $WeaponButtons
+onready var weapon_buttons = $WeaponButtons.get_children()
 onready var equipped_panel = $EquippedPanel
 onready var ready_button = $ReadyButton
 onready var cancel_button = $CancelButton
@@ -28,7 +28,6 @@ var ready = false
 signal start_round
 
 func _ready():
-	weapon_buttons = $WeaponButtons.get_children()
 	for weapon_button in weapon_buttons:
 		weapon_button.button.connect("button_up", self, "_select_weapon", [weapon_button])
 	
