@@ -1,16 +1,17 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://weapons/pistol/pistol.gd" type="Script" id=1]
-[ext_resource path="res://weapons/pistol/icon.svg" type="Texture" id=2]
-[ext_resource path="res://weapons/pistol/crosshair.svg" type="Texture" id=3]
+[ext_resource path="res://Shared/Assets/Weapons/Pistol/Pistol.gd" type="Script" id=1]
+[ext_resource path="res://Shared/Assets/Weapons/Pistol/icon.svg" type="Texture" id=2]
+[ext_resource path="res://Shared/Assets/Weapons/Crosshairs/crosshair.svg" type="Texture" id=3]
 
 [node name="Pistol" type="Spatial"]
 script = ExtResource( 1 )
 crosshair = ExtResource( 3 )
 icon = ExtResource( 2 )
+DESCRIPTION = "A simple pistol. Fires as fast a you can pull the trigger, dealing low damage."
 PRIMARY_DAMAGE = 2
-SECONDARY_DAMAGE = 5
 PRIMARY_COOLDOWN_TIME = 0.0
+SECONDARY_DAMAGE = 5
 SECONDARY_COOLDOWN_TIME = 0.2
 
 [node name="RayCast" type="RayCast" parent="."]

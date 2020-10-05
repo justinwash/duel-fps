@@ -1,13 +1,16 @@
 extends Spatial
 
-export (Texture) var crosshair = load("res://weapons/crosshairs/crosshair.svg")
-export (Texture) var icon = load("res://weapons/icons/001-gun.svg")
+export (Texture) var crosshair = load("res://Shared/Assets/Weapons/Crosshairs/crosshair.svg")
+export (Texture) var icon = load("res://Shared/Assets/Weapons/Icons/001-gun.svg")
+
+export var DESCRIPTION = ''
 
 export var PRIMARY_DAMAGE = 5
-export var SECONDARY_DAMAGE = 10
-
 export var PRIMARY_COOLDOWN_TIME = 0.5
+
+export var SECONDARY_DAMAGE = 10
 export var SECONDARY_COOLDOWN_TIME = 1.0
+
 export var SWITCH_DELAY = 0.2
 
 var cooldown = PRIMARY_COOLDOWN_TIME - SWITCH_DELAY

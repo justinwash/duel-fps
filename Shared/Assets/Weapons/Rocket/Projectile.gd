@@ -9,7 +9,7 @@ var DEBOUNCE_TIME = 0.2
 const KILL_TIMER = 4
 var timer = 0
 
-const Player = preload("../../player/player.gd")
+const Player = preload("res://Shared/Scenes/Player/Player.gd")
 
 var hit_something = false
 var shooter = null

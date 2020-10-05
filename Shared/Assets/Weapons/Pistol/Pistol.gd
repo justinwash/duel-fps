@@ -1,4 +1,4 @@
-extends "res://weapons/weapon.gd"
+extends "res://Shared/Assets/Weapons/Weapon.gd"
 
 func enter(weapon_handler):
 	.enter(weapon_handler)

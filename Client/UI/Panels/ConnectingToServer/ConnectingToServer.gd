@@ -15,7 +15,6 @@ onready var play_button = $PlayButton
 
 onready var viewport = $Viewport
 onready var model = $Viewport/spaceboi
-onready var sprite = $Sprite
 onready var viewport_sprite = $ViewportSprite
 
 func _ready():

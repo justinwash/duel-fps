@@ -1,6 +1,6 @@
-extends "res://weapons/weapon.gd"
+extends "res://Shared/Assets/Weapons/Weapon.gd"
 
-var projectile = preload("res://weapons/rocket/projectile.tscn")
+var projectile = preload("res://Shared/Assets/Weapons/Rocket/Projectile.tscn")
 
 func enter(weapon_handler):
 	.enter(weapon_handler)

@@ -1,10 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://weapons/rocket/rocket.gd" type="Script" id=1]
-[ext_resource path="res://weapons/rocket/icon.svg" type="Texture" id=2]
-[ext_resource path="res://weapons/rocket/crosshair.svg" type="Texture" id=3]
+[ext_resource path="res://Shared/Assets/Weapons/Rocket/Rocket.gd" type="Script" id=1]
+[ext_resource path="res://Shared/Assets/Weapons/Pistol/icon.svg" type="Texture" id=2]
+[ext_resource path="res://Shared/Assets/Weapons/Crosshairs/crosshair.svg" type="Texture" id=3]
 
 [node name="RocketLauncher" type="Spatial"]
 script = ExtResource( 1 )
 crosshair = ExtResource( 3 )
 icon = ExtResource( 2 )
+DESCRIPTION = "A rocket launcher. Fires slow projectiles that deal splash damage. Damage falls off quickly when hits land further from the opponent."
+PRIMARY_DAMAGE = 20
+SECONDARY_DAMAGE = 30
