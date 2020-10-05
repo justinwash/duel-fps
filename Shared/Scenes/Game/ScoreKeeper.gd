@@ -24,7 +24,7 @@ func reset_all():
 ]
 
 func _increment_kill_score(killed_player):
-	if killed_player.is_master_or_player(1):
+	if killed_player.is_network_master():
 		SCORES[1].kills += 1
 		if SCORES[1].kills >= 2:
 			SCORES[1].rounds_won += 1

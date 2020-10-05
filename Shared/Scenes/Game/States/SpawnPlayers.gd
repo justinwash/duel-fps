@@ -37,6 +37,8 @@ func enter(game):
 	if game.players.get_child_count() == 2:
 		if game.scorekeeper and game.scorekeeper.has_method("initialize"):
 			game.scorekeeper.initialize()
+		
+		game.change_state('weapon_select')
 
 func ready(_game):
 	pass

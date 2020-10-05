@@ -9,7 +9,7 @@ onready var network_handler = get_node(NETWORK_HANDLER)
 export(NodePath) var DATASTORE
 onready var datastore = get_node(DATASTORE)
 
-export var PICK_TIME = 10
+export var PICK_TIME = 30
 
 onready var weapon_buttons = $WeaponButtons.get_children()
 onready var equipped_panel = $EquippedPanel
@@ -33,6 +33,8 @@ func _ready():
 	
 	ready_button.connect("button_up", self, "_ready_up", [selected_weapons])
 	cancel_button.connect("button_up", self, "_repick")
+	
+	start_timer()
 
 func reset():
 	selected_weapons = []
@@ -97,12 +99,11 @@ func _repick():
 		button.selected = false
 	ready = false
 	
-	
 func _timeout(weapons):
 	print("timed out with ", weapons, " selected")
 	timer.disconnect("timeout", self, "_timeout")
 	timer.stop()
-	while len(selected_weapons) != 2:
+	while len(selected_weapons) <= 1:
 		randomize()
 		var rand_weapon_index = randi() % len(weapon_buttons)
 		if !selected_weapons.has(weapon_buttons[rand_weapon_index].WEAPON):
@@ -113,4 +114,4 @@ func _timeout(weapons):
 	for button in weapon_buttons:
 		button.visible = false
 	emit_signal("start_round", selected_weapons)
-	panels.switch_panel(null)
+	client.switch_panel(null)

@@ -57,6 +57,9 @@ DATASTORE = NodePath("../../DataStore")
 
 [node name="WeaponSelect" parent="Panels" instance=ExtResource( 11 )]
 visible = false
+CLIENT = NodePath("../..")
+NETWORK_HANDLER = NodePath("../../ClientNetworkHandler")
+DATASTORE = NodePath("../../DataStore")
 
 [node name="States" type="Node" parent="."]
 

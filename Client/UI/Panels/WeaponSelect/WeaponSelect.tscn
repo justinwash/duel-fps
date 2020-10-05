@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Client/UI/Panels/WeaponSelect/WeaponSelect.gd" type="Script" id=1]
 [ext_resource path="res://Shared/Fonts/jb-mono-white-18pt.tres" type="DynamicFont" id=2]
@@ -14,16 +14,17 @@
 [ext_resource path="res://Client/UI/Panels/WeaponSelect/EquippedPanel.gd" type="Script" id=12]
 [ext_resource path="res://Shared/Fonts/JetBrainsMono-ExtraBold.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Client/UI/Panels/WeaponSelect/InfoPanel.gd" type="Script" id=14]
+[ext_resource path="res://Client/UI/Panels/WeaponSelect/PickTimer.gd" type="Script" id=15]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 14
 font_data = ExtResource( 13 )
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 0.253906, 0.253906, 0.253906, 1, 0.254902, 0.254902, 0.254902, 1 )
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
 [node name="WeaponSelect" type="Control"]
 anchor_right = 1.0
@@ -116,6 +117,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "Time remaining:"
 align = 1
 valign = 1
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -164,7 +166,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 392.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Hover over a weapon to view its details"
 autowrap = true
 __meta__ = {
@@ -288,7 +290,7 @@ WEAPON = ExtResource( 10 )
 margin_right = 112.0
 margin_bottom = 112.0
 texture_normal = ExtResource( 7 )
-texture_hover = SubResource( 2 )
+texture_hover = SubResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -337,7 +339,7 @@ WEAPON = ExtResource( 9 )
 margin_right = 112.0
 margin_bottom = 112.0
 texture_normal = ExtResource( 7 )
-texture_hover = SubResource( 2 )
+texture_hover = SubResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -389,7 +391,7 @@ WEAPON = ExtResource( 11 )
 margin_right = 112.0
 margin_bottom = 112.0
 texture_normal = ExtResource( 7 )
-texture_hover = SubResource( 2 )
+texture_hover = SubResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

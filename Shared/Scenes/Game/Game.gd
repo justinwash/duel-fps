@@ -15,7 +15,8 @@ var current_state
 onready var states = {
 	'idle': $States/Idle,
 	'load_map': $States/LoadMap,
-	'spawn_players': $States/SpawnPlayers
+	'spawn_players': $States/SpawnPlayers,
+	'weapon_select': $States/WeaponSelect
 }
 
 func _ready():

@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Shared/Assets/Weapons/Rifle/Rifle.gd" type="Script" id=1]
-[ext_resource path="res://Shared/Assets/Weapons/Pistol/icon.svg" type="Texture" id=2]
-[ext_resource path="res://Shared/Assets/Weapons/Crosshairs/crosshair.svg" type="Texture" id=3]
+[ext_resource path="res://Shared/Assets/Weapons/Rifle/crosshair.svg" type="Texture" id=2]
+[ext_resource path="res://Shared/Assets/Weapons/Rifle/icon.svg" type="Texture" id=3]
 
 [node name="Rifle" type="Spatial"]
 script = ExtResource( 1 )
-crosshair = ExtResource( 3 )
-icon = ExtResource( 2 )
+crosshair = ExtResource( 2 )
+icon = ExtResource( 3 )
 DESCRIPTION = "A bolt-action rifle. Why are we using this in space? Slow firing rate, medium damage."
 PRIMARY_DAMAGE = 15
 SECONDARY_DAMAGE = 25
