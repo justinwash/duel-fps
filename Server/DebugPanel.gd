@@ -12,7 +12,8 @@ func _process(_delta):
 	
 	queue_info_box.clear()
 	for player in server.matchmaking_controller.queue:
-		queue_info_box.add_item('id: ' + str(player) + '    name: ' + server.clients[player].player.name)
+		if server.clients[player]:
+			queue_info_box.add_item('id: ' + str(player) + '    name: ' + server.clients[player].player.name)
 		
 	game_info_box.clear()
 	for game in server.game_controller.get_children():
