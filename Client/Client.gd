@@ -3,6 +3,8 @@ extends Node
 onready var network_handler = $ClientNetworkHandler
 onready var game_controller = $GameController
 
+var game_id
+
 onready var panels = {
 	'connecting_to_server': $Panels/ConnectingToServer,
 	'main_menu': $Panels/MainMenu,

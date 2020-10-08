@@ -34,6 +34,8 @@ var game_id
 var local_player_id
 var opponent_id
 
+var weapons_selected = false
+
 var current_state
 onready var states = {
 	"idle": $States/Idle,
@@ -77,19 +79,7 @@ func _process(delta):
 func _physics_process(delta):
 	if is_network_master():
 		current_state.physics_update(self, delta)
-		var animation = model.get_node("AnimationPlayer").current_animation
-		
-		var sync_data = {
-			'type': 'player_transform',
-			'game_id': game_id,
-			'player_id': local_player_id,
-			'global_transform': global_transform,
-			'visible': visible,
-			'collision_layer': collision_layer,
-			'collision_mask': collision_mask,
-			'animation': animation
-		}
-		network_interface.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
+		sync_transform_outgoing()
 		
 func _input(event):
 	if is_network_master():
@@ -151,17 +141,25 @@ func _start_round(weapons):
 	weapon_handler.on_ready()
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+puppet func set_ready_state(state):
+	weapons_selected = state
 
-func client_server_sync(sync_data):
-	if !is_network_master():
-		global_transform = sync_data.global_transform
-		visible = sync_data.visible
-		collision_layer = sync_data.collision_layer
-		collision_mask = sync_data.collision_mask
-		if !model.get_node("AnimationPlayer").current_animation == sync_data.animation:
-			model.get_node("AnimationPlayer").play(sync_data.animation)
+func sync_transform_outgoing():
+	var animation = model.get_node("AnimationPlayer").current_animation
+	var sync_data = {
+		'type': 'player_transform',
+		'game_id': game_id,
+		'player_id': local_player_id,
+		'global_transform': global_transform,
+		'visible': visible,
+		'collision_layer': collision_layer,
+		'collision_mask': collision_mask,
+		'animation': animation
+	}
+	network_interface.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
 			
-func server_client_sync(sync_data):
+func sync_transform_incoming(sync_data):
 	if !is_network_master():
 		global_transform = sync_data.global_transform
 		visible = sync_data.visible

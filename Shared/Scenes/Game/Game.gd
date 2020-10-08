@@ -28,6 +28,7 @@ func _ready():
 	if get_tree().get_root().get_node("Main").MODE == 'CLIENT':
 		var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
 		network_interface.send_data(1, 'client_info', 'update_game_state', 'idle')
+		get_tree().get_root().get_node("Main/Client").game_id = game_id
 	
 func _process(delta):
 	current_state.update(self, delta)
@@ -48,7 +49,14 @@ func client_server_sync(sync_data):
 		'player_transform':
 			for player in players.get_children():
 				if player.name == str(sync_data.player_id):
-					player.client_server_sync(sync_data)
+					player.sync_transform_incoming(sync_data)
+				else:
+					server_client_sync(int(player.name), sync_data)
+		'player_ready_state':
+			for player in players.get_children():
+				if player.name == str(sync_data.player_id):
+					player.set_ready_state(sync_data.ready_state)
+					print(player.name, ' ready state ', sync_data.ready_state)
 				else:
 					server_client_sync(int(player.name), sync_data)
 					
@@ -62,4 +70,8 @@ func server_client_sync(target_id, sync_data):
 			'player_transform':
 				for player in players.get_children():
 					if player.name == str(sync_data.player_id):
-						player.server_client_sync(sync_data)
+						player.sync_transform_incoming(sync_data)
+			'player_ready_state':
+				for player in players.get_children():
+					if player.name == str(sync_data.player_id):
+						player.set_ready_state(sync_data.ready_state)

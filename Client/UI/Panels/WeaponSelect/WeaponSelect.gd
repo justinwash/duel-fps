@@ -89,6 +89,19 @@ func _ready_up(weapons):
 	print("ready'd up with ", weapons, " selected")
 	ready = true
 	ready_button.disabled = true
+	sync_ready_state(true)
+	
+func sync_ready_state(state):
+	var local_player_id = get_tree().get_network_unique_id()
+	var game_id = get_tree().get_root().get_node('Main/Client').game_id
+	
+	var sync_data = {
+		'type': 'player_ready_state',
+		'game_id': game_id,
+		'player_id': local_player_id,
+		'ready_state': state
+	}
+	network_handler.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
 	
 func _repick():
 	print("repick clicked")
@@ -96,6 +109,7 @@ func _repick():
 	for button in weapon_buttons:
 		button.selected = false
 	ready = false
+	sync_ready_state(false)
 	
 func _timeout(weapons):
 	print("timed out with ", weapons, " selected")
