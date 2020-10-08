@@ -28,9 +28,11 @@ onready var timer = $Timer
 onready var model = $RotationHelper/Model
 
 onready var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
+onready var client = get_tree().get_root().get_node('Main/Client')
 
 var game_id
 var local_player_id
+var opponent_id
 
 var current_state
 onready var states = {
@@ -57,7 +59,7 @@ func _ready():
 		camera.current = false
 		model.visible = true
 
-	if get_tree().get_root().get_node("Main").MODE == 'CLIENT':
+	if client:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta):

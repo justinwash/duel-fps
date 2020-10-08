@@ -10,6 +10,7 @@ func enter(game):
 		new_player.set_name(str(id))
 		new_player.local_player_id = id
 		new_player.game_id = game.game_id
+		new_player.opponent_id = game.player_ids[1] if current_spawn == 0 else game.player_ids[0]
 			
 		# make spawn logic more robust later
 		new_player.translation = game.map.spawns.get_child(current_spawn).translation

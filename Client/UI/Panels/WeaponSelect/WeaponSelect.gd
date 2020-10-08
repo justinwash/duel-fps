@@ -33,8 +33,6 @@ func _ready():
 	
 	ready_button.connect("button_up", self, "_ready_up", [selected_weapons])
 	cancel_button.connect("button_up", self, "_repick")
-	
-	start_timer()
 
 func reset():
 	selected_weapons = []

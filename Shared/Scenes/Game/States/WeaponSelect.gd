@@ -10,6 +10,7 @@ func enter(game):
 		for player in game.players.get_children():
 			if player.name == str(get_tree().get_network_unique_id()):
 				weapon_select_panel.connect("start_round", player, "_start_round")
+				weapon_select_panel.start_timer()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		print('clients entered weapon_select. waiting for ready signals')
