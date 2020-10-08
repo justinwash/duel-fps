@@ -149,10 +149,7 @@ func _start_round(weapons):
 	weapon_handler.on_ready()
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-#func is_network_master():
-#	return true if str(get_tree().get_network_unique_id()) == self.name else false
-	
+
 func client_server_sync(sync_data):
 	if !is_network_master():
 		global_transform = sync_data.global_transform
