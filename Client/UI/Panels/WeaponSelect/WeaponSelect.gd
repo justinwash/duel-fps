@@ -24,6 +24,7 @@ onready var panels = get_node("../")
 
 var selected_weapons = []
 var ready = false
+var time_was
 
 signal start_round
 
@@ -91,6 +92,10 @@ func _ready_up(weapons):
 	ready_button.disabled = true
 	sync_ready_state(true)
 	
+func skip_timer():
+	timer.start(3)
+	cancel_button.disabled = true
+	
 func sync_ready_state(state):
 	var local_player_id = get_tree().get_network_unique_id()
 	var game_id = get_tree().get_root().get_node('Main/Client').game_id
@@ -125,5 +130,6 @@ func _timeout(weapons):
 	ready = true
 	for button in weapon_buttons:
 		button.visible = false
+	equipped_panel.hide_equipped_weapons()
 	emit_signal("start_round", selected_weapons)
 	client.switch_panel(null)

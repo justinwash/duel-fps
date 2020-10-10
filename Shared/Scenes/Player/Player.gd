@@ -29,6 +29,7 @@ onready var model = $RotationHelper/Model
 
 onready var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
 onready var client = get_tree().get_root().get_node('Main/Client')
+onready var weapon_select_panel = get_tree().get_root().get_node('Main/Client/Panels/WeaponSelect')
 
 var game_id
 var local_player_id
@@ -144,6 +145,9 @@ func _start_round(weapons):
 	
 puppet func set_ready_state(state):
 	weapons_selected = state
+
+puppet func skip_timer():
+	weapon_select_panel.skip_timer()
 
 func sync_transform_outgoing():
 	var animation = model.get_node("AnimationPlayer").current_animation
