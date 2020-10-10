@@ -76,15 +76,15 @@ func _select_weapon(button):
 	if !ready:
 		if !button.selected and len(selected_weapons) < 2:
 			button.selected = true
-			selected_weapons.append(button.WEAPON)
+			selected_weapons.append(button.WEAPON.resource_path)
 			button.slot_label.text = str(selected_weapons.find(button.WEAPON) + 1)
 			equipped_panel.add_equipped_weapon(button)
-			print("added ", button.WEAPON.instance().name, " to selection")
+			print("added ", button.WEAPON, " to selection")
 		else:
 			button.selected = false
-			selected_weapons.remove(selected_weapons.find(button.WEAPON))
+			selected_weapons.remove(selected_weapons.find(button.WEAPON.resource_path))
 			equipped_panel.remove_equipped_weapon(button)
-			print("removed ", button.WEAPON.instance().name, " from selection")
+			print("removed ", button.WEAPON, " from selection")
 		
 func _ready_up(weapons):
 	print("ready'd up with ", weapons, " selected")
@@ -123,8 +123,8 @@ func _timeout(weapons):
 	while len(selected_weapons) <= 1:
 		randomize()
 		var rand_weapon_index = randi() % len(weapon_buttons)
-		if !selected_weapons.has(weapon_buttons[rand_weapon_index].WEAPON):
-			selected_weapons.append(weapon_buttons[rand_weapon_index].WEAPON)
+		if !selected_weapons.has(weapon_buttons[rand_weapon_index].WEAPON.resource_path):
+			selected_weapons.append(weapon_buttons[rand_weapon_index].WEAPON.resource_path)
 			
 	print("forced ready with ", selected_weapons)
 	ready = true

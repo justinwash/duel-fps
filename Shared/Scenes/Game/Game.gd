@@ -58,6 +58,14 @@ func client_server_sync(sync_data):
 					player.set_ready_state(sync_data.ready_state)
 					print(player.name, ' ready state ', sync_data.ready_state)
 				server_client_sync(int(player.name), sync_data)
+		'player_weapon_selection':
+			for player in players.get_children():
+				if player.name == str(sync_data.player_id):
+					player.sync_weapon_selection_incoming(sync_data.weapons)
+					print(player.name, ' selected_weapons ', sync_data.weapons)
+				else:
+					server_client_sync(int(player.name), sync_data)
+			
 					
 func server_client_sync(target_id, sync_data):
 	if is_network_master():
@@ -83,3 +91,7 @@ func server_client_sync(target_id, sync_data):
 					for player in player_nodes:
 						player.skip_timer()
 				print(str(player_ready_states))
+			'player_weapon_selection':
+				for player in players.get_children():
+					if player.name == str(sync_data.player_id):
+						player.sync_weapon_selection_incoming(sync_data.weapons)

@@ -61,6 +61,9 @@ func _ready():
 	else:
 		camera.current = false
 		model.visible = true
+		for hud_element in hud.get_children():
+			if visible in hud_element:
+				hud_element.visible = false
 
 	if client:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -131,24 +134,37 @@ func health_updated():
 		change_state("dead")
 		
 func _start_round(weapons):
-	var primary = weapons[0].instance()
-	weapon_handler.primary_slot.add_child(primary)
-	weapon_handler.weapons.primary = primary
-		
-	var secondary = weapons[1].instance()
-	weapon_handler.secondary_slot.add_child(secondary)
-	weapon_handler.weapons.secondary = secondary
-	
-	weapon_handler.on_ready()
+	_clear_weapon_handler()
+	_populate_weapon_handler(weapons)
+	sync_weapon_selection_outgoing(weapons)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+func _clear_weapon_handler():
+	if weapon_handler.primary_slot.get_child_count() > 0:
+		weapon_handler.primary_slot.get_child(0).queue_free()
+	if weapon_handler.secondary_slot.get_child_count() > 0:
+		weapon_handler.secondary_slot.get_child(0).queue_free()
+	weapon_handler.weapons.primary = null
+	weapon_handler.weapons.secondary = null
+		
+func _populate_weapon_handler(weapons):
+	var primary = load(weapons[0]).instance()
+	weapon_handler.primary_slot.add_child(primary)
+	weapon_handler.weapons.primary = primary
+	
+	var secondary = load(weapons[1]).instance()
+	weapon_handler.secondary_slot.add_child(secondary)
+	weapon_handler.weapons.secondary = secondary
+	weapon_handler.on_ready()
+		
 puppet func set_ready_state(state):
 	weapons_selected = state
 
 puppet func skip_timer():
 	weapon_select_panel.skip_timer()
 
+# Sync transform methods
 func sync_transform_outgoing():
 	var animation = model.get_node("AnimationPlayer").current_animation
 	var sync_data = {
@@ -171,3 +187,21 @@ func sync_transform_incoming(sync_data):
 		collision_mask = sync_data.collision_mask
 		if !model.get_node("AnimationPlayer").current_animation == sync_data.animation:
 			model.get_node("AnimationPlayer").play(sync_data.animation)
+# Sync transform methods
+
+# Sync weapon selection methods
+func sync_weapon_selection_outgoing(weapons):
+	var animation = model.get_node("AnimationPlayer").current_animation
+	var sync_data = {
+		'type': 'player_weapon_selection',
+		'game_id': game_id,
+		'player_id': local_player_id,
+		'weapons': weapons
+	}
+	network_interface.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
+			
+func sync_weapon_selection_incoming(weapons):
+	if !is_network_master():
+		_clear_weapon_handler()
+		_populate_weapon_handler(weapons)
+# Sync weapon selection methods
