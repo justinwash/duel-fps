@@ -62,7 +62,7 @@ func _ready():
 		camera.current = false
 		model.visible = true
 		for hud_element in hud.get_children():
-			if visible in hud_element:
+			if hud_element.name != 'AnimationPlayer':
 				hud_element.visible = false
 
 	if client:
