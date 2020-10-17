@@ -1,8 +1,8 @@
 extends Spatial
 
-var ROCKET_SPEED = 10
+var ROCKET_SPEED = 15
 var ROCKET_DAMAGE = 15
-var BLAST_STRENGTH = 20
+var BLAST_STRENGTH = 40
 
 var DEBOUNCE_TIME = 0.2
 
@@ -26,16 +26,39 @@ func _physics_process(delta):
 	timer += delta
 
 func collided(body):
+	if body != shooter:
+		$RocketArea/CollisionShape.disabled = true
+	
 	if timer > DEBOUNCE_TIME:
-		print(shooter.name, "'s rocket collided with player ", body.name)
+		var blasted_bodies = $BlastRadius.get_overlapping_bodies()
+		
 		if body is Player:
 			if body != shooter:
-				body.receive_hit(ROCKET_DAMAGE)
-				queue_free()
+				print(shooter.name, "'s rocket collided with player ", body.name)
+				if get_tree().has_network_peer():
+					body.rpc("receive_hit", ROCKET_DAMAGE)
+				else:
+					body.receive_hit(ROCKET_DAMAGE)
+					
+				for blasted_body in blasted_bodies:
+					if blasted_body is Player:
+						var d = global_transform.basis.z.normalized()
+						blasted_body.rpc("apply_push", ((BLAST_STRENGTH) * -d))
 
-		var blasted_bodies = $BlastRadius.get_overlapping_bodies()
-		for blasted_body in blasted_bodies:
-			print('rocket blasted: ', blasted_body.name)
-			if blasted_body is Player:
-				var d = blasted_body.translation - translation
-				blasted_body.vel += (BLAST_STRENGTH / d.length()) * d
+		else:
+			for blasted_body in blasted_bodies:
+				if blasted_body is Player:
+					print(shooter.name, "'s splash radius collided with player ", body.name)
+					var d = blasted_body.translation - translation
+					if get_tree().has_network_peer():
+						body.rpc("receive_hit", int(ROCKET_DAMAGE / d.length()))
+						print('splash damage: ', int(ROCKET_DAMAGE / d.length()))
+					else:
+						body.receive_hit(int(ROCKET_DAMAGE / d.length()))
+		
+			for blasted_body in blasted_bodies:
+				if blasted_body is Player:
+					var d = blasted_body.translation - translation
+					blasted_body.rpc("apply_push", ((BLAST_STRENGTH / d.length()) / 2 * d))
+		
+		queue_free()

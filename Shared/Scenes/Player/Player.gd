@@ -120,6 +120,10 @@ func _move(delta):
 	
 master func receive_hit(amount):
 	status.HEALTH -= amount
+	sync_player_status_outgoing()
+	
+master func apply_push(push_vec):
+	vel += push_vec
 		
 func change_state(state_name):
 	current_state.exit(self)
@@ -205,3 +209,17 @@ func sync_weapon_selection_incoming(weapons):
 		_clear_weapon_handler()
 		_populate_weapon_handler(weapons)
 # Sync weapon selection methods
+
+# Sync status methods
+func sync_player_status_outgoing():
+	var sync_data = {
+		'type': 'player_status',
+		'game_id': game_id,
+		'player_id': local_player_id,
+		'health': status.HEALTH
+	}
+	network_interface.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
+
+func sync_player_status_incoming(new_health):
+	status.health_set(new_health)
+# Sync status methods

@@ -9,7 +9,7 @@ radius = 0.10092
 height = 0.100678
 
 [sub_resource type="SphereShape" id=3]
-radius = 10.0
+radius = 2.01834
 
 [sub_resource type="ShaderMaterial" id=4]
 

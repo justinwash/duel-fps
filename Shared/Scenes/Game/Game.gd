@@ -56,13 +56,26 @@ func client_server_sync(sync_data):
 			for player in players.get_children():
 				if player.name == str(sync_data.player_id):
 					player.set_ready_state(sync_data.ready_state)
-					print(player.name, ' ready state ', sync_data.ready_state)
+					print(player.name, ' ready state: ', sync_data.ready_state)
 				server_client_sync(int(player.name), sync_data)
 		'player_weapon_selection':
 			for player in players.get_children():
 				if player.name == str(sync_data.player_id):
 					player.sync_weapon_selection_incoming(sync_data.weapons)
-					print(player.name, ' selected_weapons ', sync_data.weapons)
+					print(player.name, ' selected_weapons: ', sync_data.weapons)
+				else:
+					server_client_sync(int(player.name), sync_data)
+		'player_status':
+			for player in players.get_children():
+				if player.name == str(sync_data.player_id):
+					player.status.health_set(sync_data.health)
+					print(player.name, ' health_changed: ', sync_data.health)
+				else:
+					server_client_sync(int(player.name), sync_data)
+		'score_sync':
+			for player in players.get_children():
+				if player.name == str(sync_data.player_id):
+					scorekeeper.SCORES = sync_data.scores
 				else:
 					server_client_sync(int(player.name), sync_data)
 			
@@ -95,3 +108,12 @@ func server_client_sync(target_id, sync_data):
 				for player in players.get_children():
 					if player.name == str(sync_data.player_id):
 						player.sync_weapon_selection_incoming(sync_data.weapons)
+			'player_status':
+				for player in players.get_children():
+					if player.name == str(sync_data.player_id):
+						player.status.health_set(sync_data.health)
+			'score_sync':
+				for player in players.get_children():
+					if player.name == str(sync_data.player_id):
+						scorekeeper.SCORES = sync_data.scores
+			
