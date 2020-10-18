@@ -3,6 +3,10 @@ extends KinematicBody
 var player = true
 var round_ready = false
 
+var lives = 2
+var rounds_won = 0
+var game_won = false
+
 const GRAVITY = -20
 const JUMP_SPEED = 7.5
 

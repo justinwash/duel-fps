@@ -72,12 +72,21 @@ func client_server_sync(sync_data):
 					print(player.name, ' health_changed: ', sync_data.health)
 				else:
 					server_client_sync(int(player.name), sync_data)
-		'score_sync':
+		'decrement_lives':
+			scorekeeper.decrement_lives_internal(sync_data.killed_player_id)
+			sync_data = { 
+				'type': 'score_sync', 
+				'game_id': game_id, 
+				'player_scores': {} 
+			}
 			for player in players.get_children():
-				if player.name == str(sync_data.player_id):
-					scorekeeper.SCORES = sync_data.scores
-				else:
-					server_client_sync(int(player.name), sync_data)
+				sync_data.player_scores[player.name] = {
+					'lives': player.lives,
+					'rounds_won': player.rounds_won,
+					'game_won': player.game_won
+				}
+			for player in players.get_children():
+				server_client_sync(int(player.name), sync_data)
 			
 					
 func server_client_sync(target_id, sync_data):
@@ -113,7 +122,9 @@ func server_client_sync(target_id, sync_data):
 					if player.name == str(sync_data.player_id):
 						player.status.health_set(sync_data.health)
 			'score_sync':
-				for player in players.get_children():
-					if player.name == str(sync_data.player_id):
-						scorekeeper.SCORES = sync_data.scores
+				for player_id in sync_data.player_scores:
+					var player = players.get_node(player_id)
+					player.lives = sync_data.player_scores[player_id].lives
+					player.rounds_won = sync_data.player_scores[player_id].rounds_won
+					player.game_won = sync_data.player_scores[player_id].game_won
 			

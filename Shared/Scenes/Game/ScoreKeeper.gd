@@ -1,9 +1,5 @@
 extends Node
 
-export(Array) var SCORES = [
-	{ player = null, kills = 0, rounds_won = 0, game_won = false },
-	{ player = null, kills = 0, rounds_won = 0, game_won = false },
-]
 export var CURRENT_ROUND = 1
 var initialized = false
 
@@ -12,53 +8,50 @@ onready var game = owner
 
 func initialize():
 	for player in players.get_children():
-		player.connect("died", self, "_increment_kill_score", [player])
+		player.connect("died", self, "decrement_lives_outgoing", [player])
+		player.lives = 2
+		player.rounds_won = 0
+		player.game_won = false
 
 func reset_kills():
-	for score in SCORES:
-		score.kills = 0
+	for player in players.get_children():
+		player.lives = 2
 
 func reset_all():
-	SCORES = [
-	{ player = null, kills = 0, rounds_won = 0, game_won = false },
-	{ player = null, kills = 0, rounds_won = 0, game_won = false },
-]
-
-func _increment_kill_score(killed_player):
-	if killed_player.is_network_master():
-		SCORES[1].kills += 1
-		if SCORES[1].kills >= 2:
-			SCORES[1].rounds_won += 1
-			reset_kills()
-			if SCORES[1].rounds_won >= 2:
-				SCORES[1].game_won = true
-				print(SCORES[1].player, ' won the game!')
-				reset_all()
-	else:
-		SCORES[0].kills += 1
-		if SCORES[0].kills  >= 2:
-			SCORES[0].rounds_won += 1
-			reset_kills()
-			if SCORES[0].rounds_won >= 2:
-				SCORES[0].game_won = true
-				print(SCORES[0].player, ' won the game!')
-				reset_all()
-	
-	sync_scores_outgoing()
-	print('KILL SCORE: ', 'Player 1 - ', SCORES[0].kills, ' | ', 'Player 2 - ', SCORES[1].kills)
-	print('ROUND SCORE: ', 'Player 1 - ', SCORES[0].rounds_won, ' | ', 'Player 2 - ', SCORES[1].rounds_won)
+	for player in players.get_children():
+		player.lives = 2
+		player.rounds_won = 0
+		player.game_won = false
 	
 # Sync scores methods
-func sync_scores_outgoing():
-	var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
-	var sync_data = {
-		'type': 'score_sync',
-		'game_id': game.game_id,
-		'player_id': game.local_player_id,
-		'scores': SCORES
-	}
-	network_interface.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
+func decrement_lives_internal(killed_player_id):
+	print('player died, server changing score: ', players.get_node(killed_player_id).name)
+	players.get_node(killed_player_id).lives -= 1
+			
+	if players.get_node(killed_player_id).lives <= 0:
+		for player in players.get_children():
+			if player.name != killed_player_id:
+				player.rounds_won += 1
+				print(player.name, ' won the round!')
+				reset_kills()
+				if player.rounds_won >= 2:
+					player.game_won = true
+					print(player.name, ' won the game!')
+	
+func decrement_lives_outgoing(killed_player):
+	if killed_player.name == str(game.local_player_id):
+		var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
+		var sync_data = {
+			'type': 'decrement_lives',
+			'game_id': game.game_id,
+			'player_id': game.local_player_id,
+			'killed_player_id': killed_player.name,
+			'amount': 1
+		}
+		network_interface.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
 	
 func sync_scores_incoming(scores):
-	SCORES = scores
+	print(scores)
+	for player in players:
+		print(player.name, 'Kills: ', player.kills, ' Rounds won: ', player.rounds_won, ' Game won: ', player.game_won)
 # Sync scores methods
