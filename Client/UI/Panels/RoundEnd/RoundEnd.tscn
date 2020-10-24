@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Shared/Fonts/JetBrainsMono-ExtraBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Client/UI/Panels/RoundEnd/RoundEnd.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 164
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "text_enter"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ResultLabel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 0.196146, 3.36359, 3.605 ),
+"update": 0,
+"values": [ Vector2( -1349, 384 ), Vector2( 384, 380 ), Vector2( 1984, 380 ) ]
+}
+
+[node name="RoundEnd" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResultLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 1024.0
+margin_top = -160.0
+margin_right = 2176.0
+margin_bottom = 159.999
+custom_fonts/font = SubResource( 1 )
+text = "VICTORY"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/text_enter = SubResource( 2 )

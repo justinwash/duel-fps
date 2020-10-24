@@ -9,7 +9,8 @@ onready var panels = {
 	'connecting_to_server': $Panels/ConnectingToServer,
 	'main_menu': $Panels/MainMenu,
 	'loading': $Panels/Loading,
-	'weapon_select': $Panels/WeaponSelect
+	'weapon_select': $Panels/WeaponSelect,
+	'round_end': $Panels/RoundEnd
 }
 
 var current_state
