@@ -17,6 +17,8 @@ remote func receive_data(type, command, data):
 			target_node = get_node("../Server/MatchmakingController")
 		'client_server_sync':
 			target_node = get_node("../Server/GameController")
+		'game_end':
+			target_node = get_node("../Server/GameController")
 			
 		# Server -> Client commands
 		'client_instruction':
@@ -26,7 +28,7 @@ remote func receive_data(type, command, data):
 		'server_client_sync':
 			target_node = get_node("../Client/GameController")
 		_:
-			print('no matching type found received data.')
+			print('no matching type found for received data.')
 			return
 	
 	if target_node && target_node.has_method(command):

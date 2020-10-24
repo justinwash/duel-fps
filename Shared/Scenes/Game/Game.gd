@@ -16,7 +16,10 @@ onready var states = {
 	'idle': $States/Idle,
 	'load_map': $States/LoadMap,
 	'spawn_players': $States/SpawnPlayers,
-	'weapon_select': $States/WeaponSelect
+	'weapon_select': $States/WeaponSelect,
+	'in_game': $States/InGame,
+	'round_end': $States/RoundEnd,
+	'game_end': $States/GameEnd
 }
 
 func _ready():
@@ -87,6 +90,21 @@ func client_server_sync(sync_data):
 				}
 			for player in players.get_children():
 				server_client_sync(int(player.name), sync_data)
+		'reset_kills':
+			scorekeeper.reset_kills()
+			sync_data = { 
+				'type': 'score_sync', 
+				'game_id': game_id, 
+				'player_scores': {} 
+			}
+			for player in players.get_children():
+				sync_data.player_scores[player.name] = {
+					'lives': player.lives,
+					'rounds_won': player.rounds_won,
+					'game_won': player.game_won
+				}
+			for player in players.get_children():
+				server_client_sync(int(player.name), sync_data)
 			
 					
 func server_client_sync(target_id, sync_data):
@@ -127,4 +145,8 @@ func server_client_sync(target_id, sync_data):
 					player.lives = sync_data.player_scores[player_id].lives
 					player.rounds_won = sync_data.player_scores[player_id].rounds_won
 					player.game_won = sync_data.player_scores[player_id].game_won
+					
+				for player in players.get_children():
+					if player.lives <= 0:
+						change_state('round_end')
 			

@@ -33,7 +33,6 @@ func decrement_lives_internal(killed_player_id):
 			if player.name != killed_player_id:
 				player.rounds_won += 1
 				print(player.name, ' won the round!')
-				reset_kills()
 				if player.rounds_won >= 2:
 					player.game_won = true
 					print(player.name, ' won the game!')

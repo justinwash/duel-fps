@@ -10,7 +10,8 @@ onready var panels = {
 	'main_menu': $Panels/MainMenu,
 	'loading': $Panels/Loading,
 	'weapon_select': $Panels/WeaponSelect,
-	'round_end': $Panels/RoundEnd
+	'round_end': $Panels/RoundEnd,
+	'game_end': $Panels/GameEnd
 }
 
 var current_state

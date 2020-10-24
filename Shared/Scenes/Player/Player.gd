@@ -148,6 +148,8 @@ func _start_round(weapons):
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	get_node('../../').change_state('in_game')
+	
 func _clear_weapon_handler():
 	if weapon_handler.primary_slot.get_child_count() > 0:
 		weapon_handler.primary_slot.get_child(0).queue_free()

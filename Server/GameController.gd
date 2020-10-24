@@ -45,5 +45,11 @@ func client_server_sync(from_id, sync_data):
 		if game.get_instance_id() == sync_data.game_id:
 			game.client_server_sync(sync_data)
 			break
+			
+func game_end(from_id, sync_data):
+	for game in get_children():
+		if game.get_instance_id() == sync_data.game_id:
+			game.queue_free()
+			break
 	
 	
