@@ -40,6 +40,7 @@ var local_player_id
 var opponent_id
 
 var weapons_selected = false
+var won_last_round = false
 
 var current_state
 onready var states = {
@@ -145,6 +146,8 @@ func _start_round(weapons):
 	_clear_weapon_handler()
 	_populate_weapon_handler(weapons)
 	sync_weapon_selection_outgoing(weapons)
+	
+	won_last_round = false
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	

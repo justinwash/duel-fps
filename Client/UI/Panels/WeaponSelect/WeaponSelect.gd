@@ -25,6 +25,8 @@ onready var panels = get_node("../")
 var selected_weapons = []
 var ready = false
 var time_was
+var won_last_round = false
+var used_repick = false
 
 signal start_round
 
@@ -36,11 +38,9 @@ func _ready():
 	cancel_button.connect("button_up", self, "_repick")
 
 func reset():
-	selected_weapons = []
-	for button in weapon_buttons:
-		button.selected = false
-	equipped_panel.remove_all_weapons()
+	used_repick = false
 	ready = false
+	sync_ready_state(false)
 	timer.disconnect("timeout", self, "_timeout")
 	
 func start_timer():
@@ -93,10 +93,12 @@ func _select_weapon(button):
 			equipped_panel.add_equipped_weapon(button)
 			print("added ", button.WEAPON, " to selection")
 		else:
-			button.selected = false
-			selected_weapons.remove(selected_weapons.find(button.WEAPON.resource_path))
-			equipped_panel.remove_equipped_weapon(button)
-			print("removed ", button.WEAPON, " from selection")
+			if !won_last_round or !used_repick:
+				button.selected = false
+				selected_weapons.remove(selected_weapons.find(button.WEAPON.resource_path))
+				equipped_panel.remove_equipped_weapon(button)
+				print("removed ", button.WEAPON, " from selection")
+				used_repick = true
 		
 func _ready_up(weapons):
 	print("ready'd up with ", weapons, " selected")
@@ -140,6 +142,5 @@ func _timeout(weapons):
 			
 	print("forced ready with ", selected_weapons)
 	ready = true
-	equipped_panel.hide_equipped_weapons()
 	emit_signal("start_round", selected_weapons)
 	client.switch_panel(null)

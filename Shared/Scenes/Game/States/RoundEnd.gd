@@ -24,6 +24,7 @@ func enter(game):
 					next_state = 'game_end'
 				else:
 					round_end_panel.result_label.text = 'ROUND WON'
+					player.won_last_round = true
 					next_state = 'weapon_select'
 				
 				round_end_panel.animation_player.disconnect('animation_finished', self, '_next_phase')
