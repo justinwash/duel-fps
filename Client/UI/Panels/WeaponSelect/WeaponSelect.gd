@@ -37,6 +37,9 @@ func _ready():
 
 func reset():
 	selected_weapons = []
+	for button in weapon_buttons:
+		button.selected = false
+	equipped_panel.remove_all_weapons()
 	ready = false
 	timer.disconnect("timeout", self, "_timeout")
 	
@@ -46,6 +49,8 @@ func start_timer():
 	timer.start()
 		
 func _physics_process(_delta):
+	if !visible:
+		return
 	for button in weapon_buttons:
 		var slot = selected_weapons.find(button.WEAPON)
 		button.slot_label.text = "" if slot == -1 else ("Q" if slot == 0 else "E")
@@ -69,8 +74,15 @@ func _physics_process(_delta):
 		cancel_button.disabled = false
 		
 	time_remaining.text = str(int(timer.time_left))
+	
 	if visible:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
+		for button in weapon_buttons:
+			button.visible = true
+	else:
+		for button in weapon_buttons:
+			button.visible = false
+		
 		
 func _select_weapon(button):
 	if !ready:
@@ -128,8 +140,6 @@ func _timeout(weapons):
 			
 	print("forced ready with ", selected_weapons)
 	ready = true
-	for button in weapon_buttons:
-		button.visible = false
 	equipped_panel.hide_equipped_weapons()
 	emit_signal("start_round", selected_weapons)
 	client.switch_panel(null)

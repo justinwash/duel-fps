@@ -18,6 +18,10 @@ func remove_equipped_weapon(weapon_button):
 				weapon.free()
 		
 		place_equipped_weapons()
+		
+func remove_all_weapons():
+	for weapon in equipped_weapons.get_children():
+		weapon.free()
 
 func place_equipped_weapons():
 	if len(equipped_weapons.get_children()) > 0:
@@ -29,4 +33,8 @@ func place_equipped_weapons():
 			
 func hide_equipped_weapons():
 	for weapon_icon in equipped_weapons.get_children():
-		weapon_icon.queue_free()
+		weapon_icon.visible = false
+
+func show_equipped_weapons():
+	for weapon_icon in equipped_weapons.get_children():
+		weapon_icon.visible = true
