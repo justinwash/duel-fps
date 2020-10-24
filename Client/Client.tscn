@@ -71,6 +71,7 @@ visible = false
 [node name="GameEnd" parent="Panels" instance=ExtResource( 19 )]
 visible = false
 script = ExtResource( 20 )
+CLIENT = NodePath("../..")
 
 [node name="States" type="Node" parent="."]
 
