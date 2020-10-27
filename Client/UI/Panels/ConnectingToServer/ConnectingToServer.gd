@@ -12,6 +12,7 @@ onready var datastore = get_node(DATASTORE)
 onready var name_box = $NameBox
 onready var color_picker = $ColorPicker
 onready var play_button = $PlayButton
+onready var practice_button = $PracticeButton
 
 onready var viewport = $Viewport
 onready var model = $Viewport/spaceboi
@@ -19,6 +20,7 @@ onready var viewport_sprite = $ViewportSprite
 
 func _ready():
 	var _play_button_pressed = play_button.connect('button_up', self, '_play_button_pressed')
+	var _practice_button_pressed = practice_button.connect('button_up', self, '_practice_button_pressed')
 	play_button.disabled = true
 	
 	render_model_preview()
@@ -41,6 +43,16 @@ func _play_button_pressed():
 		datastore.add_entry('player_info', player_info)
 		network_handler.send_data(1, 'player_info', 'register_player', player_info)
 		client.change_state('main_menu')
+		
+func _practice_button_pressed():
+	var player_info = {
+		'name': name_box.text,
+		'color': color_picker.color
+	}
+	
+	datastore.add_entry('player_info', player_info)
+	network_handler.send_data(1, 'player_info', 'register_player', player_info)
+	client.change_state('practice')
 		
 func render_model_preview():
 	# We want Godot to load everything but be hidden for a bit.

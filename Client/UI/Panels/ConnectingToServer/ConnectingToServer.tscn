@@ -72,10 +72,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="."]
-margin_left = 1160.0
-margin_top = 288.0
-margin_right = 1664.0
-margin_bottom = 960.0
+margin_left = 1164.0
+margin_top = 292.0
+margin_right = 1668.0
+margin_bottom = 964.0
 edit_alpha = false
 presets_visible = false
 __meta__ = {
@@ -83,12 +83,23 @@ __meta__ = {
 }
 
 [node name="PlayButton" type="Button" parent="."]
-margin_left = 1264.0
-margin_top = 96.0
-margin_right = 1584.0
-margin_bottom = 144.0
+margin_left = 1248.0
+margin_top = 72.0
+margin_right = 1568.0
+margin_bottom = 120.0
 custom_fonts/font = ExtResource( 5 )
 text = "Play!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PracticeButton" type="Button" parent="."]
+margin_left = 1248.0
+margin_top = 136.0
+margin_right = 1568.0
+margin_bottom = 184.0
+custom_fonts/font = ExtResource( 5 )
+text = "Practice/Debug"
 __meta__ = {
 "_edit_use_anchors_": false
 }

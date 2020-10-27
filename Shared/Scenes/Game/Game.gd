@@ -28,7 +28,8 @@ func _ready():
 		current_state.ready(self)
 	current_state.enter(self)
 	
-	if get_tree().get_root().get_node("Main").MODE == 'CLIENT':
+	if get_tree().get_root().get_node("Main") && \
+	get_tree().get_root().get_node("Main").MODE == 'CLIENT':
 		var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
 		network_interface.send_data(1, 'client_info', 'update_game_state', 'idle')
 		get_tree().get_root().get_node("Main/Client").game_id = game_id
@@ -43,7 +44,8 @@ func change_state(state_name):
 		current_state.ready(self)
 	current_state.enter(self)
 	
-	if get_tree().get_root().get_node("Main").MODE == 'CLIENT':
+	if get_tree().get_root().get_node("Main") && \
+	get_tree().get_root().get_node("Main").MODE == 'CLIENT':
 		var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
 		network_interface.send_data(1, 'client_info', 'update_game_state', state_name)
 			

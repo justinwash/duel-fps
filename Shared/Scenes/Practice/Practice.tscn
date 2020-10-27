@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Shared/Scenes/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shared/Scenes/Maps/Test/Test.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Shared/Scenes/Practice/Practice.gd" type="Script" id=3]
+
+[node name="Practice" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="TestMap" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.21098, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.60052, 1.05362, 8.92804 )

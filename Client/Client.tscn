@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Client/Client.gd" type="Script" id=1]
 [ext_resource path="res://Client/Networking/ClientNetworkHandler.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Client/States/InGame.gd" type="Script" id=17]
 [ext_resource path="res://Client/UI/Panels/RoundEnd/RoundEnd.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Client/UI/Panels/GameEnd/GameEnd.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Client/States/OfflinePlay.gd" type="Script" id=20]
 
 [node name="Client" type="Node"]
 script = ExtResource( 1 )
@@ -99,6 +100,9 @@ script = ExtResource( 16 )
 
 [node name="InGame" type="Node" parent="States"]
 script = ExtResource( 17 )
+
+[node name="Practice" type="Node" parent="States"]
+script = ExtResource( 20 )
 
 [node name="Timer" type="Timer" parent="."]
 

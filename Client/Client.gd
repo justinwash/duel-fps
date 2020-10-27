@@ -24,7 +24,8 @@ onready var states = {
 	"loading": $States/Loading,
 	"setup_game": $States/StartGame,
 	"in_game": $States/InGame,
-	'weapon_select': $States/WeaponSelect
+	'weapon_select': $States/WeaponSelect,
+	'practice': $States/Practice
 }
 
 func _ready():
