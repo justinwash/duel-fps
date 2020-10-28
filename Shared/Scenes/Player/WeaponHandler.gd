@@ -1,5 +1,7 @@
 extends Spatial
 
+var offline = false
+
 var current_weapon
 onready var hud = get_node("../../HUD")
 onready var camera = get_node("../Camera")
@@ -27,18 +29,17 @@ func on_ready():
 	current_weapon.enter(self)
 
 	player = get_parent().get_parent()
-	print("player is: ", player.name)
 
 func _process(delta):
-	if is_master_or_player(1) and weapons_selected():
+	if (is_master_or_player(1) || offline) and weapons_selected():
 		current_weapon.update(self, delta)
 		
 func _physics_process(delta):
-	if is_master_or_player(1) and weapons_selected():
+	if (is_master_or_player(1) || offline)  and weapons_selected():
 		current_weapon.physics_update(self, delta)
 
 func _input(event):
-	if is_master_or_player(1):
+	if (is_master_or_player(1) || offline) :
 		if event is InputEventMouseButton and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			if current_weapon:
 				current_weapon.on_input(self, event)
@@ -51,7 +52,6 @@ func is_master_or_player(id):
 		return false
 		
 func toggle_weapon():
-	print(player)
 	current_weapon.exit(self)
 	
 	if current_weapon == weapons.primary:

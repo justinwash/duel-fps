@@ -13,8 +13,6 @@ var connected = null
 var initialized = false
 
 func _ready():
-	print('Connecting to server...')
-	
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(SERVER_ADDRESS, SERVER_PORT)
 	get_tree().network_peer = peer

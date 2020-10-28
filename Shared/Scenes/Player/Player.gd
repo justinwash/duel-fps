@@ -76,6 +76,9 @@ func _ready():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta):
+	if offline:
+		weapon_handler.offline = true
+		
 	if is_network_master() || offline:
 		camera.current = true
 		current_state.update(self, delta)
@@ -90,7 +93,9 @@ func _process(delta):
 func _physics_process(delta):
 	if is_network_master() || offline:
 		current_state.physics_update(self, delta)
-		sync_transform_outgoing()
+		
+		if !offline:
+			sync_transform_outgoing()
 		
 func _input(event):
 	if is_network_master() || offline:
@@ -127,7 +132,9 @@ func _move(delta):
 	
 master func receive_hit(amount):
 	status.HEALTH -= amount
-	sync_player_status_outgoing()
+	
+	if !offline:
+		sync_player_status_outgoing()
 	
 master func apply_push(push_vec):
 	vel += push_vec
@@ -147,7 +154,9 @@ func health_updated():
 func _start_round(weapons):
 	_clear_weapon_handler()
 	_populate_weapon_handler(weapons)
-	sync_weapon_selection_outgoing(weapons)
+	
+	if !offline:
+		sync_weapon_selection_outgoing(weapons)
 	
 	won_last_round = false
 	
@@ -164,14 +173,16 @@ func _clear_weapon_handler():
 	weapon_handler.weapons.secondary = null
 		
 func _populate_weapon_handler(weapons):
-	var primary = load(weapons[0]).instance()
-	weapon_handler.primary_slot.add_child(primary)
-	weapon_handler.weapons.primary = primary
+	if len(weapons) > 0:
+		var primary = load(weapons[0]).instance()
+		weapon_handler.primary_slot.add_child(primary)
+		weapon_handler.weapons.primary = primary
 	
-	var secondary = load(weapons[1]).instance()
-	weapon_handler.secondary_slot.add_child(secondary)
-	weapon_handler.weapons.secondary = secondary
-	weapon_handler.on_ready()
+	if len(weapons) > 1:
+		var secondary = load(weapons[1]).instance()
+		weapon_handler.secondary_slot.add_child(secondary)
+		weapon_handler.weapons.secondary = secondary
+		weapon_handler.on_ready()
 		
 puppet func set_ready_state(state):
 	weapons_selected = state

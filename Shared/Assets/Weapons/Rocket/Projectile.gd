@@ -10,6 +10,7 @@ const KILL_TIMER = 4
 var timer = 0
 
 const Player = preload("res://Shared/Scenes/Player/Player.gd")
+const Dummy = preload("res://Shared/Scenes/Dummy/Dummy.gd")
 
 var hit_something = false
 var shooter = null
@@ -32,7 +33,7 @@ func collided(body):
 	if timer > DEBOUNCE_TIME:
 		var blasted_bodies = $BlastRadius.get_overlapping_bodies()
 		
-		if body is Player:
+		if body is Player || body is Dummy:
 			if body != shooter:
 				print(shooter.name, "'s rocket collided with player ", body.name)
 				if get_tree().has_network_peer():
@@ -44,6 +45,9 @@ func collided(body):
 					if blasted_body is Player:
 						var d = global_transform.basis.z.normalized()
 						blasted_body.rpc("apply_push", ((BLAST_STRENGTH) * -d))
+					if blasted_body is Dummy:
+						var d = global_transform.basis.z.normalized()
+						blasted_body.apply_push((BLAST_STRENGTH) * -d)
 
 		else:
 			for blasted_body in blasted_bodies:
@@ -60,5 +64,8 @@ func collided(body):
 				if blasted_body is Player:
 					var d = blasted_body.translation - translation
 					blasted_body.rpc("apply_push", ((BLAST_STRENGTH / d.length()) / 2 * d))
+				if blasted_body is Dummy:
+					var d = global_transform.basis.z.normalized()
+					blasted_body.apply_push((BLAST_STRENGTH) * -d)
 		
 		queue_free()
