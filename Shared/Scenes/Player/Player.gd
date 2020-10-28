@@ -1,5 +1,7 @@
 extends KinematicBody
 
+var offline = false
+
 var player = true
 var round_ready = false
 
@@ -60,7 +62,7 @@ func _ready():
 		current_state.ready(self)
 	current_state.enter(self)
 	
-	if is_network_master():
+	if is_network_master() || offline:
 		camera.current = true
 		model.visible = false
 	else:
@@ -74,7 +76,7 @@ func _ready():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta):
-	if is_network_master():
+	if is_network_master() || offline:
 		camera.current = true
 		current_state.update(self, delta)
 		_move(delta)
@@ -86,12 +88,12 @@ func _process(delta):
 			
 		
 func _physics_process(delta):
-	if is_network_master():
+	if is_network_master() || offline:
 		current_state.physics_update(self, delta)
 		sync_transform_outgoing()
 		
 func _input(event):
-	if is_network_master():
+	if is_network_master() || offline:
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 			rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))

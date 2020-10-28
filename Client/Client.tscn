@@ -45,7 +45,6 @@ NETWORK_HANDLER = NodePath("../../ClientNetworkHandler")
 DATASTORE = NodePath("../../DataStore")
 
 [node name="MainMenu" parent="Panels" instance=ExtResource( 10 )]
-visible = false
 CLIENT = NodePath("../..")
 NETWORK_HANDLER = NodePath("../../ClientNetworkHandler")
 DATASTORE = NodePath("../../DataStore")
@@ -105,5 +104,6 @@ script = ExtResource( 17 )
 script = ExtResource( 20 )
 
 [node name="Timer" type="Timer" parent="."]
+[connection signal="button_up" from="Panels/MainMenu/OfflinePanel/Button" to="Panels/MainMenu" method="_on_OfflineButton_button_up"]
 
 [editable path="Panels/MainMenu"]

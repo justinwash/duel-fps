@@ -4,7 +4,8 @@ func enter(client):
 	print('entered state: practice')
 	client.switch_panel(null)
 	
-	client.game_controller.setup_game({})
+	var practice = preload("res://Shared/Scenes/Practice/Practice.tscn").instance()
+	client.add_child(practice)
 
 func ready(_client):
 	pass
