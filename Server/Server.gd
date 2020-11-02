@@ -1,6 +1,6 @@
 extends Node
 
-export(int) var PORT = 3000
+export(int) var PORT = OS.get_environment('PORT') || 3000
 export(int) var MAX_PLAYERS = 1024
 
 onready var player_controller = $PlayerController

@@ -1,0 +1,9 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 0.49
+metallic_specular = 1.0
+roughness = 0.24
