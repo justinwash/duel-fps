@@ -1,6 +1,6 @@
 extends Node
 
-export(int) var PORT = OS.get_environment('PORT') || 3000
+export(int) var PORT = 3000
 export(int) var MAX_PLAYERS = 1024
 
 onready var player_controller = $PlayerController
@@ -12,6 +12,9 @@ onready var network_interface = get_node("../NetworkInterface")
 const clients = {}
 	
 func _ready():
+	if OS.get_environment('PORT'):
+		PORT = OS.get_environment('PORT')
+	print(PORT)
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(PORT, MAX_PLAYERS)
 	get_tree().network_peer = peer

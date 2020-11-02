@@ -10,7 +10,6 @@
 
 [node name="Server" type="Node"]
 script = ExtResource( 1 )
-PORT = 5000
 
 [node name="PlayerDebugInfo" type="Control" parent="."]
 margin_right = 1021.0
