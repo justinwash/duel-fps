@@ -13,8 +13,7 @@ const clients = {}
 	
 func _ready():
 	if OS.get_environment('PORT'):
-		PORT = OS.get_environment('PORT')
-	print(PORT)
+		PORT = int(OS.get_environment('PORT'))
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(PORT, MAX_PLAYERS)
 	get_tree().network_peer = peer
