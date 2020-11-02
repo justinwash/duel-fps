@@ -1,7 +1,7 @@
 build:
     docker:
-      server: Dockerfile
+      web: Dockerfile
   release:
-    image: server
+    image: web
     command:
     - echo 'Starting Duel FPS Server...';
