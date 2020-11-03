@@ -28,7 +28,7 @@ script = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="ClientNetworkHandler" parent="." instance=ExtResource( 2 )]
-SERVER_ADDRESS = "3.19.57.1"
+SERVER_ADDRESS = "18.188.49.193"
 SERVER_PORT = 5000
 DATASTORE = NodePath("../DataStore")
 

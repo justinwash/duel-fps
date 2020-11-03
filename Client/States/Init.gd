@@ -1,7 +1,7 @@
 extends Node
 
 func enter(_client):
-	print('entered state: init')
+	pass
 
 func ready(_client):
 	pass

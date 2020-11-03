@@ -1,8 +1,8 @@
 extends Node
 
 func enter(game):
-	print('game entered state: in_game')
-
+	pass
+	
 func ready(_game):
 	pass
 	

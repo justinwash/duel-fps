@@ -1,7 +1,6 @@
 extends Node
 
 func enter(client):
-	print('entered state: loading')
 	client.switch_panel('loading')
 
 func ready(_client):

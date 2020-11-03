@@ -1,7 +1,6 @@
 extends Node
 
 func enter(client):
-	print('entered state: connecting to server')
 	client.switch_panel('connecting_to_server')
 
 func ready(_client):

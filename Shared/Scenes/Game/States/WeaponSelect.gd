@@ -5,7 +5,6 @@ onready var client = get_tree().get_root().get_node('Main/Client')
 func enter(game):
 	if !is_network_master():
 		var weapon_select_panel = client.get_node("Panels/WeaponSelect")
-		print('game entered state: weapon select')
 		client.switch_panel('weapon_select')
 		for player in game.players.get_children():
 			if player.name == str(get_tree().get_network_unique_id()):
@@ -14,8 +13,6 @@ func enter(game):
 				weapon_select_panel.reset()
 				weapon_select_panel.start_timer()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	else:
-		print('clients entered weapon_select. waiting for ready signals')
 
 func ready(_game):
 	pass

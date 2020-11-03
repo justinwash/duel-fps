@@ -39,12 +39,10 @@ func _select_weapon(button):
 		selected_weapons.append(button.WEAPON.resource_path)
 		button.slot_label.text = str(selected_weapons.find(button.WEAPON) + 1)
 		equipped_panel.add_equipped_weapon(button)
-		print("added ", button.WEAPON, " to selection")
 	else:
 		button.selected = false
 		selected_weapons.remove(selected_weapons.find(button.WEAPON.resource_path))
 		equipped_panel.remove_equipped_weapon(button)
-		print("removed ", button.WEAPON, " from selection")
 
 func _clear():
 	selected_weapons = []

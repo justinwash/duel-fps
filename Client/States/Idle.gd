@@ -1,8 +1,8 @@
 extends Node
 
 func enter(_client):
-	print('entered state: idle')
-
+	pass
+	
 func ready(_client):
 	pass
 	

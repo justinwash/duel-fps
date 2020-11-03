@@ -38,7 +38,6 @@ func collided(body):
 		
 		if body is Player || body is Dummy:
 			if body != shooter:
-				print(shooter.name, "'s rocket collided with player ", body.name)
 				if get_tree().has_network_peer():
 					body.rpc("receive_hit", ROCKET_DAMAGE)
 				else:
@@ -55,11 +54,9 @@ func collided(body):
 		else:
 			for blasted_body in blasted_bodies:
 				if blasted_body is Player:
-					print(shooter.name, "'s splash radius collided with player ", body.name)
 					var d = blasted_body.translation - translation
 					if get_tree().has_network_peer():
 						body.rpc("receive_hit", int(ROCKET_DAMAGE / d.length()))
-						print('splash damage: ', int(ROCKET_DAMAGE / d.length()))
 					else:
 						body.receive_hit(int(ROCKET_DAMAGE / d.length()))
 		

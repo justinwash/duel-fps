@@ -12,14 +12,11 @@ func physics_update(weapon_handler, delta):
 func on_input(weapon_handler, event):
 	if cooldown >= current_cooldown:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			print("Rifle primary firing")
 			weapon_handler.hud.anim.play("shoot")
 			raycast.force_raycast_update()
 			
 			var target = get_raycast_collider()
 			if target and target.get("player"):
-				print("hit player ", target.name, "!")
-				
 				if get_tree().has_network_peer():
 					target.rpc("receive_hit", PRIMARY_DAMAGE)
 				else:
@@ -29,13 +26,11 @@ func on_input(weapon_handler, event):
 			current_cooldown = PRIMARY_COOLDOWN_TIME
 			
 		elif event.button_index == BUTTON_RIGHT and event.pressed:
-			print("Rifle secondary firing")
 			weapon_handler.hud.anim.play("shoot")
 			raycast.force_raycast_update()
 			
 			var target = get_raycast_collider()
 			if target and target.get("player"):
-				print("hit player ", target.name, "!")
 				
 				if get_tree().has_network_peer():
 					target.rpc("receive_hit", SECONDARY_DAMAGE)

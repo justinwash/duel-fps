@@ -1,7 +1,6 @@
 extends Node
 
 func enter(client):
-	print('entered state: weapon select')
 	var weapon_select_panel = client.panels['weapon_select']
 	
 	client.switch_panel('weapon_select')

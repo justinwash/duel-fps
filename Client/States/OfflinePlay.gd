@@ -1,7 +1,6 @@
 extends Node
 
 func enter(client):
-	print('entered state: practice')
 	client.switch_panel(null)
 	
 	var practice = preload("res://Shared/Scenes/Practice/Practice.tscn").instance()

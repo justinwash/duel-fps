@@ -1,7 +1,6 @@
 extends Node
 
 func enter(player):
-	print("player ", player, " is kill")
 	player.emit_signal("died")
 	player.anim.play("die")
 	player.model.get_node("AnimationPlayer").play("tpose")
@@ -25,7 +24,6 @@ func exit(_player):
 	pass
 	
 func respawn(player):
-	print("player ", player.name, " should respawn")
 	player.timer.disconnect("timeout", self, "respawn")
 	
 	player.status.HEALTH = 100

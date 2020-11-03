@@ -1,8 +1,6 @@
 extends Node
 
 func enter(game):
-	print('game entered state: load map')
-	
 	game.map = load("res://Shared/Scenes/Maps/" + game.map_to_load + '/' + game.map_to_load + '.tscn').instance()
 	game.map_name = game.map.name
 	game.add_child(game.map)

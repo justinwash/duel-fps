@@ -1,7 +1,6 @@
 extends Node
 
 func enter(player):
-	print("entered state idle")
 	player.model.get_node("AnimationPlayer").play("idle")
 	
 func ready(_player):

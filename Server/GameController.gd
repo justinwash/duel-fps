@@ -10,7 +10,6 @@ func create_game(player_one, player_two):
 	network_interface = owner.network_interface
 	
 	print('should start game between ', player_one, ' and ', player_two)
-	print('sending game-start data to clients...')
 	
 	var new_game = preload("res://Shared/Scenes/Game/Game.tscn").instance()
 	new_game.set_network_master(1)

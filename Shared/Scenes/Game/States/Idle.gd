@@ -1,8 +1,6 @@
 extends Node
 
 func enter(game):
-	print('game entered state: idle')
-	
 	game.change_state('load_map')
 
 func ready(_game):

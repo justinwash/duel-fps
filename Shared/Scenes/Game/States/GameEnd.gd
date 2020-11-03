@@ -5,7 +5,6 @@ onready var client = get_tree().get_root().get_node('Main/Client')
 func enter(game):
 	if !is_network_master():
 		var game_end_panel = client.get_node("Panels/GameEnd")
-		print('game entered state: game_end')
 		client.switch_panel('game_end')
 		
 		for player in game.players.get_children():
@@ -23,9 +22,6 @@ func enter(game):
 					}
 					var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
 					network_interface.send_data(1, 'game_end', 'game_end', sync_data)
-					
-	else:
-		print('clients entered game_end. killing game instance')
 		
 func _get_opponent(game):
 	for player in game.players.get_children():

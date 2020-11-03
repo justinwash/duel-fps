@@ -25,17 +25,14 @@ func reset_all():
 	
 # Sync scores methods
 func decrement_lives_internal(killed_player_id):
-	print('player died, server changing score: ', players.get_node(killed_player_id).name)
 	players.get_node(killed_player_id).lives -= 1
 			
 	if players.get_node(killed_player_id).lives <= 0:
 		for player in players.get_children():
 			if player.name != killed_player_id:
 				player.rounds_won += 1
-				print(player.name, ' won the round!')
 				if player.rounds_won >= 2:
 					player.game_won = true
-					print(player.name, ' won the game!')
 	
 func decrement_lives_outgoing(killed_player):
 	if killed_player.name == str(game.local_player_id):
@@ -50,7 +47,5 @@ func decrement_lives_outgoing(killed_player):
 		network_interface.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
 	
 func sync_scores_incoming(scores):
-	print(scores)
-	for player in players:
-		print(player.name, 'Kills: ', player.kills, ' Rounds won: ', player.rounds_won, ' Game won: ', player.game_won)
+	pass
 # Sync scores methods

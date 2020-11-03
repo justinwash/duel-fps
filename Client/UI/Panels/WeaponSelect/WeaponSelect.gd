@@ -91,13 +91,11 @@ func _select_weapon(button):
 			selected_weapons.append(button.WEAPON.resource_path)
 			button.slot_label.text = str(selected_weapons.find(button.WEAPON) + 1)
 			equipped_panel.add_equipped_weapon(button)
-			print("added ", button.WEAPON, " to selection")
 		else:
 			if !won_last_round or !used_repick:
 				button.selected = false
 				selected_weapons.remove(selected_weapons.find(button.WEAPON.resource_path))
 				equipped_panel.remove_equipped_weapon(button)
-				print("removed ", button.WEAPON, " from selection")
 				used_repick = true
 		
 func _ready_up(weapons):
@@ -123,7 +121,6 @@ func sync_ready_state(state):
 	network_handler.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
 	
 func _repick():
-	print("repick clicked")
 	selected_weapons = []
 	for button in weapon_buttons:
 		button.selected = false
@@ -131,7 +128,6 @@ func _repick():
 	sync_ready_state(false)
 	
 func _timeout(weapons):
-	print("timed out with ", weapons, " selected")
 	timer.disconnect("timeout", self, "_timeout")
 	timer.stop()
 	while len(selected_weapons) <= 1:
@@ -139,8 +135,6 @@ func _timeout(weapons):
 		var rand_weapon_index = randi() % len(weapon_buttons)
 		if !selected_weapons.has(weapon_buttons[rand_weapon_index].WEAPON.resource_path):
 			selected_weapons.append(weapon_buttons[rand_weapon_index].WEAPON.resource_path)
-			
-	print("forced ready with ", selected_weapons)
 	ready = true
 	emit_signal("start_round", selected_weapons)
 	client.switch_panel(null)

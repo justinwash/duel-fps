@@ -32,8 +32,6 @@ func enter(game):
 			for mesh in raw_model.get_children():
 				if mesh.name != 'Head':
 					mesh.get_surface_material(0).albedo_color = get_tree().get_root().get_node("Main/Server").clients[id].player.color
-				
-		print("spawned player for " + str(id) + ' on server.')
 
 	if game.players.get_child_count() == 2:
 		if game.scorekeeper and game.scorekeeper.has_method("initialize"):

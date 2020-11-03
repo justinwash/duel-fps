@@ -4,7 +4,6 @@ func enter(player):
 	player.vel.y = player.JUMP_SPEED
 	
 	player.model.get_node("AnimationPlayer").play("jumpingjacks")
-	print("entered state jump")
 	
 func ready(_player):
 	pass

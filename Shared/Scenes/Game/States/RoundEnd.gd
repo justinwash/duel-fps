@@ -5,7 +5,6 @@ onready var client = get_tree().get_root().get_node('Main/Client')
 func enter(game):
 	if !is_network_master():
 		var round_end_panel = client.get_node("Panels/RoundEnd")
-		print('game entered state: round_end')
 		client.switch_panel('round_end')
 		
 		for player in game.players.get_children():
@@ -39,9 +38,6 @@ func enter(game):
 					}
 					var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
 					network_interface.send_data(1, 'client_server_sync', 'client_server_sync', sync_data)
-					
-	else:
-		print('clients entered round_end. waiting for animations')
 		
 func _get_opponent(game):
 	for player in game.players.get_children():

@@ -2,7 +2,6 @@ extends Node
 
 func enter(player):
 	player.model.get_node("AnimationPlayer").play("run")
-	print("entered state walk")
 	
 func ready(_player):
 	pass
