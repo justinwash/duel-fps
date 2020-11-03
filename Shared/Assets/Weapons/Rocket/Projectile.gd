@@ -4,7 +4,7 @@ var ROCKET_SPEED = 15
 var ROCKET_DAMAGE = 15
 var BLAST_STRENGTH = 40
 
-var DEBOUNCE_TIME = 0.2
+var DEBOUNCE_TIME = 0.0
 
 const KILL_TIMER = 4
 var timer = 0
@@ -15,8 +15,9 @@ const Dummy = preload("res://Shared/Scenes/Dummy/Dummy.gd")
 var hit_something = false
 var shooter = null
 
+onready var smooth = $Smooth3D
 func _ready():
-	var _connect_rocket_area = $RocketArea.connect("body_entered", self, "collided")
+	var _connect_rocket_area = $Smooth3D/MeshInstance/RocketArea.connect("body_entered", self, "collided")
 
 func init(shotby):
 	shooter = shotby
@@ -28,10 +29,12 @@ func _physics_process(delta):
 
 func collided(body):
 	if body != shooter:
-		$RocketArea/CollisionShape.disabled = true
+		$Smooth3D/MeshInstance/RocketArea/CollisionShape.disabled = true
+	else:
+		return
 	
 	if timer > DEBOUNCE_TIME:
-		var blasted_bodies = $BlastRadius.get_overlapping_bodies()
+		var blasted_bodies = $Smooth3D/MeshInstance/BlastRadius.get_overlapping_bodies()
 		
 		if body is Player || body is Dummy:
 			if body != shooter:

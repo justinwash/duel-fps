@@ -19,6 +19,7 @@ func on_input(weapon_handler, event):
 			var scene_root = get_tree().root.get_children()[0]
 			scene_root.add_child(rocket)
 			rocket.global_transform = weapon_handler.get_parent().global_transform
+			rocket.smooth.snap_to_target()
 			
 			cooldown = 0.0
 			current_cooldown = PRIMARY_COOLDOWN_TIME

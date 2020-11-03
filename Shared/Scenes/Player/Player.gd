@@ -31,7 +31,7 @@ onready var weapon_handler = $RotationHelper/WeaponHandler
 onready var status = $Status
 onready var anim = $AnimationPlayer
 onready var timer = $Timer
-onready var model = $RotationHelper/Model
+onready var model = $RotationHelper/Smooth3D/Model
 
 onready var network_interface = get_tree().get_root().get_node("Main/NetworkInterface")
 onready var client = get_tree().get_root().get_node('Main/Client')
